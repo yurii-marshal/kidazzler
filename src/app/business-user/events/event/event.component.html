@@ -1,0 +1,31 @@
+<kz-header type="withMenu"></kz-header>
+<kz-title-header [title]="eventId ? 'Edit Event': 'Add Event'"
+                 [isShownBack]="true"
+                 [isWhite]="true"
+                 [isShownCancel]="true"
+                 [isStatic]="true"
+></kz-title-header>
+
+
+
+<div class="desktop-title">
+  <div class="desktop-title__wrapper">
+    <p class="desktop-title__heading">
+      {{eventId ? 'Edit' : 'Add'}}
+    </p>
+    <p class="desktop-title__title">
+      Event Details
+    </p>
+  </div>
+</div>
+
+<kz-event (onSubmit)="submit($event)" (onDeleteEvent)="onDelete()"></kz-event>
+
+<!-- LOADERS -->
+<ngx-ui-loader [fgsColor]="'#823cf1'"
+               [fgsType]="'wandering-cubes'"
+               [loaderId]="'submit-event'"
+               [hasProgressBar]="false"
+               [fgsPosition]="'center-center'">
+</ngx-ui-loader>
+<!-- LOADERS -->

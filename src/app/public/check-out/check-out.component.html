@@ -1,0 +1,218 @@
+<kz-header type="withMenu"></kz-header>
+<div class="check-out">
+  <div class="check-out__banner">Check out</div>
+  <div class="check-out__content">
+    <div class="container">
+      <div class="check-out__block check-out__block_left" [class.opened]="opened">
+        <div class="check-out__block__period">{{selectedPlan?.period}}</div>
+        <div class="check-out__block__price">${{selectedPlan?.price}}<span>/mo</span></div>
+        <div class="check-out__block__discount">Regular price <span>${{selectedPlan?.regularPrice}}/mo</span></div>
+        <div class="check-out__block__billed">Billed bi-annually</div>
+        <div class="check-out__block__save">SAVE <strong>60%</strong> for a limited time</div>
+        <div class="check-out__block__billed2">Billed {{selectedPlan?.billed}} </div>
+        <ul class="check-out__block__list">
+          <li class="check-out__block__list__item">
+            <div class="check-out__block__list__item__heading">Expert Enhancements & Tools</div>
+            <ul>
+              <li>Ability to run special deals & offers (unlimited)</li>
+              <li>Ability to create unique events & promotions (unlimited)</li>
+              <li>Engage customers in real-time</li>
+              <li>Create and provide customers unique check-in codes</li>
+              <li>Preferred placement in multiple categories</li>
+              <li>Stand out in search results with special icons</li>
+              <li>Remove competitor ads</li>
+              <li>Photo gallery/slideshow</li>
+              <li>Homepage spotlight: deals and events</li>
+            </ul>
+          </li>
+          <li class="check-out__block__list__item">
+            <div class="check-out__block__list__item__heading">Current Price Guaranteed Upon Renewal</div>
+          </li>
+          <li class="check-out__block__list__item check-out__block__list__item_times">
+            <div class="check-out__block__list__item__heading">Exclusive <span>featured</span> Listing</div>
+            <ul>
+              <li><span>Premium</span> positioning in search results</li>
+              <li><span>Featured</span> placements in mobile apps & desktop</li>
+              <li><span>Featured</span> premium appearance in multiple categories</li>
+              <li><span>Exclusive</span> ability to appear in “Best of” lists on homepage</li>
+              <li><span>Special</span> icon displayed on listing and in search results</li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="check-out__block__list-mobile">
+          <li class="check-out__block__list-mobile__heading">
+            <span class="check-out__block__list-mobile__text">Exclusive <span>featured</span> Listing</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-times"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text"><span>Premium</span> positioning in search results</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-times"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text"><span>Featured</span> placements in mobile apps &
+              desktop</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-times"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text"><span>Featured</span> premium appearance in multiple
+              categories</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-times"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text"><span>Exclusive</span> ability to appear in “Best of”
+              lists on homepage</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-times"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text"><span>Special</span> icon displayed on listing and in
+              search results</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-times"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile__heading">
+            <span class="check-out__block__list-mobile__text">Expert Enhancements & Tools</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-check"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text">Ability to run special deals & offers (unlimited)</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-check"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text">Ability to create unique events & promotions
+              (unlimited)</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-check"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text">Engage customers in real-time</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-check"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text">Create and provide customers unique check-in codes</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-check"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text">Preferred placement in multiple categories</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-check"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text">Stand out in search results with special icons</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-check"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text">Remove competitor ads</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-check"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text">Photo gallery/slideshow</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-check"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile_hide">
+            <span class="check-out__block__list-mobile__text">Homepage spotlight: deals and events</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-check"></i>
+            </div>
+          </li>
+          <li class="check-out__block__list-mobile__heading">
+            <span class="check-out__block__list-mobile__text">Current Price Guaranteed Upon Renewal</span>
+            <div class="check-out__block__list-mobile__check">
+              <i class="pi pi-check"></i>
+            </div>
+          </li>
+        </ul>
+        <div class="check-out__block__more" (click)="toggleBlock()">
+          View All Features <i [class]="opened ? 'pi pi-angle-up' : 'pi pi-angle-down'"></i>
+        </div>
+      </div>
+      <div class="check-out__block check-out__block_right">
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <div class="check-out__block__cards"></div>
+          <div class="check-out__block__field">
+            <input required class="form-component" type="text" placeholder="Name on card" title="Name on card"
+                   formControlName="name">
+          </div>
+          <div class="check-out__block__field check-out__block__field_card">
+            <input required class="form-component check-out__block__field__input check-out__block__field__input_number"
+                   id="cc-number" type="tel" autocomplete="cc-number" title="Card number" placeholder="Card number"
+                   ccNumber
+                   formControlName="number">
+            <p class="error-message" *ngIf="form.get('number').hasError('ccNumber')">Invalid card number</p>
+            <input required class="form-component" id="cc-exp-date" type="tel" autocomplete="cc-exp" title="MM / YY"
+                   placeholder="MM / YY" ccExp formControlName="expirationDate">
+            <p class="error-message" *ngIf="form.get('expirationDate').hasError('expDate')">Invalid expiration date</p>
+            <input required class="form-component check-out__block__field__input check-out__block__field__input_cvv"
+                   title="CVV" placeholder="CVV" id="cc-cvc" type="tel" autocomplete="off" ccCVC formControlName="cvv">
+            <p class="error-message" *ngIf="form.get('cvv').hasError('maxlength')">Invalid CVV number</p>
+          </div>
+          <div class="check-out__block__field__title">Billing Address</div>
+          <div class="check-out__block__field">
+            <input required class="form-component" type="text" placeholder="Address 1" title="Address 1"
+                   formControlName="address">
+          </div>
+          <div class="check-out__block__field">
+            <input required class="form-component" type="text" placeholder="Address 2" title="Address 2"
+                   formControlName="address2">
+          </div>
+          <div class="check-out__block__field">
+            <input required class="form-component" type="text" placeholder="City/Town" title="City/Town"
+                   formControlName="city">
+          </div>
+          <div class="check-out__block__field check-out__block__field_state">
+            <input required class="form-component" type="text" placeholder="State/Province" title="State/Province"
+                   formControlName="state">
+            <input required class="form-component" type="text" placeholder="ZIP/Postal code" title="ZIP/Postal code"
+                   formControlName="zip">
+          </div>
+          <div class="check-out__block__total">
+            <div class="check-out__block__total__left">
+              <div class="check-out__block__total__text">Total:</div>
+              <div class="check-out__block__total__subtext">Renews bi-annually.</div>
+            </div>
+            <div class="check-out__block__total__right">
+              <div
+                class="check-out__block__total__price">{{ selectedPlan?.price | currency:'USD':'symbol':'2.2-2' }}</div>
+            </div>
+          </div>
+          <div class="check-out__block__button">
+            <p-button type="submit" label="Complete Purchase"></p-button>
+          </div>
+          <div class="check-out__block__text">
+            By making this purchase, you authorize Kidazzler to charge your credit card or debit card account and agree
+            to
+            our <a href="javascript:void(0)">Terms of Use</a> and <a href="javascript:void(0)">Privacy Policy</a>. Your
+            membership will automatically renew.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<kz-footer></kz-footer>

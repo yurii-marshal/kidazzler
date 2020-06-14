@@ -1,0 +1,30 @@
+<div class="bell" [ngClass]="{'has-new-messages': hasNew}">
+  <svg-icon src="/assets/images/icon-bell.svg"></svg-icon>
+  <span class="new-messages" *ngIf="hasNew"></span>
+</div>
+
+<div class="notifications" [@dropdownDisplay]="isOpen">
+  <div [perfectScrollbar] class="notifications-scrollbar" *ngIf="notifications?.length > 0"
+       (psScrollDown)="onListScrollDown()">
+    <div class="content">
+      <div *ngFor="let item of notifications">
+        <div class="notification" #notification>
+          <div class="messages" [ngClass]="{'has-new-messages':item.isNew, 'no-new-messages':!item.isNew}">
+            <div class="avatar">
+              <img [src]="item.imageUrl"/>
+            </div>
+          </div>
+          <div class="content">
+            <div class="text" [innerHtml]="item.text"></div>
+            <div class="date">{{formatDate(item.createdAt)}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-list" *ngIf="!notifications?.length">
+    <svg-icon src="/assets/images/icon-bell.svg"></svg-icon>
+    <div>No notifications yet</div>
+  </div>
+</div>

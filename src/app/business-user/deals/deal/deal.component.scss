@@ -1,0 +1,50 @@
+:host {
+  kz-title-header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .desktop-title {
+    display: none;
+    align-items: center;
+    width: 100%;
+    height: 140px;
+    background: #F4F8F9;
+    border: 1px solid #E9EAED;
+
+    &__wrapper {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    &__heading {
+      font-weight: bold;
+      font-size: 17px;
+      letter-spacing: -0.392308px;
+      color: #2D2F39;
+    }
+
+    &__title {
+      font-size: 27px;
+      line-height: 20px;
+    }
+  }
+}
+
+@media (min-width: 1080px) {
+  :host {
+    kz-title-header {
+      display: none;
+    }
+
+    .desktop-title {
+      display: flex;
+    }
+  }
+}

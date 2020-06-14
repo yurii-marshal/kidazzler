@@ -1,0 +1,11 @@
+<div class="title">Notifications</div>
+
+<div class="row-bordered">
+    <div class="not-title">Email Notifications</div>
+    <kz-input-switcher (onSwitch)="toggleNotifications($event)" [value]="allowNotifications$ | async"></kz-input-switcher>
+</div>
+
+<div class="row-buttons">
+    <button class="btn btn-primary" (click)="saveChanges()">Save Changes</button>
+    <button class="btn btn-secondary" [routerLink]="['/']">Cancel</button>
+</div>

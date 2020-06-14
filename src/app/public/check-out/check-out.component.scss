@@ -1,0 +1,442 @@
+@import '~styles/mixin';
+@import '~styles/variables';
+
+.check-out {
+  margin-top: $header-height;
+
+  &__banner {
+    height: 234px;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: $breakpoint-md - 1) {
+      background-color: $base-bg-grey-color;
+      height: 132px;
+    }
+  }
+
+  &__content {
+    background-color: $base-bg-grey-color;
+    padding-bottom: 54px;
+
+    @media (min-width: $breakpoint-md) {
+      padding-top: 56px;
+      padding-bottom: 80px;
+    }
+
+    .container {
+
+      @media (min-width: $breakpoint-md) {
+        display: flex;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  &__block {
+    padding: 30px 24px 35px;
+    box-shadow: 0 12px 24px rgba(36, 36, 36, 0.08);
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 22px;
+    background-color: $white;
+
+    & + & {
+      margin-top: 20px;
+
+      @media (min-width: $breakpoint-md) {
+        margin-left: 25px;
+        margin-top: 0;
+      }
+    }
+
+    &_left {
+
+      @media (min-width: $breakpoint-md) {
+        width: 45%;
+      }
+    }
+
+    &_right {
+
+      @media (min-width: $breakpoint-md) {
+        width: 55%;
+      }
+    }
+
+    &__period {
+      text-transform: uppercase;
+      color: $light2-grey;
+      margin-bottom: 8px;
+    }
+
+    &__price {
+      font-size: 32px;
+      line-height: 36px;
+      font-weight: bold;
+      margin-bottom: 4px;
+
+      @media (min-width: $breakpoint-sm) {
+        font-size: 48px;
+        line-height: 48px;
+        font-weight: normal;
+      }
+
+      span {
+        font-size: 15px;
+        line-height: 19px;
+        color: $light2-grey;
+        vertical-align: super;
+
+        @media (min-width: $breakpoint-sm) {
+          font-size: 17px;
+          line-height: 21px;
+        }
+      }
+    }
+
+    &__discount {
+      margin-bottom: 24px;
+      color: $light2-grey;
+
+      @media (min-width: $breakpoint-md) {
+        margin-bottom: 4px;
+      }
+
+      span {
+        color: $base-color;
+        text-decoration: line-through;
+      }
+    }
+
+    &__billed {
+      margin-bottom: 16px;
+      color: $link-color;
+      display: none;
+
+      @media (min-width: $breakpoint-md) {
+        display: block;
+      }
+    }
+
+    &__save {
+      background-color: $turquoise;
+      padding: 6px 24px;
+      margin-left: -24px;
+      margin-right: -24px;
+      color: $white;
+      text-align: center;
+
+      @media (min-width: $breakpoint-md) {
+        margin-bottom: 18px;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+    }
+
+    &__billed2 {
+      color: $link-color;
+      padding: 16px 24px;
+      margin-left: -24px;
+      margin-right: -24px;
+
+      @media (min-width: $breakpoint-md) {
+        display: none;
+      }
+    }
+
+    &__list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: none;
+
+      @media (min-width: $breakpoint-md) {
+        display: block;
+      }
+
+      &__item {
+        padding: 0 0 0 30px;
+        margin: 0;
+        position: relative;
+
+        & + & {
+          margin-top: 12px;
+        }
+
+        &:before {
+          content: '\e909';
+          font-family: primeicons;
+          speak: none;
+          font-style: normal;
+          font-weight: 400;
+          font-variant: normal;
+          text-transform: none;
+          line-height: 1;
+          display: block;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          color: $success-color;
+          position: absolute;
+          left: 0;
+          top: -2px;
+          font-size: 24px;
+        }
+
+        &_times {
+
+          &:before {
+            content: '\e90b';
+            color: $error-color;
+          }
+        }
+
+        &__heading {
+          font-size: 17px;
+          line-height: 18px;
+          font-weight: bold;
+
+          span {
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 0 4px;
+            border-radius: 4px;
+            background: $base-bg-gradient;
+            color: $white !important;
+            font-size: 11px;
+            line-height: 14px;
+            font-weight: bold;
+            position: relative;
+            top: -1px;
+          }
+        }
+
+        ul {
+          margin: 12px 0 0 0;
+          padding: 0;
+          list-style: none;
+
+          li {
+            padding: 0;
+            margin-bottom: 3px;
+            color: $light2-grey;
+
+            span {
+              color: $accent-color;
+            }
+          }
+        }
+      }
+
+      &-mobile {
+        margin: 0 -24px 10px;
+        padding: 10px 24px;
+        border-top: 1px solid $input-base-color-dropdown;
+        border-bottom: 1px solid $input-base-color-dropdown;
+
+        @media (min-width: $breakpoint-md) {
+          display: none;
+        }
+
+        li {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0;
+          margin: 0;
+        }
+
+        &__heading {
+          height: 48px;
+          margin-bottom: 4px;
+
+          .check-out__block__list-mobile__text {
+            font-size: 17px;
+            line-height: 18px;
+            font-weight: bold;
+            color: $base-color;
+
+            span {
+              text-transform: uppercase;
+              display: inline-block;
+              padding: 0 4px;
+              border-radius: 4px;
+              background: $base-bg-gradient;
+              color: $white !important;
+              font-size: 11px;
+              line-height: 14px;
+              font-weight: bold;
+              position: relative;
+              top: -1px;
+            }
+          }
+        }
+
+        &__text {
+          color: $light2-grey;
+
+          span {
+            color: $accent-color;
+          }
+        }
+
+        &__check {
+          margin-left: 20px;
+          font-size: 22px;
+          color: $success-color;
+
+          .pi-times {
+            color: $error-color;
+          }
+        }
+
+        &_hide {
+          overflow: hidden;
+          height: 0;
+          transition: height .5s;
+
+          .opened & {
+            height: 48px;
+          }
+        }
+      }
+    }
+
+    &__cards {
+      width: 158px;
+      height: 26px;
+      margin-left: auto;
+      background-image: url('#{$images-base-url}/cards.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-bottom: 36px;
+    }
+
+    &__field {
+
+      & + & {
+        margin-top: 10px;
+      }
+
+      &__title {
+        color: $light2-grey;
+        margin-bottom: 10px;
+        margin-top: 20px;
+      }
+
+      &_card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+
+        @media (min-width: $breakpoint-md) {
+          grid-gap: 24px;
+          grid-template-columns: 2fr 1fr 1fr;
+        }
+
+        .check-out__block__field__input_number {
+
+          @media (max-width: $breakpoint-md - 1) {
+            grid-column-start: span 2;
+          }
+        }
+      }
+
+      &_state {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 14px;
+      }
+
+      &__input {
+        background-repeat: no-repeat;
+        background-position: center right 12px;
+        padding-right: 50px;
+
+        &_number {
+          background-image: url('#{$images-base-url}/check-out/card-number.svg');
+        }
+
+        &_cvv {
+          background-image: url('#{$images-base-url}/check-out/card-cvv.svg');
+        }
+      }
+    }
+
+    &__total {
+      margin-top: 40px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+
+      &__text {
+        font-size: 28px;
+        line-height: 48px;
+        font-weight: 600;
+      }
+
+      &__subtext {
+        color: $light2-grey;
+      }
+
+      &__price {
+        font-size: 32px;
+        line-height: 48px;
+        font-weight: bold;
+      }
+    }
+
+    &__button {
+      margin-bottom: 16px;
+
+      p-button {
+        display: block;
+      }
+
+      ::ng-deep {
+
+        .ui-button {
+          @include main-button(100%);
+          height: 40px;
+
+          &:hover,
+          &:focus {
+            background-color: $base-bg-dark-color;
+            border: none;
+          }
+        }
+      }
+    }
+
+    &__text {
+      color: $light2-grey;
+    }
+
+    &__more {
+      font-size: 17px;
+      line-height: 18px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: $link-color;
+      height: 40px;
+      cursor: pointer;
+
+      @media (min-width: $breakpoint-sm) {
+        display: none;
+      }
+
+      i {
+        color: $input-base-color-dropdown;
+        font-size: 22px;
+      }
+    }
+  }
+}

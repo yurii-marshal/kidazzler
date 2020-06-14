@@ -1,0 +1,52 @@
+ <kz-header></kz-header>
+
+ <div class="verify-claim-oval">
+   <div class="claim-center-block">
+
+     <div class="title">
+       Verify your Business <br>
+       Information
+     </div>
+     <div class="sub-title">
+       Kidazzler is an exclusive community of parents sharing and recommending businesses.<br />
+       Make sure your business information is <br>
+       accurate and up to date. <br />
+       It’s free.
+     </div>
+
+   </div>
+ </div>
+
+ <div class="shadowed-block">
+   <div class="icon">
+     <img src="/assets/images/icon-physical.svg" />
+   </div>
+
+   <div class="name">{{business?.name}}</div>
+   <kz-business-address [business]="business"></kz-business-address>
+   <div class="details">
+     <div>
+       Phone:
+       <span *ngIf="business?.phone && phoneInfo">{{ business.phone | phoneNumber: phoneInfo }}</span>
+       <span class="error-message" *ngIf="!(business?.phone && phoneInfo)">Missing</span>
+     </div>
+     <div>Website: {{business?.website}}<span class="error-message" *ngIf="!business?.website">Missing</span></div>
+     <div>Email: {{business?.email}}<span class="error-message" *ngIf="!business?.email">Missing</span></div>
+   </div>
+   <div class="tag" *ngIf="business">
+     <svg-icon src="/assets/images/tag.svg"></svg-icon>
+     {{business.businessTypes[0]?.code}}
+   </div>
+ </div>
+
+
+ <div class="centered-block">
+   <a class="btn btn-primary" [routerLink]="['/business-sign-up']">Sign Up to Verify your Business</a>
+ </div>
+
+ <div class="centered-block">
+   Already have a business account? <a [routerLink]="['/login/business']">Login</a>
+ </div>
+
+
+ <kz-footer></kz-footer>

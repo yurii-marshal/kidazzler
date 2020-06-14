@@ -1,0 +1,55 @@
+<kz-header [type]="'withMenu'"></kz-header>
+
+<div class="lookup">
+
+  <div class="lookup__box">
+    <img src="../../../assets/images/icons/business-lookup-house.svg" alt="Lookup icon" class="lookup__image">
+
+    <p class="lookup__text">
+      Let’s look up your business
+    </p>
+    <p class="lookup__tip">
+      Your business may already be in Kidazzler. <br>
+      If it isn’t, you may add.
+    </p>
+  </div>
+
+  <form class="edit-form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="edit-form__wrapper">
+      <!-- COUNTRY EDIT -->
+      <div class="edit-form__item">
+        <label for="country" class="edit-form__label">Your Country</label>
+        <div class="edit-form__item-box">
+          <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+          <kz-location-picker id="country" class="edit-form__input"
+                              [pickCountry]="true"
+                              [placeholder]="'Enter Your Country'" formControlName="country"
+          >
+          </kz-location-picker>
+        </div>
+
+        <div class="error-message">
+
+        </div>
+      </div>
+      <!-- BUSINESS NAME EDIT -->
+      <div class="edit-form__item">
+        <label for="name" class="edit-form__label">Business Name</label>
+        <input placeholder="Enter Title"
+               class="edit-form__input"
+               type="text"
+               id="name"  formControlName="name"
+               maxlength="80">
+        <div class="error-message">
+
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="edit-form__submit">
+      Search
+    </button>
+  </form>
+</div>
+
+<kz-footer></kz-footer>

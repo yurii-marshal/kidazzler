@@ -1,0 +1,24 @@
+<kz-header type="withMenu"></kz-header>
+
+<kz-title-header
+  [title]="'Deal Details'"
+  [isWhite]="true"
+  [isShownBack]="true"
+  [isShownEdit]="true"
+  [isStatic]="true"
+  (onEdit)="onDealEdit()"
+
+></kz-title-header>
+
+<div class="deal-detail">
+   <!-- LOADER -->
+  <ngx-ui-loader [overlayColor]="'#fff'"
+                 [fgsType]="'chasing-dots'"
+                 [fgsColor]="'#823cf1'"
+                 [pbColor]="'#823cf1'">
+  </ngx-ui-loader>
+  <!-- LOADER -->
+
+  <!-- DEAL DETAILS -->
+  <kz-deal-detail *ngIf="deal" [user]="roles.business" [deal]="deal" [business]="business" (onAddPhotos)="addPhotos($event)"></kz-deal-detail>
+</div>

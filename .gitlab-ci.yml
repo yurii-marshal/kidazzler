@@ -1,0 +1,97 @@
+stages:
+  - build
+  - deploy
+
+build_dev:
+  stage: build
+  script:
+    - echo $CI_PROJECT_DIR
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+  only:
+    - develop
+  environment:
+    name: dev
+  tags:
+    - kidazzler-ui
+
+deploy_dev:
+  stage: deploy
+  script:
+    - aws s3 sync --delete dist s3://kidazzler-ui-dev
+    - aws s3 cp dist/index.html s3://kidazzler-ui-dev/ --cache-control max-age=0
+    - aws s3 cp configs/mobile/ios/apple-app-site-association.dev s3://kidazzler-ui-dev/apple-app-site-association --content-type application/json
+    - aws s3 cp configs/mobile/android/assetlinks.dev.json s3://kidazzler-ui-dev/.well-known/assetlinks.json --content-type application/json
+  only:
+    - develop
+  environment:
+    name: dev
+  tags:
+    - kidazzler-ui
+
+
+build_production:
+  stage: build
+  script:
+    - echo $CI_PROJECT_DIR
+    - npm install
+    - npm run build -- --prod
+  artifacts:
+    paths:
+      - dist/
+  only:
+    - master
+  environment:
+    name: production
+  tags:
+    - kidazzler-ui
+
+deploy_production:
+  when: manual
+  stage: deploy
+  script:
+    - aws s3 sync --delete dist s3://kidazzler-ui-production
+    - aws s3 cp dist/index.html s3://kidazzler-ui-production/ --cache-control max-age=0
+    - aws s3 cp configs/mobile/ios/apple-app-site-association.production s3://kidazzler-ui-production/apple-app-site-association --content-type application/json
+    - aws s3 cp configs/mobile/android/assetlinks.production.json s3://kidazzler-ui-production/.well-known/assetlinks.json --content-type application/json
+  only:
+    - master
+  environment:
+    name: production
+  tags:
+    - kidazzler-ui
+
+
+build_staging:
+  stage: build
+  script:
+    - echo $CI_PROJECT_DIR
+    - npm install
+    - npm run build -- --configuration staging
+  artifacts:
+    paths:
+      - dist/
+  only:
+    - /^release\/.+/
+  environment:
+    name: staging
+  tags:
+    - kidazzler-ui
+
+deploy_staging:
+  stage: deploy
+  script:
+    - aws s3 sync --delete dist s3://staging--kidazzler-ui
+    - aws s3 cp dist/index.html s3://staging--kidazzler-ui/ --cache-control max-age=0
+    - aws s3 cp configs/mobile/ios/apple-app-site-association.staging s3://staging--kidazzler-ui/apple-app-site-association --content-type application/json
+    - aws s3 cp configs/mobile/android/assetlinks.staging.json s3://staging--kidazzler-ui/.well-known/assetlinks.json --content-type application/json
+  only:
+    - /^release\/.+/
+  environment:
+    name: staging
+  tags:
+    - kidazzler-ui
+

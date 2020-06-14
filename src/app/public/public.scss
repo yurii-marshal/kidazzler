@@ -1,0 +1,9 @@
+@import "../../styles/variables.scss";
+
+.kz {
+  margin-top: $header-height;
+}
+
+kz-header + div:not(.login-header) {
+  margin-top: $header-height;
+}

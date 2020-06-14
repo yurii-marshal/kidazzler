@@ -1,0 +1,71 @@
+@import "../../../styles/variables";
+
+.add-new {
+  background: #4abbb5;
+  padding: 13px 16px;
+  border-radius: 8px;
+  margin-top: 12px;
+  position: relative;
+
+  .text {
+    font-family: $font-family;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    width: 100%;
+    max-width: 180px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    width: 100%;
+    max-width: 157px;
+    -webkit-appearance: none;
+    height: 35px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.24);
+    font-family: $font-family;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: -0.15px;
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .img {
+    position: absolute;
+    left: calc(100% - 105px);
+    bottom: 0;
+  }
+}
+
+@media (min-width: $breakpoint-sm) {
+  .add-new {
+    height: 240px;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    .text {
+      font-size: 28px;
+      width: 280px;
+    }
+
+    button {
+      min-width: 190px;
+      font-size: 17px;
+    }
+
+    .img {
+      height: 85%;
+      right: 0;
+      bottom: 0;
+      left: auto;
+    }
+  }
+}

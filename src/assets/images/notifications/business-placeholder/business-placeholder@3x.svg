@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="a" x1="0%" y1="12.741%" y2="12.741%">
+      <stop stop-color="#990B9B" offset="0%"/>
+      <stop stop-color="#B71A85" offset="100%"/>
+    </linearGradient>
+    <path id="c" d="M40,24.1842105 L40,21.4210526 L37.1111111,21.4210526 L37.1111111,19.7631579 L37.1111111,18.6578947 L37.1111111,17 L17.1777778,17 L17.1777778,18.6578947 L17.1777778,19.7631579 L17.1777778,21.4210526 L14,21.4210526 L14,24.1842105 L16.0222222,24.1842105 L16.0222222,35.5131579 L15.1555556,35.5131579 L15.1555556,36.3421053 L14,36.3421053 L14,38 L40,38 L40,36.3421053 L38.8444444,36.3421053 L38.8444444,35.5131579 L37.9777778,35.5131579 L37.9777778,24.1842105 L40,24.1842105 L40,24.1842105 Z M26.4222222,35.5131579 L20.6444444,35.5131579 L20.6444444,25.5657895 L26.4222222,25.5657895 L26.4222222,35.5131579 L26.4222222,35.5131579 Z M33.3555556,35.5131579 L27.5777778,35.5131579 L27.5777778,25.5657895 L33.3555556,25.5657895 L33.3555556,35.5131579 L33.3555556,35.5131579 Z"/>
+    <filter id="b" width="203.8%" height="228.6%" x="-51.9%" y="-50%" filterUnits="objectBoundingBox">
+      <feOffset dy="3" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="27" cy="27" r="27" fill="url(#a)"/>
+    <use fill="black" filter="url(#b)" xlink:href="#c"/>
+    <use fill="#FFFFFF" xlink:href="#c"/>
+    <rect width="12" height="10.1" x="21" y="25.5" fill="#AA138E"/>
+    <polyline stroke="#FFFFFF" stroke-width="2" points="25 30.557 26.644 32 29 29" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

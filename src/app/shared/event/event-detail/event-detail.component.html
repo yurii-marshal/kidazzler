@@ -1,0 +1,166 @@
+<div class="deal-detail" [ngClass]="{'wide': user}">
+  <!-- BEGIN: BUSINESS HEADER -->
+  <div *ngIf="user" class="business-detail-header">
+    <div class="buttons-left">
+      <i class="pi pi-chevron-left" (click)="goBack()"></i>
+    </div>
+    <div class="buttons-right">
+      <!-- Share icon -->
+      <div class="header-icon" (click)="isShownSharePopup=true">
+        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M5.8 2H4C2.34314 2 1 3.34315 1 5L1 14.5C1 16.1569 2.34315 17.5 4 17.5H14C15.6569 17.5 17 16.1569 17 14.5V12"
+            stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <path
+            d="M10 7.5C8.58545 7.89398 7 9 7 9C7 9 7 7.5 7.5 6.5C8 5.5 9 4 10.5 3.5C12 3 14 3 14 3V0L19.6667 5L14 10V7.01456C13 7 10.8869 7.253 10 7.5Z"
+            fill="white"/>
+        </svg>
+      </div>
+
+      <!-- Bookmark icon -->
+      <div class="header-icon" (click)="saveToBookmarks()">
+        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M6.3892 11.8082L1 15.9656V4C1 2.34315 2.34315 1 4 1H10C11.6569 1 13 2.34315 13 4V15.9656L7.6108 11.8082L7 11.337L6.3892 11.8082Z"
+            stroke="white" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <!-- END: BUSINESS HEADER -->
+
+  <!-- Image block -->
+  <div class="deal-image" [routerLink]="['photos']">
+    <div *ngIf="user === 0" class="deal-image__button" [ngClass]="{'wide' : !event?.photos?.length}">
+      <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M5.93733 0.00243569C5.74291 0.0255357 5.56918 0.173508 5.51547 0.361766L4.1952 5.00179H0.453116C0.207331 5.02494 -0.00106076 5.25488 4.06281e-06 5.50173V18.5001C3.51128e-05 18.7618 0.238208 19 0.49999 19H16.4995C16.7613 19 16.9995 18.7618 16.9995 18.5001V17.7345L17.8589 17.9767C18.1124 18.0527 18.4123 17.8878 18.4838 17.633L21.9837 4.88462C22.0545 4.63104 21.8864 4.33601 21.6322 4.26751C21.6322 4.26751 11.4092 0.943968 6.13264 0.0180607L6.128 0.0172445C6.06515 0.00619372 6.00105 -0.00507914 5.93733 0.00243569ZM6.35138 1.11167L20.8822 5.09553L17.6479 16.8753L16.9995 16.6956V5.50173C16.9995 5.23997 16.7613 5.00182 16.4995 5.00179H5.23423L6.35138 1.11167ZM15.9995 6.00167H0.999975V14.4381L4.7733 12.5477C4.81751 12.5253 4.86507 12.5093 4.91393 12.5008C5.07951 12.4749 5.25644 12.5389 5.36704 12.6649L7.29667 14.7896L12.2731 12.2977C12.3197 12.2746 12.37 12.2586 12.4215 12.2509C12.5871 12.2249 12.764 12.289 12.8746 12.4149L15.9995 15.9301V6.00167ZM7.99977 8.00141C6.90115 8.00141 5.99983 8.90265 5.99983 10.0011C5.99983 11.0996 6.90116 12.0009 7.99977 12.0009C9.09839 12.0009 9.99972 11.0996 9.99972 10.0011C9.99972 8.90265 9.09839 8.00141 7.99977 8.00141ZM8.99975 10.0011C8.99975 9.44302 8.55796 9.0013 7.99977 9.0013C7.44158 9.0013 6.9998 9.44302 6.9998 10.0011C6.9998 10.5593 7.44158 11.001 7.99977 11.001C8.55796 11.001 8.99975 10.5593 8.99975 10.0011ZM12.3825 13.3679L15.9995 17.4299V18.0001H10.2263L7.99977 15.5551L12.3825 13.3679ZM8.86694 18.0001L4.88268 13.6179L0.999975 15.5629V18.0001H8.86694Z"
+              fill="white"/>
+      </svg>
+      <p class="deal-image__text">
+        See all
+      </p>
+    </div>
+    <img *ngIf="event?.photos.length === 0" src="../../../../assets/images/bg-landing.jpg" alt="Business Name"
+         class="deal-image__image">
+    <img *ngIf="event?.coverImg?.url" [src]="event?.coverImg?.url" alt="Business Name" class="deal-image__image">
+  </div>
+  <input
+    #fileInput
+    type="file"
+    accept="image/*"
+    id="cameraInput"
+    name="cameraInput"
+    data-role="none"
+    style="display: none"
+    [multiple]="false"
+    (change)="uploadPhotos($event)">
+
+  <p *ngIf="user === 0" class="deal-detail__button" (click)="fileInput.click()">
+    <img src="../../../../assets/images/icons/plus-icon_purple.svg" alt="Plus" class="deal-detail__button-icon">
+    Add Photos
+  </p>
+
+  <div class="deal-detail__content">
+    <div class="deal-text">
+      <p class="deal-text__expire-info">
+        <span class="expire-box" *ngIf="event?.start">
+          <span class="expire-date"> {{event?.start | date:'EEE, d MMM'}}</span>
+          <span> {{event?.start | date:'h:mm a'}}</span>
+        </span>
+        <span class="expire-divider" *ngIf="event?.end">–</span>
+        <span class="expire-box" *ngIf="event?.end">
+          <span class="expire-date"> {{event?.end | date:'EEE, d MMM'}}</span>
+          <span>{{event?.end | date:'h:mm a'}}</span>
+        </span>
+      </p>
+      <p class="deal-text__heading"> {{event?.title}}
+      </p>
+      <p class="deal-text__categories">
+        <i class="pi pi-tag"></i>
+        <span
+          *ngFor="let category of event?.eventCategories; let last = last">{{category.name}}  {{last ? '' : ', ' }}</span>
+      </p>
+      <div class="link-block">
+        <img src="../../../../assets/images/icons/share-icon_s.svg" alt="">
+        <a href="https://www.google.com" target="_blank">www.google.com</a>
+      </div>
+    </div>
+
+    <div class="detail-block">
+      <p class="detail-block__heading">
+        Price Details
+      </p>
+      <div class="price-tag">
+        <img src="../../../../assets/images/icons/price-icon.svg" alt="Price">
+        <p class="price-tag__price" *ngIf="!event?.price || event?.price === '0.00'">FREE</p>
+        <p class="price-tag__price" *ngIf="event?.price !== '0.00' && !event?.oldPrice">{{event?.price |
+          currency:event?.currency?.toUpperCase()}}</p>
+
+        <!-- BLOCK WITH NEW AND OLD PRICE -->
+        <div class="price-tag__box" *ngIf="event?.oldPrice && event?.price">
+          <p class="price-tag__price price-tag__price_old">{{event?.oldPrice | currency:event?.currency?.toUpperCase()}}</p>
+          <p class="price-tag__price">{{event?.price | currency:event?.currency.toUpperCase()}}</p>
+        </div>
+
+      </div>
+      <p class="detail-block__text">
+        {{event?.priceDetails}}
+      </p>
+    </div>
+
+    <!-- BLOCK WITH MAP -->
+    <kz-location-snapshot [isShownDirectionBtn]="true" *ngIf="business?.businessDirection === 'Physical'"
+                          [business]="business"
+    ></kz-location-snapshot>
+
+    <!-- BLOCK WITH PHOTO -->
+    <div class="photo-block">
+      <div class="photo-block__header">
+        <p class="photo-block__text">
+          Photos
+        </p>
+        <p class="photo-block__link" [routerLink]="['photos']">
+          Show All
+        </p>
+      </div>
+
+
+      <div class="photo-block__box">
+        <div class="photo" *ngFor="let photo of event?.photos; let i = index">
+          <img class="photo-block__image" *ngIf="i < 3" [src]="photo.url" alt="">
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK WITH DETAILS -->
+    <div class="details-block">
+      <p class="details-block__heading">
+        Event Details
+      </p>
+      <p class="details-block__text" #scrollContainer [ngClass]="{'closed' : !isReadMoreOpened}">
+        {{event?.description}}
+      </p>
+      <button *ngIf="isOverflown" class="details-block__button" (click)="isReadMoreOpened=!isReadMoreOpened">
+        {{isReadMoreOpened ? 'Collapse' : 'Read More'}}
+      </button>
+    </div>
+
+    <div class="map-button">
+      <span class="map-button__divider"></span>
+
+      <button class="map-button__item" [routerLink]="['add-to-calendar']">
+        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect y="1.39131" width="17" height="14.6087" rx="2.08696" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M8.49418 11.7645L9.78225 12.459C10.1255 12.6441 10.4567 12.3976 10.3911 12.0054L10.1451 10.5344C10.1475 10.5487 10.1517 10.5356 10.1415 10.5458L11.1836 9.50404C11.4613 9.22645 11.335 8.82724 10.951 8.77001L9.51091 8.5554C9.52491 8.55748 9.51404 8.54937 9.52032 8.56241L8.87628 7.22409C8.70467 6.86747 8.29546 6.8672 8.12371 7.22409L7.47968 8.56241C7.48594 8.54939 7.47506 8.55749 7.48909 8.5554L6.04898 8.77001C5.66524 8.82719 5.53854 9.22624 5.81643 9.50404L6.85849 10.5458C6.84836 10.5356 6.8525 10.5488 6.8549 10.5344L6.6089 12.0054C6.54335 12.3973 6.87425 12.6442 7.21774 12.459L8.50581 11.7645C8.49329 11.7713 8.50673 11.7713 8.49418 11.7645Z"
+                fill="#BD10E0"/>
+          <rect y="3.47826" width="17" height="1.3913" fill="#BD10E0"/>
+          <rect x="2.83334" width="1.41667" height="2.08696" rx="0.695652" fill="white"/>
+          <rect x="12.75" width="1.41667" height="2.08696" rx="0.695652" fill="white"/>
+        </svg>
+        Add to Calendar
+      </button>
+    </div>
+  </div>
+</div>

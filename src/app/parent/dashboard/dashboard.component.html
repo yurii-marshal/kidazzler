@@ -1,0 +1,39 @@
+<kz-header type="withMenu"></kz-header>
+
+<div class="intro">
+  <div class="container">
+    <div class="intro-main-text rewards" *ngIf="rewardInfo">
+      <div class="magenta-backdrop"></div>
+      <div class="rewards__tabs">
+        <div class="rewards__tab" [class.rewards__tab--isActive]="activeTab === 'potential'"
+             (click)="activeTab = RewardType.potential">
+          <img class="rewards__tab-icon" src="./assets/images/icon-earnings-on.svg">
+          <span class="rewards__tab-text">Potential Earnings</span>
+        </div>
+        <div class="rewards__devider"></div>
+        <div class="rewards__tab" [class.rewards__tab--isActive]="activeTab === 'actual'"
+             (click)="activeTab = RewardType.actual">
+          <img class="rewards__tab-icon" src="./assets/images/icon-potential-on.svg">
+          <span class="rewards__tab-text">Actual Earnings</span>
+        </div>
+      </div>
+      <div class="rewards__sum rewards-sum" [innerHTML]="reward | rewardPipe">
+      </div>
+      <div class="rewards__view-breakdown" [routerLink]="['', {outlets: {popup: ['reward', activeTab]}}]">View
+        Breakdown
+      </div>
+    </div>
+  </div>
+</div>
+<kz-user-badges></kz-user-badges>
+
+<div class="grey-bg-section">
+  <div class="dashboard-flex-wrapper">
+    <kz-tab-menu-newcomers></kz-tab-menu-newcomers>
+    <div class="dashboard-data">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <kz-footer></kz-footer>
+</div>

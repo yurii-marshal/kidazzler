@@ -1,0 +1,12 @@
+<div class="all-categories">
+  <ngx-ui-loader  [overlayColor]="'#fff'" [fgsType]="'chasing-dots'" [fgsColor]="'#823cf1'" [pbColor]="'#823cf1'"></ngx-ui-loader>
+  <kz-header-search [category]="category"></kz-header-search>
+
+  <div class="sub-categories" *ngIf="categories?.length">
+    <div class="sub-category" *ngFor="let category of categories" [routerLink]="['/business-portal/category/', category.id, 'sub-categories']">
+      {{category.code}}
+
+      <img src="../../../assets/images/icons/arrow-right.svg" alt="arrow icon">
+    </div>
+  </div>
+</div>

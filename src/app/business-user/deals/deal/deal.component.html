@@ -1,0 +1,36 @@
+<div>
+
+  <!-- LOADER -->
+  <ngx-ui-loader [fgsColor]="'#823cf1'"
+                 [fgsType]="'wandering-cubes'"
+                 [loaderId]="'submit-deal'"
+                 [hasProgressBar]="false"
+                 [fgsPosition]="'center-center'">
+  </ngx-ui-loader>
+  <!-- LOADER -->
+
+  <kz-header type="withMenu"></kz-header>
+
+  <!-- Title header for edit page -->
+  <kz-title-header *ngIf="dealId"
+                   [title]="dealId ? 'Edit Deal' : 'Add Deal'"
+                   [isShownBack]="true"
+                   [isWhite]="true"
+                   [isShownCancel]="true">
+  </kz-title-header>
+
+  <div class="desktop-title">
+    <div class="desktop-title__wrapper">
+      <p class="desktop-title__heading">
+        {{dealId ? 'Edit' : 'Add'}}
+      </p>
+      <p class="desktop-title__title">
+        Deal Details
+      </p>
+    </div>
+  </div>
+
+
+  <!-- DEAL EDIT/ADD FORM -->
+  <kz-deal (onSubmit)="submit($event)" (onDelete)="deleteDeal()"></kz-deal>
+</div>

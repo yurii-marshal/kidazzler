@@ -1,0 +1,35 @@
+<div class="business">
+  <div class="business-tabs">
+    <div class="main-tabs">
+      <div class="main-tabs__wrapper">
+        <div class="main-tabs__item"
+             [routerLinkActive]="['active']" [routerLink]="['added-by-me']">
+          Added By Me
+        </div>
+        <div class="main-tabs__item" [routerLink]="['added-by-friends']"
+             [routerLinkActive]="['active']">
+          By My Friends
+        </div>
+        <div class="main-tabs__item" [routerLink]="['added-by-friends-of-friends']"
+             [routerLinkActive]="['active']">
+          By Friends of Friends
+        </div>
+      </div>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- BEGIN: LOADER -->
+    <ngx-ui-loader [overlayColor]="'#fff'" [loaderId]="'loadBusinesses'" [hasProgressBar]="false"
+                   [fgsPosition]="'center-center'"
+                   [fgsType]="'chasing-dots'"
+                   [fgsColor]="'#823cf1'"
+                   [pbColor]="'#823cf1'">
+    </ngx-ui-loader>
+    <!-- END: LOADER -->
+
+  </div>
+</div>
+
+

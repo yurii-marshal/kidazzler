@@ -1,0 +1,23 @@
+.status-label {
+  display: inline-block;
+  padding:2px 12px;
+  font-size: 9px;
+  font-weight: bold;
+  text-align: center;
+  color: #6f1e86;
+  border: 1px solid #6f1e86;
+  text-transform: uppercase;
+  border-radius: 18px;
+  background: transparent;
+
+  &.verified {
+    background: url("#{$images-base-url}/verified.png") 10px 4px no-repeat;
+    padding-left: 24px;
+  }
+  &.muted {
+    color: $muted-color;
+    border: 1px solid $muted-color;
+    background: transparent;
+    padding:2px 12px;
+  }
+}

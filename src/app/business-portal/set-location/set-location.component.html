@@ -1,0 +1,134 @@
+<div class="location-picker" *ngIf="isShownLocationPicker">
+  <kz-header-search (onLocation)="onLocationChange($event)"
+                    [isInput]="true" [onlyLocation]="true"
+                    [placeHolder]="'Enter your City'"
+                    (onBack)="goBack()"
+                    [customGoBack]="true">
+  </kz-header-search>
+
+  <!-- BEGIN: Current location results block -->
+  <ng-container *ngIf="locations?.length">
+    <div class="location-results">
+      <div class="location-results__item" *ngFor="let address of locations">
+        <div [innerHTML]="address.place_name | highlight: locationQuery" (click)="onApplyAddress(address)"></div>
+      </div>
+    </div>
+  </ng-container>
+  <!-- END: Current location results block -->
+</div>
+
+<ngx-ui-loader
+  [overlayColor]="'#fff'"
+  [fgsType]="'chasing-dots'"
+  [fgsColor]="'#823cf1'"
+  [pbColor]="'#823cf1'"
+></ngx-ui-loader>
+
+<div class="set-location" *ngIf="!isShownLocationPicker">
+  <div class="img">
+    <svg width="215" height="112" viewBox="0 0 215 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M199.683 83C209.195 83 213 75.1429 213 68.0714C213 61 206.024 50 199.683 50C193.341 50 187 62.5714 187 68.0714C187 73.5714 190.171 83 199.683 83Z"
+            fill="#F8DFFF"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M200 92C209.5 92 214 81.5 214 77.5C214 73.5 204.5 73.5 207 71C213.659 64.3414 203 46 200 46C197 46 186.847 64.8469 193 71C195.5 73.5 186 73.5 186 77.5C186 81.5 190.5 92 200 92Z"
+            fill="#E2B9EE"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M198.642 77.3331C198.656 76.5929 199.26 76 200 76C200.74 76 201.344 76.5929 201.358 77.3331L202 112H198L198.642 77.3331Z"
+            fill="#BF8ECE"/>
+      <path opacity="0.12" fill-rule="evenodd" clip-rule="evenodd"
+            d="M0 106C0 101.582 3.58172 98 8 98H26C28.2091 98 30 96.2091 30 94V84.5C30 82.2909 31.7909 80.5 34 80.5H38C40.2091 80.5 42 78.7091 42 76.5V72C42 69.7909 43.7909 68 46 68L82 68C84.2091 68 86 69.7909 86 72V76C86 78.2091 87.7909 80 90 80H99V112H0V106Z"
+            fill="white"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M40 112C40 112 61 89.8141 61 76.16C61 65.0259 51.598 56 40 56C28.402 56 19 65.027 19 76.16C19 89.8141 40 112 40 112Z"
+            fill="white"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M40.0001 85.4C44.6393 85.4 48.4001 81.6392 48.4001 77C48.4001 72.3608 44.6393 68.6 40.0001 68.6C35.3609 68.6 31.6001 72.3608 31.6001 77C31.6001 81.6392 35.3609 85.4 40.0001 85.4Z"
+            fill="#611C78"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M115.908 89.0498C116.101 89.017 116.298 89 116.5 89C118.433 89 120 90.567 120 92.5C120 93.1769 119.808 93.809 119.475 94.3446C123.242 95.4198 126 98.8878 126 103C126 107.971 121.971 112 117 112C112.029 112 108 107.971 108 103C108 99.1891 110.369 95.9314 113.714 94.6188C113.393 94.1974 113.166 93.7012 113.062 93.1608C112.166 93.6939 111.119 94 110 94C106.686 94 104 91.3137 104 88C104 84.6863 106.686 82 110 82C113.314 82 116 84.6863 116 88C116 88.3581 115.969 88.7089 115.908 89.0498Z"
+            fill="#F8DFFF"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M75 62H115V112H75V62Z" fill="#BF8ECE"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M77.0452 54.6397C77.7898 53.6099 78.9834 53 80.2542 53H109.746C111.017 53 112.21 53.6099 112.955 54.6397L119 63H71L77.0452 54.6397Z"
+            fill="#E2B9EE"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M71.0664 63C71.0227 63.2602 71 63.5274 71 63.8C71 66.451 73.149 68.6 75.8 68.6C78.451 68.6 80.6 66.451 80.6 63.8C80.6 66.451 82.749 68.6 85.4 68.6C88.051 68.6 90.2 66.451 90.2 63.8C90.2 66.451 92.349 68.6 95 68.6C97.6499 68.6 99.7983 66.4526 99.8 63.8031C99.8017 66.4526 101.95 68.6 104.6 68.6C107.251 68.6 109.4 66.451 109.4 63.8C109.4 66.451 111.549 68.6 114.2 68.6C116.851 68.6 119 66.451 119 63.8C119 63.5274 118.977 63.2602 118.934 63H109.466C109.423 63.2602 109.4 63.5274 109.4 63.8C109.4 63.5274 109.377 63.2602 109.334 63H99.8664C99.8229 63.2592 99.8002 63.5254 99.8 63.7969C99.7998 63.5254 99.7771 63.2592 99.7336 63H90.2664C90.2227 63.2602 90.2 63.5274 90.2 63.8C90.2 63.5274 90.1773 63.2602 90.1336 63H80.6664C80.6227 63.2602 80.6 63.5274 80.6 63.8C80.6 63.5274 80.5773 63.2602 80.5336 63H71.0664Z"
+            fill="white"/>
+      <path d="M80 88C80 84.6863 82.6863 82 86 82C89.3137 82 92 84.6863 92 88V106H80V88Z" fill="#A36BB4"/>
+      <path d="M69 112C69 110.343 70.3431 109 72 109H118C119.657 109 121 110.343 121 112H69Z" fill="white"/>
+      <path d="M72 109C72 107.343 73.3431 106 75 106H115C116.657 106 118 107.343 118 109H72Z" fill="#E2B9EE"/>
+      <rect x="85" y="82" width="2" height="24" fill="#9862A9"/>
+      <path d="M80 84C80 82.8954 80.8954 82 82 82H90C91.1046 82 92 82.8954 92 84V90H80V84Z" fill="white"/>
+      <g opacity="0.7">
+        <rect x="80" y="90" width="12" height="2" fill="#E2B9EE" style="mix-blend-mode:multiply"/>
+      </g>
+      <rect x="88" y="96" width="2" height="2" fill="#9862A9"/>
+      <rect x="82" y="96" width="2" height="2" fill="#9862A9"/>
+      <rect x="96" y="82" width="14" height="10" rx="1.98" fill="#9862A9"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M70.2417 27.8155H59.6209V27.7833C59.3515 27.8047 59.079 27.8155 58.8039 27.8155C53.3893 27.8155 49 23.6035 49 18.4078C49 13.212 53.3893 9 58.8039 9C62.6361 9 65.9548 11.1099 67.5671 14.1852C68.3961 13.8744 69.2981 13.7039 70.2417 13.7039C74.3026 13.7039 77.5947 16.8629 77.5947 20.7597C77.5947 22.213 77.1368 23.5637 76.3519 24.6862C77.7507 26.2055 79.5904 27.3143 81.6796 27.8155H70.2417Z"
+            fill="#753789"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M192 7.42718C192 11.5291 195.278 14.8544 199.321 14.8544H206.64C206.641 14.8544 206.641 14.8544 206.642 14.8544C206.643 14.8544 206.644 14.8544 206.644 14.8544L214.777 14.8544L213.382 14.3828C212.352 14.0345 211.406 13.5036 210.583 12.8252C211.174 12.0061 211.523 10.9959 211.523 9.90291C211.523 7.1683 209.338 4.95146 206.642 4.95146C206.504 4.95146 206.367 4.95729 206.232 4.96873C205.231 2.07501 202.515 0 199.321 0C195.278 0 192 3.32526 192 7.42718Z"
+            fill="#813996"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M125.987 33.0133L123.163 32.0982C122.28 31.8122 121.796 30.8648 122.082 29.9821C122.248 29.4696 122.65 29.0678 123.163 28.9018L125.987 27.9867L126.902 25.1626C127.188 24.2799 128.135 23.7963 129.018 24.0823C129.53 24.2483 129.932 24.6501 130.098 25.1626L131.013 27.9867L133.837 28.9018C134.72 29.1878 135.204 30.1352 134.918 31.0179C134.752 31.5304 134.35 31.9322 133.837 32.0982L131.013 33.0133L130.098 35.8374C129.812 36.7201 128.865 37.2037 127.982 36.9177C127.47 36.7517 127.068 36.3499 126.902 35.8374L125.987 33.0133Z"
+            fill="#7B388F"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M16.5 46C17.8807 46 19 44.8807 19 43.5C19 42.1193 17.8807 41 16.5 41C15.1193 41 14 42.1193 14 43.5C14 44.8807 15.1193 46 16.5 46Z"
+            fill="#743788"/>
+      <path d="M139 65C139 63.8954 139.895 63 141 63H159V112H139V65Z" fill="#A36BB4"/>
+      <rect x="144" y="68" width="4" height="4" rx="1" fill="white"/>
+      <rect x="150" y="68" width="4" height="4" rx="1" fill="white"/>
+      <rect x="144" y="75" width="4" height="4" rx="1" fill="white"/>
+      <rect x="150" y="75" width="4" height="4" rx="1" fill="white"/>
+      <rect x="144" y="82" width="4" height="4" rx="1" fill="white"/>
+      <rect x="150" y="82" width="4" height="4" rx="1" fill="white"/>
+      <rect x="144" y="89" width="4" height="4" rx="1" fill="white"/>
+      <rect x="150" y="89" width="4" height="4" rx="1" fill="white"/>
+      <rect x="144" y="96" width="10" height="3" rx="1" fill="white"/>
+      <path d="M143 111C143 110.448 143.448 110 144 110H154C154.552 110 155 110.448 155 111V112H143V111Z"
+            fill="#E2B9EE"/>
+      <path d="M145 109C145 108.448 145.448 108 146 108H152C152.552 108 153 108.448 153 109V110H145V109Z" fill="white"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M159 31C159 29.3431 160.343 28 162 28L178 28C179.657 28 181 29.3431 181 31V112H159V31Z" fill="#BF8ECE"/>
+      <rect x="157" y="63" width="2" height="49" fill="#9862A9"/>
+      <rect x="164" y="40" width="4" height="4" rx="1" fill="white"/>
+      <rect x="172" y="40" width="4" height="4" rx="1" fill="white"/>
+      <rect x="164" y="48" width="4" height="4" rx="1" fill="white"/>
+      <rect x="172" y="48" width="4" height="4" rx="1" fill="white"/>
+      <rect x="164" y="56" width="4" height="4" rx="1" fill="white"/>
+      <rect x="172" y="56" width="4" height="4" rx="1" fill="white"/>
+      <rect x="164" y="64" width="4" height="4" rx="1" fill="white"/>
+      <rect x="172" y="64" width="4" height="4" rx="1" fill="white"/>
+      <rect x="164" y="72" width="4" height="4" rx="1" fill="white"/>
+      <rect x="172" y="72" width="4" height="4" rx="1" fill="white"/>
+      <rect x="164" y="80" width="4" height="4" rx="1" fill="white"/>
+      <rect x="172" y="80" width="4" height="4" rx="1" fill="white"/>
+      <rect x="164" y="88" width="4" height="4" rx="1" fill="white"/>
+      <rect x="172" y="88" width="4" height="4" rx="1" fill="white"/>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M179 111.978C176.197 111.725 174 109.369 174 106.5C174 103.462 176.462 101 179.5 101C181.654 101 183.519 102.238 184.421 104.042C184.61 104.014 184.803 104 185 104C187.209 104 189 105.791 189 108C189 110.209 187.209 112 185 112H179V111.978Z"
+            fill="#F8DFFF"/>
+    </svg>
+    <div class="text">
+      <div class="heading">
+        Where are you?
+      </div>
+      <div class="about">
+        Kidazzler needs your location to find <br>
+        the best places near you!
+      </div>
+    </div>
+
+  </div>
+  <div class="navigation">
+    <a (click)="enableLocation()" class="enable-location-button">
+      Enable Location Services
+    </a>
+    <a (click)="setCustomLocation()" class="set-location-button">
+      Or set your location
+    </a>
+  </div>
+</div>

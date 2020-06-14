@@ -1,0 +1,142 @@
+.settings-container {
+  padding: 60px 0 60px;
+  text-align: center;
+  min-height: calc(100vh - #{$header-height + $footer-height - 5});
+
+  h1 {
+    padding: 0 0 48px;
+  }
+}
+
+.settings-columns {
+  max-width: 1060px;
+  padding: 0 30px;
+  display: flex;
+  margin: 0 auto;
+}
+
+.setting-content {
+  background-color: #fff;
+  padding: 25px 40px;
+  border-radius: 16px;
+  margin-left: 24px;
+  flex-grow: 1;
+  text-align: left;
+
+  .title {
+    font-size: 28px;
+    text-align: left;
+    color: $link-color;
+    padding: 12px 0 12px;
+  }
+
+  .not-title {
+    font-size: 18px;
+  }
+
+  .note {
+    font-size: 15px;
+    line-height: 1.6;
+    color: $note-color;
+  }
+
+  label {
+    font-size: 17px;
+    font-weight: 600;
+    text-align: left;
+    color: $base-color;
+    display: block;
+  }
+
+  .avatar {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 12px 0 32px;
+
+    img {
+      width: 108px;
+      height: 108px;
+    }
+  }
+
+  .row {
+    padding: 16px 0;
+  }
+
+  .row-bordered {
+    padding: 16px 0;
+    margin: 16px 0;
+    border-top: solid 1px $muted-color;
+    border-bottom: solid 1px $muted-color;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .row-buttons {
+    display: flex;
+    padding: 24px 0 12px;
+    justify-content: flex-start;
+
+    .btn + .btn {
+      margin-left: 12px;
+      width: 180px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .settings-columns {
+    .settings-menu {
+      width: 220px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .settings-container {
+    padding: 24px 0;
+
+    h1 {
+      padding: 0 0 24px;
+    }
+  }
+
+  .settings-columns {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    .settings-menu {
+      width: 100%;
+      padding: 12px 24px;
+      a {
+        padding: 12px 0;
+      }
+    }
+    .setting-content {
+      margin: 24px 0 0;
+      padding: 24px;
+    }
+    .row-buttons {
+      display: flex;
+      flex-direction: column;
+      .btn {
+        width: 180px;
+      }
+      .btn + .btn {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-xs) {
+  .row-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.kidazzler.app.dev",
+      "sha256_cert_fingerprints": [
+        "BF:8D:3C:86:F1:AA:1F:14:09:0D:50:20:CE:A0:CD:0E:A3:5C:0C:68:A5:13:01:CE:56:DD:D7:8E:D9:94:6D:8F"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.kidazzler.app.dev",
+      "sha256_cert_fingerprints": [
+        "BF:8D:3C:86:F1:AA:1F:14:09:0D:50:20:CE:A0:CD:0E:A3:5C:0C:68:A5:13:01:CE:56:DD:D7:8E:D9:94:6D:8F"
+      ]
+    }
+  }
+]

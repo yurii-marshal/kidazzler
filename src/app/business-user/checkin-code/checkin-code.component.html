@@ -1,0 +1,101 @@
+<kz-header type="withMenu" *ngIf="isMobile"></kz-header>
+
+<div class="code-tab" [ngClass]="{'active': !!code}">
+
+  <kz-title-header *ngIf="isMobile"
+    [title]="'Your Check-In Code'"
+    [isWhite]="true"
+    [isShownBack]="true"
+    [isBackHandler]="true"
+                   (onBack)="onBackCheckinCode()"
+  ></kz-title-header>
+
+  <div class="code-page" *ngIf="!!code">
+    <div class="text-block">
+      <img src="../../../assets/images/icons/checkin-image.svg" alt="Empty checkin" class="text-block__image">
+      <p class="text-block__heading">
+        You don’t have a code yet
+      </p>
+      <p class="text-block__text">
+        Please create one that you can easily <br>
+        remember.
+        <br>
+        <br>
+        It will help you track new customers.
+      </p>
+    </div>
+
+    <p class="code-page__button" (click)="createCode()">
+      Create a Code
+    </p>
+  </div>
+
+  <div class="form-block" *ngIf="!code">
+    <div class="form-block__item">
+      <div class="info">
+        <p class="info__heading">
+          Checked-in
+        </p>
+
+        <p class="info__counter">
+          {{ count | number : '1.' }}
+        </p>
+
+        <p class="info__date">
+          <img src="../../../assets/images/icons/calendar-icon_flat.svg" alt="">
+          Since {{ createdAt | date: 'longDate' }}
+        </p>
+      </div>
+    </div>
+    <div class="form-block__divider"></div>
+    <div class="form-block__item">
+      <div class="code-form">
+        <div class="code-form__title-block">
+          <p class="code-form__text">
+            Your Code:
+          </p>
+          <p (click)="openEditDialog()" class="code-form__link">
+            Edit Code
+          </p>
+        </div>
+
+        <p class="code-form__input">
+          <img src="../../../assets/images/icons/ticket-icon_blue.svg" alt="">
+          {{code}}
+        </p>
+      </div>
+    </div>
+
+    <p class="form-block__text">
+      Create a simple code. <br>
+      Your visitors will ask you for it.
+    </p>
+  </div>
+</div>
+
+<!-- BEGIN: MODAL WITH REWARDS INFO -->
+<p-dialog [style]="{'background-color':'transparent', 'border':'none', 'box-shadow':'none', 'height':'100%'}"
+          [visible]="isEditing"
+          [styleClass]="'code-edit-modal'"
+          [modal]="true"
+          [showHeader]="false"
+          *ngIf="isMobile"
+>
+
+  <kz-edit-checkin-code
+    [code]="code"
+    [count]="count"
+    [createdAt]="createdAt"
+    [businessId]="businessId"
+    [isMobile]="true"
+    (closeEditCode)="onCloseEditCode($event)"
+  ></kz-edit-checkin-code>
+</p-dialog>
+<!-- END: MODAL WITH REWARDS INFO -->
+
+<!-- LOADER -->
+<ngx-ui-loader [overlayColor]="'#fff'" [fgsColor]="'#823cf1'"
+               [loaderId]="'checking-code'" [fgsType]="'wandering-cubes'"
+               [hasProgressBar]="false" [fgsPosition]="'center-center'">
+</ngx-ui-loader>
+<!-- LOADER -->

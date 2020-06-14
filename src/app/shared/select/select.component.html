@@ -1,0 +1,12 @@
+<input [(ngModel)]="searchPredicate" type="text" class="form-component search-input" autocomplete="none" [placeholder]="placeholder" (ngModelChange)="onSearch()" (click)="onInputClick($event)" (keydown)="onInputKeyDown($event)">
+<button #toggleButton type="button" class="dropdown-btn" (click)="toggle()">
+    <span class="dropdown-caret"></span>
+</button>
+
+<div #panel class="select-panel" *ngIf="isOpened && hasOptions()">
+    <ul class="select-options-list">
+        <li class="select-option" *ngFor="let option of options" (click)="onSelection(option)">
+            {{getOptionDisplay(option)}}
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,21 @@
+:host {
+  padding: 12px 0;
+
+  &.vertical {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:not(:last-child) {
+    padding-right: 5px;
+  }
+
+  img {
+    object-fit: contain;
+  }
+}

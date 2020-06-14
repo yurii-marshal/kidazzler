@@ -1,0 +1,402 @@
+<kz-header type="withMenu"></kz-header>
+
+<kz-title-header *ngIf="isMobile"
+                 (onEdit)="onEditBusiness()"
+                 [title]="pageHeader"
+                 [isTransparent]="true"
+                 [isShownEdit]="true"
+                 [isShownBack]="true"
+                 [isStatic]="true"
+                 [isWhite]="true"
+></kz-title-header>
+
+<div class="business-detail">
+
+  <ngx-ui-loader [overlayColor]="'#fff'" [fgsType]="'chasing-dots'" [fgsColor]="'#823cf1'"
+                 [pbColor]="'#823cf1'"></ngx-ui-loader>
+
+  <div class="image-box">
+    <ngx-ui-loader [overlayColor]="'#fff'"
+                   [fgsColor]="'#823cf1'"
+                   [loaderId]="'upload-picture'"
+                   [fgsType]="'wandering-cubes'"
+                   [hasProgressBar]="false"
+    ></ngx-ui-loader>
+
+    <div (click)="seeAllImages()" class="image-box__button"
+         *ngIf="(isMobile && business?.primaryPhoto?.id) || (!isMobile && business?.primaryPhoto?.id)"
+         [ngClass]="{'wide' : !business?.primaryPhoto?.id}">
+      <img *ngIf="!isMobile" src="../../../../assets/images/icons/select-all.svg" alt="">
+      <img *ngIf="isMobile" src="../../../../assets/images/icons/images-icon.svg" alt="">
+
+      <p class="image-box__text">
+        <span *ngIf="(isMobile && business?.primaryPhoto?.id) || (!isMobile && business?.primaryPhoto?.url)">
+          See all
+        </span>
+      </p>
+    </div>
+
+    <div class="image-box__button upload"
+         *ngIf="(isMobile && !business?.primaryPhoto?.id) || (!isMobile && business?.primaryPhoto?.id)"
+         [ngClass]="{'wide' : !business?.primaryPhoto?.id}">
+      <img src="../../../../assets/images/icons/images-icon.svg" alt="">
+
+      <p class="image-box__text">
+        <span (click)="fileSelect.click()">
+          Upload Image
+        </span>
+      </p>
+    </div>
+
+    <img (click)="seeAllImages()"
+         *ngIf="business?.primaryPhoto?.id"
+         [src]="business?.primaryPhoto?.url"
+         alt="Business Image" class="image-box__image"
+         [ngClass]="{'with-photos': photos.length > 0}">
+
+    <img (click)="seeAllImages()" *ngIf="isMobile && !business?.primaryPhoto?.id"
+         src="./../../../../assets/images/icons/business-card_placeholder-image.svg"
+         alt="Business Image" class="image-box__image">
+
+    <div (click)="seeAllImages()" *ngIf="!isMobile && photos.length && business?.primaryPhoto?.id"
+         class="image-box__photos-container">
+      <div class="photo" *ngFor="let photo of photos; let i = index">
+        <img [src]="photo.url" alt="{{photo.url}}" [ngClass]="{'bottom-row': i > 1}"/>
+      </div>
+    </div>
+
+    <div *ngIf="!isMobile && !business?.primaryPhoto?.id" class="image-box__default-text-cover">
+      <img src="../../../../assets/images/icons/studio-banner-icon.svg" alt="">
+
+      <h3>Your Business Doesn’t Have a Cover Photo</h3>
+
+      <p>To make your business stand out when people search for it, add a custom photo.</p>
+
+      <p class="add-button" (click)="fileSelect.click()">
+        <span>Upload Photo</span>
+      </p>
+    </div>
+  </div>
+
+  <input
+    #fileSelect
+    type="file"
+    accept="image/*"
+    id="fileSelect"
+    name="fileSelect"
+    style="display: none"
+    [multiple]="false"
+    (change)="onFileSelected($event)">
+
+  <p *ngIf="isMobile" class="business-detail__add-button" (click)="fileSelect.click()">
+    <img src="../../../../assets/images/icons/plus-button_purple.svg" alt="Plus">
+    <span>Upload Photo</span>
+  </p>
+
+  <div class="info-container">
+
+    <div class="main-block">
+
+      <div class="title-block rounded-block desktop-only">
+
+        <!-- FEATURED BADGE -->
+        <p class="title-block__featured-badge" *ngIf="business?.featured">
+          FEATURED
+        </p>
+        <div class="title-block__wrapper">
+          <p class="title-block__name">
+            {{business?.name}}
+          </p>
+
+          <p class="title-block__city" *ngIf="business?.businessDirection === 'Physical'">
+            {{business?.city}}, {{business?.state | shortenState}}
+          </p>
+
+          <div class="title-block__stats-box">
+            <p class="title-block__rate">
+              <img src="../../../../assets/images/icons/star-icon_purple.svg" alt="">
+              {{business?.rating ? (business?.rating | number:'1.1-1') : '-'}}
+            </p>
+            <p class="title-block__rate">
+              <img src="../../../../assets/images/icons/checkin-icon.svg" alt="">
+              {{business?.checkInsCount}} Check-ins
+            </p>
+          </div>
+
+          <p class="title-block__category">
+            <i class="pi pi-tag"></i>
+            <span class="item" *ngFor="let item of business?.businessTypes; let i = index">
+            {{item.code}}
+
+            <i *ngIf="business?.businessTypes.length > 1 && i < business?.businessTypes.length - 1">,</i>
+          </span>
+          </p>
+        </div>
+      </div>
+
+      <div class="title-block mobile-only">
+        <div class="title-block__wrapper">
+          <span class="title-status-label desktop-only">
+            {{business?.status}}
+          </span>
+          <p class="title-block__name">
+            {{business?.name}}
+          </p>
+
+          <p class="title-block__city" *ngIf="business?.businessDirection === 'Physical'">
+            {{business?.city}}, {{business?.state | shortenState}}
+          </p>
+
+          <div class="title-block__stats-box">
+            <p class="title-block__rate">
+              <img src="../../../../assets/images/icons/star-icon_purple.svg" alt="">
+              {{(business?.rating | number:'1.1-1') || '-'}}
+            </p>
+            <p class="title-block__rate">
+              <img src="../../../../assets/images/icons/checkin-icon.svg" alt="">
+              {{business?.checkInsCount}} Check-ins
+            </p>
+            <div class="title-block__rate mobile-only" *ngIf="business?.ageFrom !== null">
+              <img src="../../../../assets/images/icons/smile-icon.svg" alt="">
+              <div *ngIf="business?.ageFrom !== 12">
+                {{business?.ageFrom}} - {{business?.ageTo}} ages
+              </div>
+              <div *ngIf="business?.ageFrom === 12">
+                {{business?.ageFrom}}+ ages
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabs-panel rounded-block desktop-only">
+        <ul class="tab">
+          <li class="active">
+            <a>
+              <div class="img-block">
+                <img src="../../../../assets/images/icons/tab-icon-01.svg" alt="">
+              </div>
+              <span class="tabs-name">Overview</span>
+            </a>
+          </li>
+
+          <li class="">
+            <a [routerLink]="['deals']">
+              <div class="img-block">
+                <img src="../../../../assets/images/icons/tab-icon-02.svg" alt="">
+                <span *ngIf="deals">{{deals.count}}</span>
+              </div>
+              <span class="tabs-name">Deals</span>
+            </a>
+          </li>
+
+          <li class="">
+            <a [routerLink]="['events']">
+              <div class="img-block">
+                <img src="../../../../assets/images/icons/tab-icon-03.svg" alt="">
+                <span *ngIf="events">{{events.count}}</span>
+              </div>
+              <span class="tabs-name">Events</span>
+            </a>
+          </li>
+
+          <li class="disabled-btn">
+            <a [routerLink]="['wall']">
+              <div class="img-block">
+                <img src="../../../../assets/images/icons/tab-icon-04.svg" alt="">
+              </div>
+              <span class="tabs-name">Wall</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="about-block rounded-block">
+
+        <p class="about-block__heading">
+          About
+        </p>
+
+        <p class="about-block__text">
+          {{business?.about}}
+        </p>
+
+        <div class="info-block desktop-only">
+
+          <div class="info-item ages desktop-only" *ngIf="business?.ageTo">
+
+            <h3>Ages</h3>
+
+            <div class="years">
+              <img src="../../../../assets/images/icons/smile-icon-grey.svg">
+
+              <div *ngIf="business?.ageFrom !== 12">
+                {{business?.ageFrom}} - {{business?.ageTo}} years
+              </div>
+
+              <div *ngIf="business?.ageFrom === 12">
+                12+ years
+              </div>
+            </div>
+
+          </div>
+
+          <div class="info-item hours" *ngIf="!areWorkdaysEmpty">
+            <kz-working-hours
+              [header]="hoursHeader"
+              [hours]="business?.workingHours"
+            ></kz-working-hours>
+          </div>
+
+          <div class="info-item categories">
+            <p class="info-item__heading">
+              Categories
+            </p>
+            <p class="info-item__text info-item__text_marked"
+               *ngFor="let item of business?.businessTypes">
+              {{item.code}}
+            </p>
+          </div>
+
+          <div class="info-item amenities" *ngIf="business?.amenities.length > 0">
+            <p class="info-item__heading">
+              Features
+            </p>
+            <p class="info-item__text info-item__text_marked"
+               *ngFor="let item of business?.amenities">
+              {{item.name}}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK WITH CONTACTS -->
+      <div class="contacts mobile-only">
+        <div class="contacts__info-item contacts__info-item_phone" *ngIf="business?.phone">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M13.6861 11.0733L11.5241 8.9061C11.0934 8.47621 10.3803 8.48927 9.93461 8.9361L8.84534 10.0276C8.77653 9.98957 8.70529 9.94987 8.6304 9.90774C7.94254 9.52574 7.00109 9.00217 6.0104 8.00851C5.01678 7.01276 4.49391 6.06772 4.11161 5.37786C4.07127 5.30478 4.03262 5.23431 3.99445 5.16739L4.7255 4.43577L5.08492 4.07509C5.53125 3.62763 5.54356 2.91305 5.11392 2.48192L2.95184 0.314451C2.52219 -0.116083 1.80871 -0.103021 1.36238 0.344444L0.753032 0.95868L0.769684 0.975248C0.565361 1.23655 0.394623 1.53793 0.267564 1.86292C0.150441 2.17228 0.0775199 2.46748 0.0441767 2.76329C-0.241312 5.13542 0.840231 7.30337 3.7754 10.2452C7.8327 14.3114 11.1023 14.0043 11.2434 13.9893C11.5506 13.9525 11.845 13.8789 12.1442 13.7624C12.4657 13.6366 12.7662 13.4657 13.0267 13.2613L13.04 13.2732L13.6573 12.6673C14.1028 12.22 14.1156 11.5051 13.6861 11.0733Z"
+              fill="#B4BCC5"/>
+          </svg>
+          <a href="tel:{{business.phone | phoneNumberForCall:(phoneInfo$ | async)}}">
+            {{business?.phone | phoneNumber:(phoneInfo$ | async)}}
+          </a>
+        </div>
+        <div class="contacts__info-item contacts__hide-phone-text text-center error-message"
+             *ngIf="business?.hidePhone">
+          Your phone number is not displayed to users per your request. To change it, edit your listing
+        </div>
+        <div class="contacts__info-item" *ngIf="business?.website">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M13 8C12.4477 8 12 8.44771 12 9V11C12 11.5523 11.5523 12 11 12H3C2.44772 12 2 11.5523 2 11V3C2 2.44772 2.44772 2 3 2H5C5.55228 2 6 1.55228 6 1C6 0.447715 5.55228 0 5 0H3C1.34315 0 0 1.34315 0 3V11C0 12.6569 1.34315 14 3 14H11C12.6569 14 14 12.6569 14 11V9C14 8.44771 13.5523 8 13 8ZM14 1C14 0.447715 13.5523 0 13 0H9C8.44771 0 8 0.447715 8 1C8 1.55228 8.44771 2 9 2H10.5858L7 5.58579C6.60948 5.97631 6.60948 6.60948 7 7C7.39052 7.39052 8.02369 7.39052 8.41421 7L12 3.41421V5C12 5.55228 12.4477 6 13 6C13.5523 6 14 5.55228 14 5V3V1Z"
+                  fill="#B4BCC5"/>
+          </svg>
+          <a (click)="openWebSite(business?.website)">
+            {{business?.website}}
+          </a>
+        </div>
+        <div class="contacts__info-item" *ngIf="business?.email">
+          <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M3 0H11C12.6569 0 14 1.34315 14 3V9C14 10.6569 12.6569 12 11 12H3C1.34315 12 0 10.6569 0 9V3C0 1.34315 1.34315 0 3 0ZM3.4427 2L7 5.16205L10.5573 2H3.4427ZM12 3.39351L8.32873 6.65686C7.57096 7.33044 6.42904 7.33044 5.67127 6.65686L2 3.39351V9C2 9.55229 2.44772 10 3 10H11C11.5523 10 12 9.55229 12 9V3.39351Z"
+                  fill="#B4BCC5"/>
+          </svg>
+          <a href="mailto:{{business?.email}}">
+            {{business?.email}}
+          </a>
+        </div>
+      </div>
+
+      <div class="info-block mobile-only">
+
+        <kz-location-snapshot *ngIf="business?.businessDirection === 'Physical'"
+                              [business]="business"
+        ></kz-location-snapshot>
+
+        <div class="info-item" *ngIf="!areWorkdaysEmpty">
+          <kz-working-hours [header]="hoursHeader" [hours]="business?.workingHours"></kz-working-hours>
+        </div>
+
+        <div class="info-item">
+          <p class="info-item__heading">
+            Categories
+          </p>
+          <p class="info-item__text info-item__text_marked"
+             *ngFor="let item of business?.businessTypes">
+            {{item.code}}
+          </p>
+        </div>
+
+        <div class="info-item" *ngIf="business?.amenities.length > 0">
+          <p class="info-item__heading">
+            Features
+          </p>
+          <p class="info-item__text info-item__text_marked"
+             *ngFor="let item of business?.amenities">
+            {{item.name}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-block desktop-only">
+
+      <div class="edit-btn-block rounded-block">
+        <button class="edit-button" [routerLink]="['edit']">
+          Edit Business {{isMobile ? 'Info' : 'Page'}}
+        </button>
+      </div>
+
+      <div class="open-today-block rounded-block" *ngIf="endDate">
+        <div class="today-block-inner" [ngClass]="{'opened': isOpen}">
+          <div class="hours">
+            <img src="../../../../assets/images/icons/clock-icon.svg" alt="img not found">
+            <div class="today-text">Today</div>
+            <div class="time">
+              {{startDate | AMPM}} - {{endDate | AMPM}}
+            </div>
+          </div>
+
+          <div class="open-text" *ngIf="isOpen">Open</div>
+          <div class="open-text" *ngIf="!isOpen">Closed</div>
+        </div>
+      </div>
+
+      <div class="map-snapshot-block rounded-block">
+        <kz-location-snapshot *ngIf="business?.businessDirection === 'Physical'"
+                              [business]="business"
+        ></kz-location-snapshot>
+
+        <div class="contacts">
+          <div class="contacts__info-item contacts__info-item_phone" *ngIf="business?.phone">
+            <img src="../../../../assets/images/icons/phone-icon_gray.svg" alt="">
+            <a href="tel:{{business.phone | phoneNumberForCall:(phoneInfo$ | async)}}">
+              {{business?.phone | phoneNumber:(phoneInfo$ | async)}}
+            </a>
+          </div>
+          <div class="contacts__info-item contacts__hide-phone-text text-center error-message"
+               *ngIf="business?.hidePhone">
+            Your phone number is not displayed to users per your request. To change it, edit your listing
+          </div>
+          <div class="contacts__info-item" *ngIf="business?.email">
+            <img src="../../../../assets/images/icons/conversation.svg" alt="">
+            <a href="mailto:{{business?.email}}">
+              {{business?.email}}
+            </a>
+          </div>
+          <div class="contacts__info-item" *ngIf="business?.website">
+            <img src="../../../../assets/images/icons/external-icon.svg" alt="">
+            <a (click)="openWebSite(business?.website)">
+              {{business?.website}}
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<kz-footer *ngIf="!isMobile"></kz-footer>

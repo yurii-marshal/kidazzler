@@ -1,0 +1,152 @@
+<div class="filter" *ngIf="form">
+  <kz-title-header
+    [title]="'Filters'"
+    [isShownClear]="true"
+    [isStatic]="true"
+    [isShownBack]="true"
+    [isBackByLocation]="true"
+    [isClearActive]="form?.dirty"
+    (onClear)="clearFilter()"
+  ></kz-title-header>
+
+  <!-- Filter Content -->
+  <div class="filter-content">
+    <form class="filter-content__form" [formGroup]="form" (submit)="submit()">
+      <div class="filter-content__box filter-content__box_wrapped">
+        <p class="filter-content__box-header">
+          Features
+        </p>
+        <ng-container *ngFor="let amenity of amenities; let i = index">
+          <div class="filter-content__option" *ngIf="i<6 || showAllFeatures">
+            <div formArrayName="amenities">
+              {{amenity.name}}
+
+              <input id="amenity-option-{{i}}" type="checkbox" [formControlName]="i">
+              <label for="amenity-option-{{i}}">
+              </label>
+            </div>
+          </div>
+        </ng-container>
+
+        <p *ngIf="amenities.length > 6 && !showAllFeatures" class="filter-content__more-button"
+           (click)="showAllAmenities()">
+          Show More
+        </p>
+        <p *ngIf="showAllFeatures" class="filter-content__more-button" (click)="showAllAmenities()">
+          Show Less
+        </p>
+      </div>
+
+      <div class="filter-content__box filter-content__box_rating">
+        <p class="filter-content__box-header">
+          Ratings
+        </p>
+        <div class="filter-content__option" *ngFor="let rate of ratings; let i = index">
+          <p class="filter-content__option-text">
+            Rating&nbsp;{{rate.minRating}}+
+          </p>
+          <input id="ratingOption-{{i}}" type="radio" formControlName="rating" [value]="rate">
+          <label for="ratingOption-{{i}}" class="filter-content__option filter-content__option_single"></label>
+        </div>
+      </div>
+
+      <div class="filter-content">
+        <div class="filter-content__box filter-content__box_ages">
+          <p class="filter-content__box-header">
+            Ages
+          </p>
+          <div class="filter-content__option-list">
+            <div class="filter-content__option" *ngFor="let age of ages; let i = index">
+              <input id="age-option-{{i}}" type="radio" [value]="age" formControlName="ages">
+              <label for="age-option-{{i}}">
+              <span class="filter-content__age-option">
+                <i>{{age.ageFrom}}</i>
+                &nbsp;
+                <i class="filter-content__age-symbol filter-content__age-symbol_additional">+</i>
+                <i class="filter-content__age-symbol">-</i>
+                &nbsp;
+                <i>{{age.ageTo}}</i>
+              </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-content__box">
+        <p class="filter-content__box-header">
+          By Appointment
+        </p>
+        <div class="filter-content__option filter-content__option_single">
+          <p class="filter-content__option-text">
+            By appointment only
+          </p>
+          <input id="appointmentOption" type="checkbox" formControlName="byAppointment">
+          <label for="appointmentOption"></label>
+        </div>
+      </div>
+
+      <div class="filter-content__box filter-content__box_other">
+        <p class="filter-content__box-header">
+          Other Filters
+        </p>
+
+        <div class="filter-content__option">
+          <p class="filter-content__option-text">
+            Physical Business
+          </p>
+          <input id="isPhysicalOption" type="checkbox" formControlName="isPhysical">
+          <label for="isPhysicalOption"></label>
+        </div>
+
+        <div class="filter-content__option">
+          <p class="filter-content__option-text">
+            Mobile Business
+          </p>
+          <input id="isMobileOption" type="checkbox" formControlName="isMobile">
+          <label for="isMobileOption"></label>
+        </div>
+
+        <!--<div class="filter-content__option">-->
+        <!--<p class="filter-content__option-text">-->
+        <!--Offering a Deal-->
+        <!--</p>-->
+        <!--<input id="hasDealsOption" type="checkbox" formControlName="hasDeals">-->
+        <!--<label for="hasDealsOption"></label>-->
+        <!--</div>-->
+
+        <!--<div class="filter-content__option">-->
+        <!--<p class="filter-content__option-text">-->
+        <!--Has Events-->
+        <!--</p>-->
+        <!--<input id="hasEventsOption" type="checkbox" formControlName="hasEvents">-->
+        <!--<label for="hasEventsOption"></label>-->
+        <!--</div>-->
+
+        <!--<div class="filter-content__option">-->
+        <!--<p class="filter-content__option-text">-->
+        <!--Free Events-->
+        <!--</p>-->
+        <!--<input id="hasFreeEventsOption" type="checkbox" formControlName="hasFreeEvents">-->
+        <!--<label for="hasFreeEventsOption"></label>-->
+        <!--</div>-->
+
+        <!--<div class="filter-content__option">-->
+        <!--<p class="filter-content__option-text">-->
+        <!--Free Deals-->
+        <!--</p>-->
+        <!--<input id="hasFreeDealsOption" type="checkbox" formControlName="hasFreeDeals">-->
+        <!--<label for="hasFreeDealsOption"></label>-->
+        <!--</div>-->
+      </div>
+
+      <button class="filter__submit" type="submit">
+        Apply Filters
+      </button>
+    </form>
+  </div>
+</div>
+
+
+<ngx-ui-loader [overlayColor]="'#fff'" [fgsType]="'chasing-dots'" [fgsColor]="'#823cf1'"
+               [pbColor]="'#823cf1'"></ngx-ui-loader>

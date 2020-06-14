@@ -1,0 +1,9 @@
+<ul class="list">
+    <li *ngFor="let item of value; let i = index;" [ngClass]="{'list-item': true, 'has-error': !!getError(item, i)}" [pTooltip]="getError(item, i)" tooltipPosition="top">
+        <span>{{item}}</span>
+        <span *ngIf="!disabled" class="remove-btn" (click)="removeItem(i)">×</span>
+    </li>
+    <li class="input-container">
+        <input #input type="text" [attr.id]="id" [attr.placeholder]="(value && value.length ? null : placeholder)" (keydown)="onKeyDown($event)" (blur)="onInputBlur($event)" (paste)="onPaste($event)" [disabled]="disabled">
+    </li>
+</ul>

@@ -1,0 +1,287 @@
+@import '../../../styles/variables';
+
+.verify-claim-oval {
+  @include oval(272px);
+  background-color: #fff;
+  height: 342px;
+}
+
+.claim-center-block {
+  margin: 0 auto;
+  max-width: 320px;
+  padding: 40px 0 0;
+  position: relative;
+
+  &.width-440 {
+    max-width: 440px;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    margin-bottom: 5px;
+
+    color: #FDFDFD;
+  }
+
+  .sub-title {
+    opacity: 0.5;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: center;
+    color: #ffffff;
+
+    &.full-color {
+      opacity: 1;
+    }
+  }
+}
+
+.shadowed-block {
+  width: 320px;
+  max-width: 100%;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1);
+  margin: -90px auto 20px;
+  text-align: center;
+  font-size: 17px;
+  position: relative;
+  padding: 18px;
+}
+
+.claim-info {
+  display: flex;
+  align-items: center;
+
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: $bottom-border-gray;
+  overflow: hidden;
+
+  &__image {
+    width: 72px;
+    min-width: 72px;
+    height: 72px;
+    min-height: 72px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 18px;
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    overflow: hidden;
+  }
+
+  &__name {
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: -0.2px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    @include limited-text(1);
+  }
+
+  &__address {
+    font-size: 15px;
+    line-height: 20px;
+    color: #000000;
+    @include limited-text(1);
+  }
+
+  .categories {
+    display: flex;
+    align-items: center;
+    color: #B4BCC5;
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: -0.386842px;
+    max-width: 100%;
+    width: 100%;
+
+    .item {
+      @include one-row-limited-text();
+    }
+
+    .pi {
+      font-size: 16px;
+      padding-left: 4px;
+    }
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-of-type) {
+      margin-bottom: 12px;
+    }
+
+    img {
+      margin-right: 12px;
+    }
+  }
+
+  &__text {
+    line-height: 22px;
+    color: #000000;
+  }
+
+  &__link {
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: -0.176471px;
+    color: #4B03BD;
+    text-decoration: none;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 210px;
+
+    &:active,
+    &:visited,
+    &:hover {
+      color: #4B03BD;
+      text-decoration: none;
+    }
+  }
+}
+
+.actions {
+  width: 320px;
+  max-width: 100%;
+  margin: 0 auto;
+
+  padding-bottom: 19px;
+  border-bottom: $bottom-border-gray;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__link {
+    margin: 0 auto;
+    line-height: 44px;
+    text-align: center;
+    letter-spacing: -0.176471px;
+
+    i {
+      color: #4B03BD;
+      cursor: pointer;
+    }
+  }
+}
+
+.action-block {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  padding: 18px 15px;
+  background: #ECF8F7;
+  border-radius: 8px;
+  margin-bottom: 6px;
+
+  &:last-of-type {
+    margin-bottom: 16px;
+  }
+
+  &__image {
+    margin-right: 12px;
+    padding-top: 4px;
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  &__text {
+    font-size: 17px;
+    line-height: 22px;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+
+  &__link {
+    line-height: 20px;
+    color: #4ABBB5;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .oval-background, .verify-claim-oval {
+    &::before {
+      border-radius: 0;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .shadowed-block {
+    width: 100%;
+    max-width: 528px;
+  }
+
+  .actions {
+    width: 100%;
+    max-width: 528px;
+    border: none;
+
+    &__wrapper {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+  }
+
+  .action-block {
+    height: 158px;
+    width: 252px;
+    margin-bottom: 0;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .claim-info {
+    &__image {
+      width: 72px;
+      height: 72px;
+    }
+
+    &__name {
+      max-width: 400px;
+    }
+
+    &__address {
+      max-width: 400px;
+    }
+  }
+
+  .details {
+    &__link {
+      max-width: 400px;
+    }
+  }
+}

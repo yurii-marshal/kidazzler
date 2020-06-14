@@ -1,0 +1,116 @@
+@import '../../styles/variables';
+
+.intro {
+  @include oval(340px);
+
+  .rewards {
+    &__tabs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__tab {
+      cursor: pointer;
+      opacity: 0.5;
+
+      &--isActive {
+        opacity: 1;
+      }
+
+      &-text {
+        display: block;
+        margin-top: 8px;
+      }
+    }
+
+    &__devider {
+      width: 1px;
+      height: 30px;
+      background-color: #fff;
+      opacity: 0.5;
+      margin: 0 15px;
+    }
+
+    &__sum {
+      margin: 25px 0;
+    }
+
+    &-sum {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      line-height: 1;
+
+      &__sub {
+        font-size: 24px;
+        margin: 0 5px;
+      }
+
+      &__main {
+        font-size: 62px;
+      }
+    }
+
+    &__view-breakdown {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100px;
+      border: 1px solid #fff;
+      height: 32px;
+      padding: 0 20px;
+      opacity: 0.6;
+      font-size: 15px;
+      line-height: 1;
+      color: #ffffff;
+      cursor: pointer;
+    }
+  }
+
+  .intro-main-text {
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 60px 0 0;
+    width: 370px;
+    margin: 0 auto;
+
+    h1, h2, h3 {
+      color: #fff;
+      margin: 0;
+      padding: 0 0 10px;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    h2 {
+      font-size: 19px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .intro {
+    &::before {
+      border-radius: 0;
+    }
+
+    .intro-main-text {
+      width: 100%;
+
+      h1 {
+        font-size: 60px;
+
+        span {
+          font-size: 30px;
+        }
+      }
+
+      h2 {
+        font-size: 15px;
+      }
+    }
+  }
+}

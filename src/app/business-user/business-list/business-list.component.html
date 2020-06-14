@@ -1,0 +1,41 @@
+<kz-header type="withMenu" [hideAbout]="true"></kz-header>
+
+<section class="business-list">
+  <div class="list-header">
+    <div class="list-header__title-box">
+      <h1 class="list-header__title">
+        My Businesses
+      </h1>
+
+      <button class="list-header__title-button" [routerLink]="['/contact-us']">
+        Add Business
+      </button>
+    </div>
+  </div>
+
+  <div class="list">
+    <kz-business-list-card *ngFor="let business of businesses?.items"
+                           [data]="business"
+                           class="list__item">
+    </kz-business-list-card>
+  </div>
+
+  <p class="business-list__button" [routerLink]="['/contact-us']">
+    Add Business
+  </p>
+</section>
+
+<p-paginator class="paginator"
+             [rows]="businesses?.limit"
+             [totalRecords]="businesses?.count"
+             [alwaysShow]="false"
+             (onPageChange)="onPagination($event)">
+</p-paginator>
+
+<kz-footer></kz-footer>
+
+<!-- LOADER -->
+<ngx-ui-loader [overlayColor]="'#fff'" [fgsType]="'chasing-dots'"
+               [fgsColor]="'#823cf1'" [pbColor]="'#823cf1'">
+</ngx-ui-loader>
+<!-- LOADER -->

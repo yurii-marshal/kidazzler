@@ -1,0 +1,53 @@
+<!-- LIST OF PHOTOS FOR BUSINESS OWNER -->
+<kz-header type="withMenu"></kz-header>
+
+<kz-list-of-photos [isBusinessOwner]="true"
+                   [photos]="photos"
+                   (onDeletePhoto)="deletePhoto($event)"
+                   [showAllTab]="showAllTab"
+                   (onAddPhotos)="addPhotos($event)"
+                   (onMakePrimary)="makePrimary($event)"
+                   [showUpload]="true"
+                   [role]="roles.business"
+                   [showAddedByBusinessTab]="true"
+                   [defaultFilterType]="showAllTab ? 'all' : 'business'"
+                   [showAddedByUsersTab]="true">
+</kz-list-of-photos>
+<!-- LIST OF PHOTOS FOR BUSINESS OWNER -->
+
+<div [ngClass]="{'loader-container': isLoading}">
+  <!-- BEGIN: LOADER -->
+  <ngx-ui-loader [overlayColor]="'#fff'"
+                 [fgsType]="'chasing-dots'"
+                 [fgsColor]="'#823cf1'"
+                 [pbColor]="'#823cf1'">
+  </ngx-ui-loader>
+  <!-- END: LOADER -->
+
+  <!-- LOADERS -->
+  <ngx-ui-loader [fgsColor]="'#823cf1'"
+                 [fgsType]="'wandering-cubes'"
+                 [loaderId]="'delete-photo'"
+                 [hasProgressBar]="false"
+                 [fgsPosition]="'center-center'">
+  </ngx-ui-loader>
+  <!-- LOADERS -->
+
+  <!-- LOADERS -->
+  <ngx-ui-loader [fgsColor]="'#823cf1'"
+                 [fgsType]="'wandering-cubes'"
+                 [loaderId]="'add-photo'"
+                 [hasProgressBar]="false"
+                 [fgsPosition]="'center-center'">
+  </ngx-ui-loader>
+  <!-- LOADERS -->
+
+  <!-- LOADERS -->
+  <ngx-ui-loader [fgsColor]="'#823cf1'"
+                 [fgsType]="'wandering-cubes'"
+                 [loaderId]="'make-primary'"
+                 [hasProgressBar]="false"
+                 [fgsPosition]="'center-center'">
+  </ngx-ui-loader>
+  <!-- LOADERS -->
+</div>

@@ -1,0 +1,64 @@
+@import '../../../styles/variables';
+
+:host {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+.hours-block {
+  &:last-of-type {
+    margin-bottom: 20px;
+  }
+
+  &__heading {
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 30px;
+    letter-spacing: -0.392308px;
+    color: #2D2F39;
+    margin-bottom: 9px;
+  }
+
+  &__text-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    .info-item__text {
+      margin-bottom: 0;
+    }
+  }
+
+  &__text {
+    font-size: 17px;
+    line-height: 24px;
+    margin-bottom: 0;
+
+    &_purple {
+      font-size: 15px;
+      color: #4B03BD;
+    }
+
+    &_single {
+      margin-bottom: 16px;
+    }
+
+    &_marked {
+      display: flex;
+      align-items: center;
+
+      &:before {
+        content: '';
+        background: url("../../../assets/images/icons/check-icon_about.svg") no-repeat center;
+        width: 8px;
+        min-width: 8px;
+        height: 8px;
+        min-height: 8px;
+        display: block;
+        margin-right: 12px;
+      }
+    }
+  }
+}

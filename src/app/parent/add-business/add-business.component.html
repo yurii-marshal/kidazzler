@@ -1,0 +1,201 @@
+<kz-header type="withMenu"></kz-header>
+
+<div class="page-form-container">
+  <div class="page-form-title">
+    <h1>
+      {{isEditingBusiness ? 'Edit Business' : isEditingBusiness === null ? 'Add a New Business to Kidazzler' : ''}}
+    </h1>
+  </div>
+  <div class="page-form-content" *ngIf="(business?.id && business?.published) || !business?.id">
+    <div class="step">
+      <div class="title">
+        1. Please select if the business has a physical location or it is mobile
+      </div>
+      <div class="content">
+        <p>Here are some great categories to get you started:</p>
+      </div>
+
+      <div class="types">
+        <div class="type" [class.active]="isPhysical" (click)="toggleDirection()">
+          <img src="/assets/images/icon-physical.svg"/>
+          <h3>Physical</h3>
+          <div class="description">
+            <ul>
+              <li>Classes/Camps</li>
+              <li>Kids Activities</li>
+              <li>Restaurants</li>
+              <li>Doctors/Dentists</li>
+              <li>Daycares/Schools</li>
+              <li>Party Venues/Services</li>
+              <li>Museums</li>
+              <li>Kids Shopping Stores</li>
+              <li>Pet Services/Stores</li>
+              <li>Etc.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="or">
+          <span>or</span>
+        </div>
+        <div class="type" [class.active]="!isPhysical" (click)="toggleDirection()">
+          <img src="/assets/images/icon-mobile.svg"/>
+          <h3>Mobile</h3>
+          <div class="description">
+            <ul>
+              <li>Food Truck</li>
+              <li>Video Game Truck</li>
+              <li>Party Characters</li>
+              <li>Tutors/Instructors/Coaches</li>
+              <li>Face Paint/Balloon Art</li>
+              <li>Photographer</li>
+              <li>Videographer</li>
+              <li>Music Entertainers</li>
+              <li>Bubble Show</li>
+              <li>Etc.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="form">
+      <div class="step" #businessInfoBlock>
+        <div class="title">
+          2. Business Information (required)
+        </div>
+        <div class="content">
+          <p>
+            <b class="important-text">Important Reminder:</b>
+            To get credit for adding this business, please make sure you entered the business phone number correctly.
+          </p>
+
+          <div class="row">
+            <input type="text" class="form-component" placeholder="Business Name" formControlName="name" pInputText/>
+
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('name')">
+              {{ formErrors.getValidationMessage('name') }}
+            </div>
+          </div>
+          <div class="row" *ngIf="!isEditingBusiness">
+            <p-inputMask required class="form-component input-mask-component" formControlName="phone" [mask]="phoneMask"
+                         [placeholder]="'+1(___) __-____'" [unmask]="true" [autoClear]="false"></p-inputMask>
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('phone')">
+              <ng-container *ngIf="form.get('phone').hasError('required')">
+                {{ formErrors.getMessage('required') }}
+              </ng-container>
+              <ng-container *ngIf="form.get('phone').hasError('minlength')">
+                {{ formErrors.getMessage('phone') }}
+              </ng-container>
+            </div>
+            <div class="error-message" *ngIf="form.get('phone').hasError('invalid')">
+              {{ form.get('phone').getError('invalid') }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="title">
+          3. Business {{isPhysical ? 'Address' : 'City/State'}} (required)
+        </div>
+        <div class="content">
+          <div class="row" *ngIf="isPhysical">
+            <p-autoComplete [(ngModel)]="address" [ngModelOptions]="{standalone: true}"
+                            [suggestions]="addressSearchResults"
+                            (completeMethod)="searchAddress($event)"
+                            [forceSelection]="true"
+                            placeholder="Address 1"
+                            [delay]="1000" field="place_name"
+                            (onSelect)="selectAddress($event)"
+                            (onClear)="clearValue(isPhysical)"
+            ></p-autoComplete>
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('address')">
+              {{ formErrors.getValidationMessage('address') }}
+            </div>
+          </div>
+          <div class="row" *ngIf="isPhysical">
+            <input type="text" class="form-component" placeholder="Address 2" formControlName="address2" pInputText/>
+          </div>
+          <div class="row row-address" *ngIf="!isPhysical">
+            <p-autoComplete [(ngModel)]="onlineAddress" [ngModelOptions]="{standalone: true}"
+                            [suggestions]="onlineAddressSearchResults"
+                            (completeMethod)="searchOnlineAddress($event)"
+                            [forceSelection]="true"
+                            placeholder="City, State"
+                            [delay]="1000" field="place_name"
+                            (onSelect)="selectOnlineAddress($event)"
+                            (onClear)="clearValue(isPhysical)"
+            ></p-autoComplete>
+          </div>
+          <div class="error-message"
+               *ngIf="(formErrors.checkControlValidation('city') || formErrors.checkControlValidation('state')) && !isPhysical">
+            This field is required
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="title">
+          4. Business Description (required)
+        </div>
+        <div class="content">
+          <p>What kind of business is this? i.e. Soccer Class, Ballet Class, Museum, Playcenter, Party Character,
+            Day Care Center, Math Tutor, Art Class, etc…
+          </p>
+
+          <div class="row">
+            <kz-select [searchPredicate]="business.businessType?.code || ''" formControlName="businessType"
+                       [customOption]="false" [options]="businessTypes$ | async" (search)="searchBusinessTypes($event)"
+                       displayWith="code"
+                       [placeholder]="isPhysical ? 'Restaurant, face painter, math tutor, etc.' : 'Type of Business'">
+            </kz-select>
+            <div class="error-message" [class.hide-error]="!formErrors.checkControlValidation('businessType')"
+                 *ngIf="formErrors.checkControlValidation('businessType')">
+              {{ formErrors.getValidationMessage('businessType') }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="title">
+          5. Additional Details
+        </div>
+        <div class="content">
+          <p>
+            <b class="text-black">Want to Earn Quicker?</b> <br>
+            The more contact details you provide, the quicker we can reach out to this business and get you paid.
+          </p>
+
+          <div class="row">
+            <input type="text" class="form-component" placeholder="Email" formControlName="email" pInputText/>
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('email')">
+              {{ formErrors.getValidationMessage('email') }}
+            </div>
+          </div>
+          <div class="row">
+            <input type="text" class="form-component" placeholder="Website" formControlName="website" pInputText/>
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('website')">
+              {{ formErrors.getValidationMessage('website') }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button class="btn btn-primary btn-primarywidth">
+          {{isEditingBusiness ? 'Update' : 'Add'}} a Business
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="info" *ngIf="business?.id && !business?.published">
+    <h2 class="info__heading">
+      Sorry, this business can’t be edited, please
+      contact us for more details
+    </h2>
+
+  </div>
+  <kz-footer></kz-footer>
+</div>
+

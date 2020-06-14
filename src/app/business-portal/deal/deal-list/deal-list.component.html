@@ -1,0 +1,18 @@
+<kz-title-header
+  [title]="'Deals'"
+  [isShownBack]="true"
+  [isStatic]="true">
+</kz-title-header>
+
+<div class="deals-list">
+  <ngx-ui-loader [overlayColor]="'#fff'" [fgsType]="'chasing-dots'" [fgsColor]="'#823cf1'"
+                 [pbColor]="'#823cf1'"></ngx-ui-loader>
+  <kz-deal-list [business]="business" [role]="roles.user" [deals]="deals?.items"></kz-deal-list>
+</div>
+
+<p-paginator class="paginator"
+             [rows]="deals?.limit"
+             [totalRecords]="deals?.count"
+             [alwaysShow]="false"
+             (onPageChange)="onPagination($event)">
+</p-paginator>

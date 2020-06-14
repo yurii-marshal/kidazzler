@@ -1,0 +1,31 @@
+<!-- Basic header for parent login view -->
+<kz-header *ngIf="currentLoginType.name === loginTypeNames.parent"></kz-header>
+
+<!-- Header for business login view -->
+<kz-business-header *ngIf="currentLoginType.name === loginTypeNames.business"></kz-business-header>
+
+<div class="login-container">
+  <div class="login-container__heading">
+    <h1>Login</h1>
+    <div class="small-container notes">
+      By logging in, you agree to Kidazzler’s
+      <a [routerLink]="['/terms']">Terms of Use</a> and <a [routerLink]="['/privacy']">Privacy Policy</a>.
+    </div>
+  </div>
+
+  <div class="login-container__type login-type">
+    <div class="login-type__item" [class.login-type__item--isActive]="currentLoginType.name === loginTypeNames.parent"
+         [routerLink]="loginTypeUrls.parent">
+      <img src="./assets/images/icon-login-users.svg" alt="" class="login-type__icon">
+      User Login
+    </div>
+    <div class="login-type__item" [class.login-type__item--isActive]="currentLoginType.name === loginTypeNames.business"
+         [routerLink]="loginTypeUrls.business">
+      <img src="./assets/images/icon-login-business.svg" alt="" class="login-type__icon">
+      Business Login
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>
+<kz-footer></kz-footer>

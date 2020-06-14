@@ -1,0 +1,18 @@
+.businesses-list {
+  .businesses {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 0 0 20px 4px;
+  }
+
+  .title {
+    padding-top: 20px;
+    padding-left: 4px;
+    margin-bottom: 12px;
+    font-size: 22px;
+    line-height: 28px;
+    letter-spacing: -0.2px;
+    color: #222830;
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../styles/variables.scss";
+
+.kz {
+  margin-top: $header-height;
+}
+
+kz-header + div {
+  margin-top: $header-height;
+}
+
+

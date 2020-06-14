@@ -1,0 +1,71 @@
+<p-dialog [visible]="visible" [modal]="true" [dismissableMask]="true" [styleClass]="'custom-popup popup-rewards'"
+          [closable]="false" [draggable]="false" [resizable]="false" [showHeader]="false" (onHide)="onHide()"
+          width="472">
+  <div class="close" (click)="closeDialog()"></div>
+  <div class="popup-title left">
+    <div>{{uiData[rewardType]?.title}}</div>
+  </div>
+  <div class="popup-content rewards-popup-content relative-container">
+    <div class="calc-status" *ngIf="isOrganization">
+      <img src="/assets/images/verified-organization.png" alt="status verified"/>
+    </div>
+    <div class="calc-welcome">
+      Kidazzler
+    </div>
+    <!--<div class="calc-plan">${{(isOrganization ? 15000 : 4800) | number:'1.0-5'}}/<span>mo</span></div>-->
+    <div class="calc-plan">Rewards</div>
+
+    <a class="calc-personal" href="{{uiData[rewardType]?.howItWorksLink}}">How it works</a>
+
+    <div class="calc-row">
+      <!-- <div class="calc-label">Businesses added by <em>you</em>:</div> -->
+      <div class="calc-label">{{uiData[rewardType]?.firstLevel}}:</div>
+      <div class="calc">
+        <div>{{rewardInfo[currentCountKey].own | number:'1.0-5'}}</div>
+        <div class="oper">&#215;</div>
+        <div>${{rewardInfo.perBusiness.own | number:'1.0-5'}}</div>
+        <div class="oper">=</div>
+        <div>${{rewardInfo[currentCountKey].own * rewardInfo.perBusiness.own | number:'1.0-5'}}</div>
+      </div>
+    </div>
+    <div class="calc-row">
+      <!-- <div class="calc-label">Businesses added by your <em>friends</em>:</div> -->
+      <div class="calc-label">{{uiData[rewardType]?.secondLevel}}:</div>
+      <div class="calc">
+        <div>{{rewardInfo[currentCountKey].secondLevel | number:'1.0-5'}}</div>
+        <div class="oper">&#215;</div>
+        <div>${{rewardInfo.perBusiness.secondLevel | number:'1.0-5'}}</div>
+        <div class="oper">=</div>
+        <div>${{rewardInfo[currentCountKey].secondLevel * rewardInfo.perBusiness.secondLevel | number:'1.0-5'}}</div>
+      </div>
+    </div>
+
+    <div [class.highlite-frame]="!isThirdLevelLocked" class="calc-row">
+      <!-- <div class="calc-label">Businesses added by <em>FRIENDS <span>of</span> YOUR FRIENDS</em>:</div> -->
+      <div class="calc-label">{{uiData[rewardType]?.thirdLevel}}:</div>
+      <div class="calc-row-wrapper locked"
+           [ngClass]="{'unlock-more': isThirdLevelLocked, 'unlock-max': !isThirdLevelLocked}">
+        <div class="calc">
+          <div>{{rewardInfo[currentCountKey].thirdLevel | number:'1.0-5'}}</div>
+          <div class="oper">&#215;</div>
+          <div>${{rewardInfo.perBusiness.thirdLevel | number:'1.0-5'}}</div>
+          <div class="oper">=</div>
+          <div>${{rewardInfo[currentCountKey].thirdLevel * rewardInfo.perBusiness.thirdLevel | number:'1.0-5'}}</div>
+        </div>
+        <button class="unlock-max-btn" [routerLink]="['', {outlets: {popup: ['unlock-rewards']}}]">Unlock Max Earnings
+        </button>
+        <button class="unlock-more-btn" [routerLink]="['', {outlets: {popup: ['unlock-rewards']}}]">Unlock More
+          Earnings
+        </button>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="calc-total">
+      <div>Total</div>
+      <div class="value">${{rewardInfo[currentTotalKey] | number:'1.0-5'}}</div>
+    </div>
+  </div>
+
+</p-dialog>

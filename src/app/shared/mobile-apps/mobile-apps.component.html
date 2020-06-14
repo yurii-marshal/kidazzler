@@ -1,0 +1,17 @@
+<ng-container *ngIf="isWhiteFill">
+  <a [attr.href]="iosAppUrl">
+    <img alt="App Store" class="image-appsstore" src="/assets/images/stores/image-appsstore.png">
+  </a>
+  <a [attr.href]="androidAppUrl">
+    <img alt="Google Play" class="image-googleplay" src="/assets/images/stores/image-googleplay.png">
+  </a>
+</ng-container>
+
+<ng-container *ngIf="!isWhiteFill">
+  <a [attr.href]="iosAppUrl">
+    <img alt="App Store" style="padding-bottom: 1px;" class="image-appsstore" src="/assets/images/stores/image-appsstore-dark.png">
+  </a>
+  <a [attr.href]="androidAppUrl">
+    <img alt="Google Play" class="image-googleplay" src="/assets/images/stores/image-googleplay-dark.png">
+  </a>
+</ng-container>

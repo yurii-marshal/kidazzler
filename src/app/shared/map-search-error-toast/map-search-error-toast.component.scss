@@ -1,0 +1,17 @@
+:host {
+  background-color: #BD362F;
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 6px;
+  padding: 10px 10px 10px 10px;
+  width: 300px;
+  border-radius: 3px 3px 3px 3px;
+  color: #FFFFFF;
+  pointer-events: all;
+  cursor: pointer;
+  font-weight: bold;
+}
+.btn-pink {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+}

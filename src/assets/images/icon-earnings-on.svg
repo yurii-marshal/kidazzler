@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+    <g fill="none" fill-rule="evenodd" transform="translate(-1 -1)">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path fill="#FFF" fill-rule="nonzero" d="M3 18h2a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1H3zM9 18h6v3a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-3zm1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2h-4z"/>
+        <path fill="#FFF" fill-rule="nonzero" d="M11 14h2a2 2 0 0 1 2 2v3H9v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v2h4v-2a1 1 0 0 0-1-1h-2zM19 10h2a2 2 0 0 1 2 2v3h-6v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v2h4v-2a1 1 0 0 0-1-1h-2zM17 18h6v3a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-3zm1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2h-4z"/>
+        <path fill="#FFF" fill-rule="nonzero" d="M17 14h6v5h-6v-5zm1 1v3h4v-3h-4zM8.542 8.694l3.133 2.686a.5.5 0 0 0 .699-.048l8-9a.5.5 0 0 0-.748-.664L11.953 10.3 8.825 7.62a.5.5 0 0 0-.694.041l-5.5 6a.5.5 0 1 0 .738.676l5.173-5.644z"/>
+        <rect width="4" height="1" x="17" y="1" fill="#FFF" rx=".5"/>
+        <rect width="1" height="4" x="20" y="1" fill="#FFF" rx=".5"/>
+    </g>
+</svg>

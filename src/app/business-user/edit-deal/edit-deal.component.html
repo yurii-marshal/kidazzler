@@ -1,0 +1,87 @@
+<div class="page-form-container">
+  <div [ngBusy]="isLoading"></div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)" *ngIf="form">
+    <div class="page-form-title">
+      <h1>Add Deal</h1>
+    </div>
+    <div class="page-form-content">
+      <div class="content">
+        <div class="step">
+          <div class="title">
+            Deal Information
+          </div>
+          <div class="content">
+            <div class="row deal-image-field">
+              <div class="label">Image *</div>
+              <img [src]="form.get('mediaUrl').value" *ngIf="form.get('mediaUrl').value">
+              <input type="file"
+                     [class.with-file]="form.get('mediaUrl').value"
+                     (change)="uploadPicture($event)">
+              <div class="error-message" *ngIf="formErrors.checkControlValidation('mediaUrl')">
+                {{ formErrors.getValidationMessage('mediaUrl')}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="label">Heading *</div>
+              <input type="text" class="form-component" placeholder="Heading" formControlName="name" pInputText />
+              <div class="error-message" *ngIf="formErrors.checkControlValidation('name')">
+                <div>{{ formErrors.getValidationMessage('name') }}</div>
+                <div *ngIf="form.controls['name'].errors.maxlength">
+                  Heading can be up to {{form.controls['name'].errors.maxlength.requiredLength}} characters. Now, it is
+                  {{form.controls['name'].errors.maxlength.actualLength}}
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="!form.get('isFreeDeal').value">
+              <div class="label">Discount (%) *</div>
+              <input (kzDiscountInput)="form.get('discount').setValue($event)" type="text" class="form-component"
+                placeholder="1-100" formControlName="discount">
+              <div class="error-message" *ngIf="formErrors.checkControlValidation('discount')">
+                {{ formErrors.getValidationMessage('discount')}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="label">Free Deal <input type="checkbox" formControlName="isFreeDeal">
+              </div>
+            </div>
+            <div class="row">
+              <div class="label">Expire At *</div>
+              <p-calendar formControlName="expireAt"></p-calendar>
+              <div class="error-message" *ngIf="formErrors.checkControlValidation('expireAt')">
+                {{ formErrors.getValidationMessage('expireAt')}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="label">Code</div>
+              <input type="text" class="form-component" placeholder="Code" formControlName="code" pInputText />
+              <div class="error-message" *ngIf="formErrors.checkControlValidation('code')">
+                <div>{{ formErrors.getValidationMessage('code')}}</div>
+                <div *ngIf="form.controls['code'].errors.maxlength">
+                  Code can be up to {{form.controls['code'].errors.maxlength.requiredLength}} characters. Now, it is
+                  {{form.controls['code'].errors.maxlength.actualLength}}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="label">Details *</div>
+              <textarea class="form-component" placeholder="Details" formControlName="details"></textarea>
+              <div class="error-message" *ngIf="formErrors.checkControlValidation('details')">
+                <div>{{ formErrors.getValidationMessage('details')}}</div>
+                <div *ngIf="form.controls['details'].errors.maxlength">
+                  Details can be up to {{form.controls['details'].errors.maxlength.requiredLength}} characters. Now, it
+                  is
+                  {{form.controls['details'].errors.maxlength.actualLength}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="btn btn-primary btn-smallwidth" [disabled]="!form.valid && !isDealImageLoaded">Add
+            deal</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

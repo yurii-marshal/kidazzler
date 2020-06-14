@@ -1,0 +1,25 @@
+@import "../../../styles/variables";
+
+.all-categories {
+  position: relative;
+  margin-top: 42px;
+
+  .sub-category {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 65px;
+    width: 100%;
+    padding: 20px 18px;
+    font-family: $font-family;
+    font-size: 17px;
+    color: #242424;
+    border-bottom: 1px solid #e9eaed;
+    background: #fff;
+    cursor: pointer;
+  }
+}
+
+
+

@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="businesses-list">
+    <div class="title">{{title}}</div>
+    <div class="businesses">
+      <kz-business-card *ngFor="let business of businesses" [business]="business" [direction]="'vertical'"
+                        [category]="category" [routerLink]="['business', business.id]"></kz-business-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,206 @@
+@import "../../../../styles/variables";
+
+ngx-ui-loader {
+  position: relative;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.business-info-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 24px 24px 32px 24px;
+  width: 100%;
+  min-width: 344px;
+  max-width: 344px;
+  //min-height: 631px;
+  margin-right: 24px;
+}
+
+.user-info {
+  &__main {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  &__followers {
+    // TODO: REPLACE WHEN THIS FUNCTIONALITY WILL BE IMPLEMENTED
+    display: none;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(38, 49, 79, .1);
+  }
+
+  .user-image {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-right: 16px;
+  }
+
+  .user-name {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .counter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-right: 25px;
+
+    &__number {
+      font-size: 20px;
+      line-height: 25px;
+      color: #1E1E1E;
+    }
+
+    &__name {
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+      color: #1E1E1E;
+      mix-blend-mode: normal;
+      opacity: 0.5;
+    }
+  }
+}
+
+.buttons-block {
+  // TODO: REPLACE WHEN THIS FUNCTIONALITY WILL BE IMPLEMENTED
+  display: none;
+  margin-bottom: 16px;
+  width: calc(100% + 48px);
+  margin-left: -24px;
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(38, 49, 79, .1);
+    border-top: 1px solid rgba(38, 49, 79, .1);
+    margin-bottom: -1px;
+    padding: 0 24px;
+
+    &__wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    &__icon-wrapper {
+      width: 22px;
+      margin-right: 19px;
+      @include flex-center();
+    }
+
+    &__text {
+      font-size: 17px;
+      line-height: 24px;
+      font-weight: 600;
+      color: #000000;
+    }
+
+    &__arrow {
+
+    }
+  }
+}
+
+.business-info {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #8E8E96;
+    margin-bottom: 12px;
+  }
+
+  .business-info-item {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 16px;
+    transition: $base-animation;
+    cursor: pointer;
+    border-radius: 8px;
+
+    &:not(:last-of-type) {
+      margin-bottom: 8px;
+    }
+
+    &.purple {
+      color: #4B00C3;
+      background: rgba(75, 3, 189, .05);
+
+      &.active, &:hover {
+        border: 2px solid #6F28DF;
+      }
+
+      .business-info-item__icon {
+        margin-bottom: -1px;
+      }
+    }
+
+    &.green {
+      color: #44BBB6;
+      background: rgba(68, 187, 182, .1);
+
+      &.active, &:hover {
+        border: 2px solid #44BBB6;
+      }
+
+      .business-info-item__icon {
+        margin-bottom: -9px;
+        margin-right: -5px;
+      }
+    }
+
+    &.pink {
+      color: #BF00E3;
+      background: rgba(121, 17, 140, .05);
+
+      &.active, &:hover {
+        border: 2px solid #BF00E3;
+      }
+
+      .business-info-item__icon {
+        margin-bottom: -10px;
+        margin-right: -8px;
+      }
+    }
+
+    .business-info-item__text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    b {
+      font-size: 18px;
+      line-height: 23px;
+      font-weight: 600;
+    }
+
+    .note {
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: -0.14px;
+    }
+  }
+}

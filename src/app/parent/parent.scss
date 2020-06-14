@@ -1,0 +1,18 @@
+@import "../../styles/variables.scss";
+
+.kz {
+  margin-top: $header-height;
+}
+
+kz-header + div:not(.invitation-screen__wrap) {
+  margin-top: $header-height;
+}
+
+@media (max-width: 768px) {
+  .invitation-screen {
+    height: auto;
+  }
+}
+
+
+

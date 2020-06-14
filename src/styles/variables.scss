@@ -1,0 +1,71 @@
+@import 'mixin';
+
+$base-color: #242424;
+$title-color: #242424;
+$extra-title-color: #62196d;
+
+$white: #fff;
+$turquoise: #4abbb5;
+
+$red: #ff0000;
+
+$light-grey: #f6f9fa;
+$light2-grey: #8e8e96;
+$dark-color: #627887;
+$muted-color: #b4bcc5;
+$footer-color: #657b88;
+$note-color: $dark-color;
+$success-color: green;
+$error-color: #d0011b;
+
+$base-bg-color: #fff;
+$base-bg-grey-color: #f4f8f9;
+$base-bg-dark-color: #781e90;
+$base-bg-gradient: linear-gradient(to left, #781e90, #531b6a);
+$light-grey: #f6f9fa;
+$dark-color: #627887;
+$muted-color: #b4bcc5;
+$page-bg-color: #f2f6f8;
+$footer-color: #657b88;
+$note-color: $dark-color;
+$success-color: green;
+$error-color: #d0011b;
+
+$base-bg-color: #fff;
+$base-bg-grey-color: #f4f8f9;
+$base-bg-dark-color: #781e90;
+$base-bg-gradient: linear-gradient(to left, #781e90, #531b6a);
+$bottom-border-gray: 1px solid rgba(36, 36, 36, 0.12);
+
+$link-color: #4b03bd;
+$link-color-accent: #950cb1;
+$accent-color: #bd10e0;
+$accent-color-2: #bd0fe1;
+
+$btn-primary-color: #b70fd9;
+$btn-primary-color-2: #950cb1;
+
+$input-base-color: #f5f8fa;
+$input-base-color-accent: #f5f8fa;
+$input-base-color-dropdown: #b4bcc5;
+
+$checkbox-color: #4019b0;
+
+$images-base-url: '/assets/images';
+$base-animation: 0.4s;
+$base-slow-animation: 0.8s;
+
+$font-family: 'Source Sans Pro', sans-serif;
+
+$breakpoint-lg: 1400px;
+$breakpoint-md: 1080px;
+$breakpoint-sm: 800px;
+$breakpoint-xs: 600px;
+
+$siteWidth: 1000px;
+$siteWidthLg: 1300px;
+
+$header-height: 70px;
+$header-search-height: 42px;
+$header-title: 40px;
+$footer-height: 200px;

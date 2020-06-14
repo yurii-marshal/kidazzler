@@ -1,0 +1,48 @@
+<div [ngClass]="['header-search-input', customStyle]">
+  <div class="input-wrapper query-search" clickOutside (clickOutside)="showSuggestions=false">
+    <span class="prefix-label" *ngIf="querySearch.length === 0">Try</span>
+    <label>
+      <input type="text" autocomplete="off"
+             (focus)="onQueryFieldFocus()"
+             [placeholder]="querySearchPlaceholder"
+             name="search" [(ngModel)]="querySearch"
+             (ngModelChange)="onQueryChange($event)">
+    </label>
+    <div *ngIf="showSuggestions" class="suggestions-container">
+      <div *ngIf="querySearch.length === 0 && topCategories.length > 0" class="categories-block">
+        <div class="top-categories-label">
+          top categories
+        </div>
+        <div (click)="onCategoryChoose()" class="category" *ngFor="let category of topCategories">
+          {{category.code}}
+        </div>
+      </div>
+
+      <div *ngIf="querySearch.length > 0" class="categories-block">
+        <div (click)="onEntityChoose(entity)" class="category" *ngFor="let entity of entities">
+          <div *ngIf="entity.type === 'business'" class="entity-icon">
+            <img src="../../../assets/images/icons/house-icon.svg" alt="">
+          </div>
+          <div *ngIf="entity.type === 'category'" class="entity-icon">
+            <img src="../../../assets/images/icons/category-icon.svg" alt="">
+          </div>
+          <div [innerHTML]="entity.name | highlight: querySearch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="input-wrapper location-search" *ngIf="isDesktop">
+    <svg class="input-wrapper__icon" width="10" height="10" viewBox="0 0 10 10" fill="none"
+         xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 0L0 4L5.5 4.5L6 10L10 0Z"/>
+    </svg>
+    <kz-location-picker id="location" setClass="location-search" [pickCity]="true"
+                        [(ngModel)]="locationSearch"
+                        (getCoordinates)="onCoordinatesChange($event)"
+                        [placeholder]="locationSearchPlaceHolder || 'Nearby'">
+    </kz-location-picker>
+  </div>
+  <button (click)="goToResults()" class="search-btn btn-primary btn">
+    <i class="pi pi-search search-icon"></i>
+  </button>
+</div>

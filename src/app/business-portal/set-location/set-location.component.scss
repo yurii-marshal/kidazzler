@@ -1,0 +1,195 @@
+@import "../../../styles/variables";
+
+$list-item-border: 1px solid rgba(38, 49, 79, 0.1);
+
+.set-location {
+  background-image: linear-gradient(to left, #781e90, #531b6a);
+  width: 100%;
+  height: auto;
+
+  .img {
+    position: relative;
+    padding-top: 40px;
+    text-align: center;
+  }
+
+  .text {
+    font-family: $font-family;
+    color: #fff;
+    text-align: center;
+    margin-top: 48px;
+    margin-right: 40px;
+    margin-left: 40px;
+
+    .heading {
+      font-size: 28px;
+      line-height: 35px;
+      margin-bottom: 9px;
+    }
+
+    .about {
+      line-height: 22px;
+    }
+  }
+
+  .navigation {
+    position: relative;
+    padding-top: 25px;
+    padding-bottom: 29px;
+
+    .enable-location-button {
+      width: 100%;
+      max-width: 335px;
+      height: 45px;
+      border-radius: 25px;
+      background-color: #ffffff;
+      font-size: 17px;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #BD10E0;
+
+      &:hover,
+      &:active,
+      &:visited {
+        text-decoration: none;
+        color: #BD10E0;
+      }
+    }
+
+    .set-location-button {
+      font-size: 17px;
+      line-height: 45px;
+      text-align: center;
+      color: $white;
+      margin: 0 auto;
+
+      &:hover,
+      &:active,
+      &:visited {
+        text-decoration: none;
+        color: $white;
+      }
+    }
+
+    .location-picker-container {
+      max-width: 335px;
+      margin: 0 auto;
+
+      .divider {
+        margin-bottom: 15px;
+        width: 100%;
+        font-size: 17px;
+        line-height: 45px;
+        text-align: center;
+        letter-spacing: 0.05em;
+        color: $white;
+      }
+
+      .location-input {
+        .ui-autocomplete {
+          position: static;
+        }
+
+        .ui-autocomplete .ui-autocomplete-input {
+          font-size: 17px;
+          line-height: 21px;
+          text-align: center;
+        }
+
+        .ui-autocomplete .ui-autocomplete-panel {
+          top: auto!important;
+          bottom: 30px!important;
+          max-height: 300px!important;
+          max-width: 335px!important;
+          box-shadow: 0 16px 32px rgba(36, 36, 36, 0.16);
+          border-radius: 0;
+
+          ul {
+            padding: 0;
+
+            li {
+              border-radius: 0;
+              cursor: pointer;
+              font-size: 15px;
+              line-height: 22px;
+              padding: 10px 20px;
+
+              &:not(:first-child) {
+                border-top: 2px solid #f1f1f4;
+              }
+
+              &:hover {
+                background-color: #4abbb5;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.location-picker {
+  // Location results styles
+  .location-results {
+    margin: 42px 0 0 0;
+    padding: 20px 46px 20px 20px;
+
+    &__heading {
+      font-size: 17px;
+      color: #4abbb5;
+      display: flex;
+      align-items: center;
+      border-bottom: $list-item-border;
+      padding-bottom: 16px;
+
+      i {
+        margin-right: 5px;
+      }
+    }
+
+    &__item {
+      padding: 16px 0;
+      border-bottom: $list-item-border;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .set-location .navigation .enable-location-button {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .set-location {
+    height: 100vh;
+
+    img {
+      position: relative;
+      top: 30%;
+      transform: translateY(-30%);
+      display: block;
+    }
+
+    .navigation {
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      .enable-location-button {
+        margin: 0 auto 36px;
+      }
+    }
+  }
+}

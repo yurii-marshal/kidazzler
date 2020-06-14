@@ -1,0 +1,32 @@
+.agent-status {
+  width: 150px;
+  height: 150px;
+  justify-content: center;
+  position: relative;
+
+  $label-color: #6c6c71;
+
+  .value {
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid $label-color;
+    color: $label-color;
+    box-shadow: 0 6px 17px 0 rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 72%;
+    left: 76%;
+  }
+
+  img {
+    max-width: 150px;
+    max-height: 150px;
+  }
+
+  &.inactive {
+    opacity: .3;
+  }
+}

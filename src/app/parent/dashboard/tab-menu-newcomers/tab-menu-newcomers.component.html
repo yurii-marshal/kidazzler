@@ -1,0 +1,104 @@
+<div class="business-info-section">
+  <!-- TOP BLOCK WITH USER INFO -->
+  <div class="user-info">
+    <div class="user-info__main">
+      <img src="{{(profile$ | async)?.avatar || '../../../../assets/images/icon-no-avatar/icon-avatar-holder.png'}}"
+           alt="Profile Image"
+           class="user-image">
+      <div class="user-name">
+        {{(profile$ | async)?.firstName}}
+        <br>
+        {{(profile$ | async)?.lastName}}
+      </div>
+    </div>
+
+    <div class="user-info__followers">
+      <div class="counter">
+        <p class="counter__number">
+          {{(profile$ | async)?.friendsCount}}
+        </p>
+        <p class="counter__name">
+          followers
+        </p>
+      </div>
+
+      <div class="counter">
+        <p class="counter__number">
+          {{(profile$ | async)?.friendsCount}}
+        </p>
+        <p class="counter__name">
+          following
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM BLOCK WITH BUTTONS -->
+  <div>
+    <div class="buttons-block">
+      <div class="button">
+        <div class="button__wrapper">
+          <div class="button__icon-wrapper">
+            <img src="../../../../assets/images/icons/feed-icon.svg" alt="Feed" class="button__icon">
+          </div>
+          <p class="button__text">
+            Feed
+          </p>
+        </div>
+        <img src="../../../../assets/images/icons/arrow-right.svg" alt="Arrow right" class="button__arrow">
+      </div>
+
+      <div class="button">
+        <div class="button__wrapper">
+          <div class="button__icon-wrapper">
+            <img src="../../../../assets/images/icons/bookmark-icon_dark.svg" alt="Bookmarks" class="button__icon">
+          </div>
+          <p class="button__text">
+            View Bookmarks
+          </p>
+        </div>
+        <img src="../../../../assets/images/icons/arrow-right.svg" alt="Arrow right" class="button__arrow">
+      </div>
+    </div>
+    <div class="business-info">
+      <p class="business-info__title">
+        MY STATS
+      </p>
+      <div class="business-info-item purple" [routerLink]="['../dashboard']" [routerLinkActive]="['active']"
+           [routerLinkActiveOptions]="{exact:true}">
+        <div class="business-info-item__text">
+          <b>
+            {{(profile$ | async)?.friendsCount || '0'}}
+          </b>
+          <p class="note">
+            My Friends Joined
+          </p>
+        </div>
+        <img src="../../../../assets/images/icons/user-stats-icon_purple.svg" alt="" class="business-info-item__icon">
+      </div>
+      <div class="business-info-item green" [routerLink]="['businesses', 'added-by-me']" [routerLinkActive]="['active']">
+        <div class="business-info-item__text">
+          <b>
+            {{(profile$ | async)?.businessesCount || '0'}}
+          </b>
+          <p class="note">
+            My Businesses
+          </p>
+        </div>
+        <img src="../../../../assets/images/icons/user-stats-icon_green.svg" alt="" class="business-info-item__icon">
+      </div>
+
+      <div class="business-info-item pink" [routerLink]="['points']" [routerLinkActive]="['active']">
+        <div class="business-info-item__text">
+          <b>
+            {{(profile$ | async)?.totalPoints || '0'}}
+          </b>
+          <p class="note">
+            My Points
+          </p>
+        </div>
+        <img src="../../../../assets/images/icons/user-stats-icon_pink.svg" alt="" class="business-info-item__icon">
+      </div>
+    </div>
+  </div>
+</div>

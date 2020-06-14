@@ -1,0 +1,77 @@
+<div class="hours-block">
+  <p class="hours-block__heading">
+    {{ header }}
+  </p>
+
+  <section *ngIf="hours">
+    <div class="hours-block__text-box" *ngIf="areWorkdaysSame === true">
+      <p class="hours-block__text">
+        Monday - Friday
+      </p>
+      <p class="hours-block__text hours-block__text_purple">
+        {{hours?.mondayStart | AMPM}} - {{hours?.mondayEnd | AMPM}}
+      </p>
+    </div>
+
+    <section *ngIf="areWorkdaysSame === false">
+      <div class="hours-block__text-box" *ngIf="hours?.mondayStart">
+        <p class="hours-block__text">
+          Monday
+        </p>
+        <p *ngIf="hours?.mondayStart" class="hours-block__text hours-block__text_purple">
+          {{hours?.mondayStart | AMPM}} - {{hours?.mondayEnd | AMPM}}
+        </p>
+      </div>
+      <div class="hours-block__text-box" *ngIf="hours?.tuesdayStart">
+        <p class="hours-block__text">
+          Tuesday
+        </p>
+        <p *ngIf="hours?.tuesdayStart" class="hours-block__text hours-block__text_purple">
+          {{hours?.tuesdayStart | AMPM}} - {{hours?.tuesdayEnd | AMPM}}
+        </p>
+      </div>
+      <div class="hours-block__text-box" *ngIf="hours?.wednesdayStart">
+        <p class="hours-block__text">
+          Wednesday
+        </p>
+        <p *ngIf="hours?.wednesdayStart" class="hours-block__text hours-block__text_purple">
+          {{hours?.wednesdayStart | AMPM}} - {{hours?.wednesdayEnd | AMPM}}
+        </p>
+      </div>
+      <div class="hours-block__text-box" *ngIf="hours?.thursdayStart">
+        <p class="hours-block__text">
+          Thursday
+        </p>
+        <p *ngIf="hours?.thursdayStart" class="hours-block__text hours-block__text_purple">
+          {{hours?.thursdayStart | AMPM}} - {{hours?.thursdayEnd | AMPM}}
+        </p>
+      </div>
+      <div class="hours-block__text-box" *ngIf="hours?.fridayStart">
+        <p class="hours-block__text">
+          Friday
+        </p>
+        <p *ngIf="hours?.fridayStart" class="hours-block__text hours-block__text_purple">
+          {{hours?.fridayStart | AMPM}} - {{hours?.fridayEnd | AMPM}}
+        </p>
+      </div>
+    </section>
+
+    <div class="hours-block__text-box" *ngIf="hours?.saturdayStart">
+      <p class="hours-block__text">
+        Saturday
+      </p>
+      <p *ngIf="hours?.saturdayStart" class="hours-block__text hours-block__text_purple">
+        {{hours?.saturdayStart | AMPM}} - {{hours?.saturdayEnd | AMPM}}
+      </p>
+    </div>
+    <div class="hours-block__text-box" *ngIf="hours?.sundayStart">
+      <p class="hours-block__text">
+        Sunday
+      </p>
+      <p *ngIf="hours?.sundayStart" class="hours-block__text hours-block__text_purple">
+        {{hours?.sundayStart | AMPM}} - {{hours?.sundayEnd | AMPM}}
+      </p>
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,469 @@
+kz-about-page,
+kz-our-community,
+kz-kidazzler-connection {
+  .content {
+    position: relative;
+    z-index: 9;
+    background-color: #ffffff;
+  }
+
+  p {
+    margin: 0 0 10px;
+  }
+
+  .pad-left {
+    padding-left: 0;
+  }
+
+  .pad-right {
+    padding-right: 0;
+  }
+
+  .pad-top {
+    padding-top: 0;
+  }
+
+  .pad-bottom {
+    padding-bottom: 0;
+  }
+
+  .padding {
+    padding: 0;
+  }
+
+  .margin {
+    margin: 0;
+  }
+
+  .col-centered {
+    float: none;
+    margin: 0 auto;
+  }
+
+  .col-centered:before,
+  .col-centered:after {
+    display: table;
+    content: "";
+  }
+
+  .col-centered:after {
+    clear: both;
+  }
+
+  .dark-cream-txt {
+    color: #FDFDFD;
+  }
+
+  .white-txt {
+    color: #ffffff;
+  }
+
+  .black-txt {
+    color: 000000;
+  }
+
+  .studio-title {
+    h1, h2, h3, h4, h5, h6 {
+      font-size: 32px;
+      line-height: 40px;
+      color: #242424;
+      margin: 0;
+    }
+  }
+
+  .light-sky-bg {
+    background-color: #ECF8F7;
+  }
+
+  .txt-left {
+    text-align: left;
+  }
+
+  .txt-center {
+    text-align: center;
+  }
+
+  .txt-right {
+    text-align: right;
+  }
+
+  /* Buttons Start */
+  .button {
+    display: block;
+    text-align: center;
+    font-size: 17px;
+    line-height: 21px;
+    border: 1px solid transparent;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
+    @include border-radius(8px);
+    text-decoration: none;
+    padding: 9px;
+  }
+
+  .simple-white-button {
+    color: #ffffff;
+    border-color: #ffffff;
+    background-color: transparent;
+
+    &:focus {
+      color: #ffffff;
+      border-color: #ffffff;
+      background-color: transparent;
+    }
+
+    &:hover,
+    &:active:focus {
+      color: #781E90;
+      border-color: #ffffff;
+      background-color: #ffffff;
+    }
+  }
+
+  .white-button {
+    color: #781E90;
+    border-color: #ffffff;
+    background-color: #ffffff;
+
+    &:focus {
+      color: #781E90;
+      border-color: #ffffff;
+      background-color: #ffffff;
+    }
+
+    &:hover,
+    &:active:focus {
+      color: #ffffff;
+      border-color: #781E90;
+      background-color: #781E90;
+    }
+  }
+
+  .simple-pink-button {
+    color: #B70FD9;
+    border-color: #B70FD9;
+    background-color: #ffffff;
+
+    &:focus {
+      color: #B70FD9;
+      border-color: #B70FD9;
+      background-color: #ffffff;
+    }
+
+    &:hover,
+    &:active:focus {
+      color: #ffffff;
+      border-color: #B70FD9;
+      background-color: #B70FD9;
+    }
+  }
+
+  .pink-button {
+    color: #ffffff;
+    border-color: #B70FD9;
+    background-color: #B70FD9;
+
+    &:focus {
+      color: #ffffff;
+      border-color: #B70FD9;
+      background-color: #B70FD9;
+    }
+
+    &:hover,
+    &:active:focus {
+      color: #ffffff;
+      border-color: rgba(183, 15, 217, 0.7);
+      background-color: rgba(183, 15, 217, 0.7);
+    }
+  }
+
+  .simple-purple-button {
+    color: #4B03BD;
+    border-color: #4B03BD;
+    background-color: #ffffff;
+
+    &:focus {
+      color: #4B03BD;
+      border-color: #4B03BD;
+      background-color: #ffffff;
+    }
+
+    &:hover,
+    &:active:focus {
+      color: #4B03BD;
+      border-color: rgba(75, 3, 189, 0.09);
+      background-color: rgba(75, 3, 189, 0.09);
+    }
+  }
+
+  .purple-button {
+    color: #4B03BD;
+    border-color: rgba(75, 3, 189, 0.09);
+    background-color: rgba(75, 3, 189, 0.09);
+
+    &:focus {
+      color: #4B03BD;
+      border-color: rgba(75, 3, 189, 0.09);
+      background-color: rgba(75, 3, 189, 0.09);
+    }
+
+    &:hover,
+    &:active:focus {
+      color: #ffffff;
+      border-color: #4B03BD;
+      background-color: #4B03BD;
+    }
+  }
+
+  .simple-sky-button {
+    color: #4ABBB5;
+    border-color: #4ABBB5;
+    background-color: #ffffff;
+
+    &:focus {
+      color: #4ABBB5;
+      border-color: #4ABBB5;
+      background-color: #ffffff;
+    }
+
+    &:hover,
+    &:active:focus {
+      color: #4ABBB5;
+      border-color: rgba(74, 187, 181, 0.09);
+      background-color: rgba(74, 187, 181, 0.09);
+    }
+  }
+
+  .sky-button {
+    color: #4ABBB5;
+    border-color: rgba(74, 187, 181, 0.09);
+    background-color: rgba(74, 187, 181, 0.09);
+
+    &:focus {
+      color: #4ABBB5;
+      border-color: rgba(74, 187, 181, 0.09);
+      background-color: rgba(74, 187, 181, 0.09);
+    }
+
+    &:hover,
+    &:active:focus {
+      color: #ffffff;
+      border-color: #4ABBB5;
+      background-color: #4ABBB5;
+    }
+  }
+
+  .simple-silver-button {
+    color: #979797;
+    border-color: #979797;
+    background-color: #ffffff;
+
+    &:focus {
+      color: #979797;
+      border-color: #979797;
+      background-color: #ffffff;
+    }
+
+    &:hover,
+    &:active:focus {
+      color: #ffffff;
+      border-color: #979797;
+      background-color: #979797;
+    }
+  }
+
+  .silver-button {
+    color: #ffffff;
+    border-color: #979797;
+    background-color: #979797;
+
+    &:focus {
+      color: #ffffff;
+      border-color: #979797;
+      background-color: #979797;
+    }
+
+    &:hover,
+    &:active:focus {
+      color: #ffffff;
+      border-color: #979797;
+      background-color: rgba(151, 151, 151, 0.6);
+    }
+  }
+
+  /* Buttons End */
+
+  /* Common Form Start */
+  .common-form {
+    .form-field-group {
+      float: left;
+      width: 100%;
+      margin: 0 0 20px;
+    }
+
+    label {
+      font-size: 15px;
+      line-height: 22px;
+      color: #242424;
+      margin: 0 0 10px;
+      display: block;
+      text-align: left;
+      width: 100%;
+    }
+
+    .form-field {
+      display: block;
+      width: 100%;
+      font-size: 17px;
+      height: 50px;
+      vertical-align: middle;
+      line-height: 1;
+      background-color: #F4F8F9;
+      color: #242424;
+      @include border-radius(4px);
+      border: none;
+      padding: 6px 14px;
+      resize: none;
+
+      &::-webkit-input-placeholder {
+        color: #242424;
+      }
+
+      &::-moz-placeholder {
+        color: #242424;
+      }
+
+      &:-ms-input-placeholder {
+        color: #242424;
+      }
+
+      &:-o-placeholder {
+        color: #242424;
+      }
+    }
+
+    textarea {
+      &.form-field {
+        height: auto;
+      }
+    }
+  }
+
+  /* Common Form End */
+
+  /* Section Title Start */
+  .section-title {
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 35px;
+      text-transform: capitalize;
+      margin: 0;
+    }
+  }
+
+  /* Section Title End */
+
+  /* Claim Bussiness Banner Start */
+  .claim-business-banner-section {
+    position: relative;
+
+    .banner-image {
+      img {
+        float: left;
+        width: 100%;
+        height: 272px;
+        object-fit: cover;
+        object-position: center bottom;
+      }
+    }
+
+    .banner-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 40px;
+
+      .banner-content-description {
+        padding: 0 38px;
+      }
+
+      p {
+        font-size: 15px;
+        line-height: 19px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+
+  /* Claim Bussiness Banner End */
+
+  /****** Inner Page Hader Start *****/
+  .header {
+    &.inner-page-hader {
+      .h-right {
+        padding: 20px 0 12px;
+
+        ul {
+          li {
+            line-height: 39px;
+
+            &.login-btn {
+              a {
+                display: block;
+                width: 140px;
+                border: 1px solid #ffffff;
+                @include border-radius(6px);
+                text-align: center;
+
+                &:hover {
+                  border-color: #8E8E96;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /****** Inner Page Hader End *****/
+
+  /* Resend Email Link Start */
+  .resend-email-link {
+    float: left;
+    width: 100%;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 20px;
+      color: #4B03BD;
+
+      &:hover {
+        color: #242424;
+      }
+    }
+  }
+
+  /* Resend Email Link End */
+
+
+  /* Silver Gradient Background Start */
+  .silver-gradient-bg {
+    background: linear-gradient(360deg, #FFFFFF 0%, #F4F8F9 100%);
+  }
+
+  .dark-pink-bg {
+    background-color: #781E90;
+  }
+
+  /* Silver Gradient Background End */
+
+}
+

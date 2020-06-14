@@ -1,0 +1,14 @@
+<div class="container-categories">
+  <div class="categories-box">
+    <div class="category" *ngFor="let category of categories" (click)="navigateToSubCategories(category)">
+      <img *ngIf="!category.picture" src="assets/images/business-type-placeholder.png" alt="" class="category-img">
+      <img *ngIf="category.picture" [src]="category.picture" alt="" class="category-img">
+      <p class="category-name">{{category.code}}</p>
+    </div>
+  </div>
+  <a class="view-all" (click)="showAllCategories()">
+    <span>
+      {{currentCategory?.level === 0 ? 'View All Sub-Categories' : 'View All Categories'}}
+    </span>
+  </a>
+</div>

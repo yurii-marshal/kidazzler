@@ -1,0 +1,661 @@
+@import "../../../styles/variables";
+/************************ Business Connection Page Start ****************************/
+.kidazzler-connection {
+  overflow: hidden;
+  padding-top: 70px;
+}
+
+/***** Connection Business Banner Section Start *****/
+.connection-business-banner-section {
+  position: relative;
+
+  > img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(102.63deg, #591C70 4.06%, rgba(93, 28, 116, 0) 85.3%);
+  }
+
+  .img-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(88, 28, 111, 0.3);
+  }
+
+  .banner-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+
+
+    h1 {
+      font-size: 48px;
+      line-height: 56px;
+      font-weight: 900;
+      color: #ffffff;
+      margin: 0 0 35px;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 30px;
+      color: #ffffff;
+      margin: 0;
+    }
+  }
+
+  .learn-more-link {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 57px;
+
+    a {
+      text-decoration: none;
+      font-size: 17px;
+      line-height: 30px;
+      color: #ffffff;
+      text-transform: capitalize;
+      padding-left: 25px;
+      position: relative;
+
+      svg {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: 12px;
+        height: 12px;
+
+        path {
+          fill: #ffffff !important;
+        }
+      }
+
+      &:hover {
+        color: #8E8E96;
+
+        svg {
+          path {
+            fill: #8E8E96 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/***** Connection Business Banner Section End *****/
+
+/***** Business Partners Section Start *****/
+.business-partners-section {
+  padding: 100px 0 90px;
+
+  .business-title {
+    padding: 0 0 25px;
+
+    h1, h2, h3, h4, h5, h6 {
+      font-size: 36px;
+      line-height: 44px;
+      color: #242424;
+      margin: 0;
+    }
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 30px;
+    color: #8E8E96;
+  }
+}
+
+/***** Business Partners Section End *****/
+
+/***** Direcory Section Start *****/
+.direcory-section {
+  padding: 125px 0 154px;
+  background: #781E90;
+  position: relative;
+  float: left;
+  width: 100%;
+
+  &:before {
+    position: absolute;
+    display: block;
+    content: "";
+    left: 0;
+    top: -1px;
+    bottom: 0;
+    width: 160px;
+    background: #ffffff;
+  }
+
+  .parent-images {
+    .img-01 {
+      display: inline-block;
+      margin: 0 0 0 -185px;
+      position: relative;
+      z-index: 99;
+    }
+
+    .img-02 {
+      display: inline-block;
+      margin: -90px 0 0;
+      position: relative;
+      z-index: 99;
+
+      &:after {
+        position: absolute;
+        left: -75px;
+        top: 107px;
+        background: url(../../../assets/images/external-images/parent-dots.png) no-repeat;
+        background-size: 100% 100%;
+        width: 60px;
+        height: 150px;
+      }
+    }
+  }
+
+  .parent-information {
+    .parent-title {
+      h3 {
+        font-weight: 900;
+        font-size: 40px;
+        line-height: 48px;
+        color: #ffffff;
+        margin: 0 0 50px;
+      }
+    }
+
+    .info-block {
+      p {
+        font-size: 19px;
+        line-height: 30px;
+        color: #ffffff;
+        margin: 0 0 15px;
+      }
+    }
+  }
+}
+
+/***** Direcory Section End *****/
+.click-section {
+  position: relative;
+  width: 1060px;
+  background: #4B03BD;
+  padding: 44px 35px 45px 620px;
+  margin: -95px 0 100px 160px;
+  z-index: 9;
+
+  .clik-top {
+    padding: 0 0 10px;
+
+    a {
+      text-decoration: none;
+      font-size: 20px;
+      line-height: 24px;
+      color: #ffffff;
+      position: relative;
+      display: block;
+
+      &:hover {
+        color: #242424;
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+
+  .click-bottom {
+    p {
+      font-size: 17px;
+      line-height: 24px;
+      color: #ffffff;
+      margin: 0;
+    }
+  }
+}
+
+/***** Buyer Section Start *****/
+.buyer-section {
+  margin: 0 0 140px;
+
+  .row-line {
+    display: table;
+    float: left;
+    width: 100%;
+  }
+
+  [class^=col-] {
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .buyer-information {
+    padding: 0 180px 0 0;
+
+    h3 {
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 56px;
+      color: #242424;
+      margin: 0 0 45px;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 30px;
+      color: #8E8E96;
+      margin: 0 0 40px;
+    }
+
+    .buyer-next {
+      background: #4ABBB5;
+      padding: 25px 40px 25px 24px;
+      border-radius: 0 8px 8px 8px;
+
+      p {
+        font-size: 17px;
+        line-height: 24px;
+        color: #ffffff;
+        margin: 0;
+
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .buyer-images {
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: "";
+      background: url(../../../assets/images/external-images/buyer-dots.png) no-repeat;
+      background-size: 100% 100%;
+      width: 168px;
+      height: 168px;
+      right: -75px;
+      bottom: -42px;
+      z-index: -1;
+    }
+  }
+}
+
+/***** Buyer Section End *****/
+
+/***** Drive More Section Start *****/
+.drive-more {
+  margin: 0 0 170px;
+
+  .row-line {
+    display: table;
+    float: left;
+    width: 100%;
+  }
+
+  [class^=col-] {
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .drive-information {
+    padding: 0 0 0 60px;
+
+    h4 {
+      font-weight: 900;
+      font-size: 40px;
+      line-height: 48px;
+      color: #242424;
+      margin: 0 0 40px;
+    }
+
+    ul {
+      display: block;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: block;
+        list-style-type: none;
+        margin: 0;
+        padding: 8px 0 8px 30px;
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 600;
+        color: #242424;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          content: "";
+          background: url(../../../assets/images/external-images/Checkmark.svg) no-repeat;
+          width: 15px;
+          height: 15px;
+          background-size: 100% 100%;
+          top: 15px;
+          left: 0;
+        }
+      }
+    }
+
+    a.more-link {
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 600;
+      text-decoration: none;
+      color: #4B03BD;
+      padding: 10px 0 0 30px;
+      display: block;
+
+      &:hover {
+        color: #242424;
+      }
+    }
+  }
+
+  .drive-images {
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: "";
+      width: 168px;
+      height: 168px;
+      background: url(../../../assets/images/external-images/drive-back.png) no-repeat;
+      background-size: 100% 100%;
+      left: -34px;
+      bottom: -85px;
+      z-index: -1;
+    }
+  }
+
+  .drive-col-left {
+    width: 44.166667%;
+  }
+
+  .drive-col-right {
+    width: 55.833333%;
+  }
+}
+
+/***** Drive More Section End *****/
+
+/***** Together Section Start *****/
+.together-section {
+  margin: 0 0 130px;
+
+  .together-images {
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: "";
+      background: url(../../../assets/images/external-images/together-back.png) no-repeat;
+      width: 168px;
+      height: 168px;
+      background-size: 100% 100%;
+      top: 140px;
+      right: -70px;
+      z-index: -1;
+    }
+  }
+
+  .together-information {
+    padding: 0 150px 0 0;
+
+    h3 {
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 56px;
+      color: #242424;
+      margin: 0 0 30px;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 30px;
+      color: #8E8E96;
+      margin: 0 0 20px;
+    }
+  }
+
+  .together-col-right {
+    width: 44.166667%;
+  }
+
+  .together-col-left {
+    width: 55.833333%;
+  }
+}
+
+/***** Together Section End *****/
+
+/***** Social Responsibility Section Start *****/
+.social-responsibility-section {
+  // padding: 119px 0 90px;
+
+  .social-partnering-section {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F4F8F9 100%);
+
+    .social-responsibility-title {
+      padding: 0 0 58px;
+
+      h1, h2, h3, h4, h5, h6 {
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 56px;
+        color: #242424;
+        margin: 0;
+      }
+    }
+
+    .social-responsibility-rules-list {
+      [class^=col-] {
+        &:nth-child(3n+1) {
+          clear: both;
+        }
+      }
+
+      .social-responsibility-block {
+        padding: 0 0 50px;
+
+        .title {
+          padding: 0 0 5px;
+
+          span, a {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 30px;
+            color: #242424;
+          }
+
+          a {
+            &:hover {
+              color: #781E90;
+            }
+          }
+        }
+
+        .detail {
+          p {
+            font-size: 20px;
+            line-height: 30px;
+            color: #8E8E96;
+          }
+        }
+      }
+    }
+  }
+
+  .built-section {
+    padding: 100px 0 125px;
+    background: linear-gradient(360deg, #FFFFFF 0%, #F4F8F9 100%);
+
+    .built-top {
+      padding: 0 0 105px;
+
+      h2 {
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 56px;
+        color: #242424;
+        margin: 0 0 20px;
+      }
+
+      p {
+        font-size: 24px;
+        line-height: 32px;
+        color: #242424;
+        margin: 0;
+      }
+    }
+
+    .built-desc {
+      padding: 0 0 0 190px;
+
+      h3 {
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 56px;
+        color: #242424;
+        margin: 0 0 30px;
+      }
+
+      h4 {
+        font-size: 20px;
+        line-height: 30px;
+        color: #4B03BD;
+        margin: 0 0 15px;
+      }
+
+      p {
+        font-size: 20px;
+        line-height: 30px;
+        color: #8E8E96;
+        margin: 0 0 15px;
+      }
+
+      .built-sound {
+        background: #4ABBB5;
+        padding: 20px 30px 25px 25px;
+        border-radius: 0 12px 12px 12px;
+        width: 365px;
+
+        p {
+          font-size: 17px;
+          line-height: 24px;
+          color: #ffffff;
+          margin: 0;
+        }
+      }
+    }
+
+    .built-images {
+      position: relative;
+      z-index: 9;
+
+      &:after {
+        position: absolute;
+        content: "";
+        background: url(../../../assets/images/external-images/built-dots.png) no-repeat;
+        width: 168px;
+        height: 168px;
+        background-size: 100% 100%;
+        top: 30px;
+        right: -50px;
+        z-index: -1;
+      }
+    }
+  }
+
+  .social-story {
+    padding: 130px 0 150px;
+    background: linear-gradient(360deg, #FFFFFF 0%, #F4F8F9 100%);
+
+    .row-line {
+      display: table;
+      float: left;
+      width: 100%;
+    }
+
+    [class^=col-] {
+      float: none;
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .social-story-info {
+      padding: 0 170px 0 0;
+
+      h3 {
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 56px;
+        color: #242424;
+        margin: 0 0 30px;
+      }
+
+      p {
+        font-size: 24px;
+        line-height: 30px;
+        letter-spacing: -0.2px;
+        color: #4B03BD;
+        margin: 0 0 30px;
+        font-weight: 600;
+      }
+
+      .button {
+        // width: 255px;
+        padding: 17px 65px 17px 35px;
+        display: inline-block;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          content: "";
+          top: 50%;
+          right: 30px;
+          transform: translate(0, -50%);
+          background: url(../../../assets/images/external-images/btn-arrow.svg) no-repeat;
+          background-size: 100% 100%;
+          width: 14px;
+          height: 10px;
+        }
+      }
+    }
+  }
+}
+
+/***** Social Responsibility Section End *****/
+/************************ Business Connection Page End ****************************/
+
+.content {
+  clear: both;
+  float: left;
+  width: 100%;
+}
+
+

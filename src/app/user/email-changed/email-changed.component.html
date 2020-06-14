@@ -1,0 +1,34 @@
+<kz-header></kz-header>
+
+<div class="login-container small-container">
+    <h1>Success</h1>
+
+    <div class="row-extra">
+        <div class="text-center">
+            <div class="large-notes">
+                Your email was successfully changed at Kidazzler.
+                Please use the new email and the old password to login to Kidazzler.
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <a class="btn btn-primary btn-fullwidth" *ngIf="isMobile" [attr.href]="redirectUrl">Ok</a>
+        <a class="btn btn-primary btn-fullwidth" *ngIf="!isMobile" [routerLink]="[redirectUrl]">Ok</a>
+    </div>
+
+
+    <div class="row centered">
+        <div class="social-media">
+            <a href="https://facebook.com/kidazzler/" target="_blank">
+                <svg-icon src="/assets/images/social/icon-social-fb.svg"></svg-icon>
+            </a>
+            <a href="http://instagram.com/kidazzler" target="_blank">
+                <svg-icon src="/assets/images/social/icon-social-instagram.svg"></svg-icon>
+            </a>
+            <a href="https://twitter.com/@kidazzler" target="_blank">
+                <svg-icon src="/assets/images/social/icon-social-twitter.svg"></svg-icon>
+            </a>
+        </div>
+    </div>
+</div>

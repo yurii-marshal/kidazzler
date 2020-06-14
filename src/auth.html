@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <title>Kidazzler | An Exclusive Community of Parents</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript">
+    window.sessionStart = function(token) {
+      localStorage.setItem('accessToken', token);
+      window.location.replace(window.location.origin + '/business-portal');
+    };
+  </script>
+  <style type="text/css">
+    .app-loader {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      color: #666;
+      font: 400 14px/16px Tahoma, Arial, sans-serif;
+    }
+
+    .image-loader {
+      border: 2px solid #f1f1f1;
+      border-top: 2px solid #781e90;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      animation: spin 1.5s linear infinite;
+      margin: 0 8px 0 0;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+<div>
+  <div class="app-loader">
+    <span class="image-loader"></span>
+    <span>Loading...</span>
+  </div>
+</div>
+</body>
+</html>

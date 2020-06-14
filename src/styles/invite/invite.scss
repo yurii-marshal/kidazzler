@@ -1,0 +1,132 @@
+@import '../../styles/variables';
+
+.invitation-screen {
+  height: calc(100vh);
+  background-image: linear-gradient(270deg, rgba(#591c70, 0.85) 0%, rgba(#5d1c74, 0.85) 100%), url('#{$images-base-url}/bg-landing.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: $white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 999999;
+
+  .header {
+    background: transparent;
+    position: absolute;
+  }
+
+  &__wrap {
+    flex-direction: column;
+    max-width: 750px;
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 74px;
+    line-height: 84px;
+    color: $white;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .semi-transparent {
+    opacity: 0.5;
+  }
+
+  a {
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 22px;
+  }
+
+  &__link {
+    margin-bottom: 6px;
+  }
+
+  .invite-input-row {
+    margin: 0 auto 16px;
+    max-width: 375px;
+
+    > div {
+      position: relative;
+    }
+
+    .label {
+      padding: 0 0 10px;
+      color: #ffffff;
+      text-align: left;
+      display: block;
+    }
+
+    .btn-icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 1;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      margin-top: 31px;
+
+      img {
+        display: block;
+      }
+    }
+  }
+
+  input.invite-input {
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    font-size: 17px;
+    line-height: 22px;
+    background: rgba(255, 255, 255, .2);
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    font-family: $font-family;
+  }
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #fff;
+  }
+
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #fff;
+  }
+
+  :-ms-input-placeholder { /* IE 10+ */
+    color: #fff;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+    color: #fff;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .invitation-screen {
+    .header .primary-menu .menu-login {
+      width: 100px;
+      margin-left: 20px;
+    }
+
+    h1 {
+      padding: 40px 0 10px;
+      font-size: 36px;
+    }
+  }
+}

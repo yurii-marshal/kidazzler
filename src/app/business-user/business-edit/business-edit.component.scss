@@ -1,0 +1,346 @@
+@import "../../../styles/variables.scss";
+
+.edit-business-page {
+  padding: 0;
+  margin-top: 40px;
+}
+
+.page-form-content {
+  padding: 40px 20px 50px;
+
+  @media (min-width: $breakpoint-md) {
+    max-width: 568px;
+  }
+
+  .content {
+    .label {
+      font-family: $font-family;
+      font-size: 17px;
+      color: $base-color;
+      padding: 0 0 10px;
+      font-weight: bold;
+    }
+
+    .step {
+      padding: 0;
+
+      .title {
+        color: $base-color;
+        line-height: 30px;
+        font-weight: 700;
+      }
+
+      p-inputmask {
+        padding: 0;
+      }
+
+      .top-offset {
+        padding-top: 26px;
+      }
+
+      .about {
+        position: relative;
+      }
+
+      .counter {
+        position: absolute;
+        bottom: -20px;
+        right: 0;
+        text-align: right;
+        width: 100%;
+        padding-top: 10px;
+        font-size: 14px;
+        color: $muted-color;
+      }
+
+      .address2 {
+        padding-top: 10px;
+      }
+
+      .location-input {
+        width: 100%;
+      }
+
+      .business-type-item {
+        padding-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+
+        .ui-fluid {
+          width: 100%;
+          position: relative;
+
+          .input-icon {
+            transform: rotate(-90deg);
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            right: 20px;
+          }
+        }
+      }
+
+      .row-address {
+        grid-gap: 10px;
+        display: grid;
+        grid-template-columns: auto;
+
+        .zip {
+          flex: 0.35;
+          @media (max-width: $breakpoint-sm) {
+            padding-top: 15px;
+          }
+        }
+
+        .city {
+          grid-column-start: span 2;
+
+          @media (min-width: $breakpoint-md) {
+            grid-column-start: auto;
+          }
+        }
+      }
+
+      .add-category {
+        color: $link-color;
+      }
+
+      .toggle-day {
+        margin-left: 20px;
+
+        .date-select {
+          display: flex;
+          align-items: center;
+
+          @media (max-width: $breakpoint-md - 1) {
+            justify-content: space-between;
+          }
+
+          .edit-form__item-box {
+            position: relative;
+            margin-left: 15px;
+            max-width: 135px;
+            width: 100%;
+
+            &:first-of-type {
+              margin-right: 15px;
+              margin-left: 0;
+            }
+
+            &:last-of-type {
+              width: 100%;
+              max-width: 150px;
+            }
+
+            .edit-form__input-icon {
+              position: absolute;
+              right: 18px;
+              top: 0;
+              bottom: 0;
+              margin: auto;
+              z-index: 1;
+            }
+          }
+        }
+
+        .time-error {
+          padding-top: 5px;
+          padding-right: 42px;
+        }
+
+        .openover {
+          margin-top: 16px;
+        }
+      }
+    }
+
+    .close-box {
+      margin: auto 0 auto 20px;
+
+      .close-icon {
+        display: flex;
+        background-color: #abb4bd;
+        padding: 5px;
+        border-radius: 50%;
+      }
+    }
+
+    .divider {
+      width: 100%;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .form-controls {
+      margin-top: 30px;
+
+      @media (min-width: $breakpoint-md) {
+        display: flex;
+        flex-direction: row-reverse;
+      }
+
+      .btn-secondary {
+        @media (min-width: $breakpoint-md) {
+          margin-right: 20px;
+          margin-left: 0;
+        }
+      }
+
+      .btn {
+        border-radius: 30px;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+
+        @media (min-width: $breakpoint-md) {
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}
+
+.popup-list {
+  width: 100%;
+
+  .categories-popup {
+    overflow: hidden;
+  }
+
+  .categories-popup.categories-popup_features {
+    .form-block__wrapper {
+      height: 62vh; // Fallback
+      height: calc(var(--vh, 1vh) * 62);
+
+      @media (max-height: 650px) {
+        height: 59vh; // Fallback
+        height: calc(var(--vh, 1vh) * 59);
+      }
+
+      @media (max-height: 600px) {
+        height: 55vh; // Fallback
+        height: calc(var(--vh, 1vh) * 55);
+      }
+    }
+  }
+}
+
+.category {
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    width: 95px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid #dcdee5;
+    font-size: 15px;
+    margin-top: 16px;
+    margin-right: 8px;
+
+    .close-box {
+      margin: 0 !important;
+      cursor: pointer;
+    }
+
+    @media (min-width: $breakpoint-md) {
+      width: auto;
+      max-width: 230px;
+    }
+  }
+
+  &__name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex-grow: 1;
+    margin-right: 8px;
+  }
+}
+
+kz-title-header {
+  @media (min-width: $breakpoint-md) {
+    display: block;
+    height: 140px;
+    background-color: #f4f8f9;
+    border-bottom: 1px solid #e9eaed;
+  }
+}
+
+::ng-deep {
+  .ui-autocomplete {
+    font-size: 15px;
+
+    &-panel {
+      box-shadow: none;
+      top: 50px !important;
+      border-radius: 0;
+    }
+
+    .ui-autocomplete-list {
+      padding: 0;
+      border-radius: 0;
+
+      &-item {
+        border-radius: 0;
+        padding: 12px 16px;
+        margin: 0;
+
+        & + .ui-autocomplete-list-item {
+          border-top: 1px solid #dbe3ec;
+        }
+
+        &:hover,
+        &:focus {
+          background-color: #dbe3ec;
+          font-weight: normal;
+          color: #222222;
+        }
+      }
+    }
+  }
+
+  div.title-header.white {
+
+    @media (min-width: $breakpoint-md) {
+      background-color: #f4f8f9 !important;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 100%;
+    }
+
+    p.title-header__title {
+
+      @media (min-width: $breakpoint-md) {
+        left: 20px;
+        font-weight: bold;
+        font-size: 17px;
+        text-align: left;
+        transform: translate(0, -50%);
+      }
+
+      span {
+        @media (min-width: $breakpoint-md) {
+          display: block;
+          font-size: 26px;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .edit-business-page {
+    margin-top: 59px;
+  }
+
+  .page-form-content {
+    padding: 0 20px 50px;
+  }
+}

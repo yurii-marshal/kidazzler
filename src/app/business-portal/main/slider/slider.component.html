@@ -1,0 +1,59 @@
+<div class="slider" *ngIf="slides">
+
+  <ngx-hm-carousel [autoplay-direction]="direction"
+                   [between-delay]="2000"
+                   [(ngModel)]="currentIndex"
+                   [autoplay-speed]="speed"
+                   [autoplay]="autoplay"
+                   [infinite]="infinite"
+                   [aniTime]="1000"
+                   [data]="slides"
+                   [swipe-velocity]="1000"
+                   class="carousel c-accent">
+
+    <section ngx-hm-carousel-container class="content">
+      <article class="item cursor-pointer"
+               ngx-hm-carousel-item
+               *ngFor="let slide of slides; let i = index"
+               [ngClass]="{'visible': currentIndex===i}">
+        <a href="{{slide.link}}" target="_blank" class="slide-content" *ngIf="slide.link">
+          <div class="img-container">
+            <img *ngIf="slide" class="img" [src]="slide.imageUrl | safe">
+            <div class="text">
+              <div class="heading ellipsis-multiple-2">{{slide.heading}}</div>
+              <div class="description ellipsis-multiple-1">{{slide.description}}</div>
+            </div>
+          </div>
+        </a>
+
+        <div class="img-container" *ngIf="!slide.link">
+          <img *ngIf="slide" class="img" [src]="slide.imageUrl | safe">
+          <div class="text">
+            <div class="heading ellipsis-multiple-1">{{slide.heading}}</div>
+            <div class="description ellipsis-multiple-2">{{slide.description}}</div>
+          </div>
+        </div>
+
+      </article>
+      <ng-template #infiniteContainer></ng-template>
+    </section>
+
+    <!-- only using in infinite mode or autoplay mode, that will render with-->
+    <ng-template #carouselContent let-slide let-i="index">
+      <article class="item cursor-pointer"
+               [ngClass]="{'visible': currentIndex===i}">
+        <img *ngIf="slide" class="img"
+             [src]="slide.imageUrl | safe"/>
+        {{i}}
+      </article>
+    </ng-template>
+
+    <ng-template #carouselDot let-model>
+      <div class="ball bg-accent"
+           [class.visible]="model.index === model.currentIndex"></div>
+    </ng-template>
+
+
+  </ngx-hm-carousel>
+
+</div>

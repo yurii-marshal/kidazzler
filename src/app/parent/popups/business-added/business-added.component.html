@@ -1,0 +1,16 @@
+<p-dialog [visible]="true" [modal]="true" [dismissableMask]="true" [styleClass]="'custom-popup popup-business-success'" [closable]="false" [draggable]="false" [resizable]="false" [showHeader]="false" (onHide)="onHide()">
+    <div class="overflow-picture">
+        <img src="/assets/images/icon-success-border.svg" />
+    </div>
+    <div class="popup-content">
+        <h2>Congratulations!</h2>
+        <p>
+            You've successfully added a new <br>
+            business to Kidazzler and <br>
+            "Locked It” in your name
+        </p>
+        <div>
+            <button class="btn btn-primary btn-fullwidth" (click)="closeDialog()">Ok</button>
+        </div>
+    </div>
+</p-dialog>

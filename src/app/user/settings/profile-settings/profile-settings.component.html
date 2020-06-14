@@ -1,0 +1,54 @@
+<div class="title">Edit Profile / Update Payment Info</div>
+<div [ngBusy]="isLoading"></div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+        <label>Your Profile Photo</label>
+        <div class="avatar">
+            <img [src]="form.get('avatar').value" />
+        </div>
+        <div>
+            <input #avatar type="file"
+                   accept="image/*"
+                   placeholder="Select your avatar"
+                   (change)="uploadAvatar()">
+        </div>
+    </div>
+
+    <div class="row">
+        <label>First Name</label>
+        <input type="firstName" nameTransformation="true" class="form-component" placeholder="First Name" id="firstName" formControlName="firstName" />
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('firstName')">
+            {{ formErrors.getValidationMessage('firstName') }}
+        </div>
+    </div>
+
+    <div class="row">
+        <label>Last Name</label>
+        <input type="firstName" nameTransformation="true" class="form-component" placeholder="Last Name" id="lastName" formControlName="lastName" />
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('lastName')">
+            {{ formErrors.getValidationMessage('lastName') }}
+        </div>
+    </div>
+
+    <div class="row">
+        <label>Paypal Email</label>
+        <input type="email" maxlength="255" class="form-component" placeholder="" id="paypalEmail" formControlName="paypalEmail" />
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('paypalEmail')">
+            {{ formErrors.getValidationMessage('paypalEmail') }}
+        </div>
+    </div>
+
+
+    <!--<div class="row">-->
+        <!--<label>Venmo Username</label>-->
+        <!--<input type="text" maxlength="255" class="form-component" placeholder="" id="venmoUsername" formControlName="venmoUsername" />-->
+        <!--<div class="error-message" *ngIf="formErrors.checkControlValidation('venmoUsername')">-->
+            <!--{{ formErrors.getValidationMessage('venmoUsername') }}-->
+        <!--</div>-->
+    <!--</div>-->
+</form>
+<div class="row-buttons">
+    <button class="btn btn-primary" (click)="onSubmit()">Save Changes</button>
+    <a class="btn btn-secondary" [routerLink]="['/']">Cancel</a>
+</div>

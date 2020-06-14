@@ -1,0 +1,17 @@
+<div class="search-wrapper">
+  <ng-container *ngIf="!stickySearch">
+    <div class="input-group main-search" (click)="goToSearch()">
+      <div class="input-group__wrapper">
+        <i class="pi pi-search search-icon"></i>
+        <input type="text" pInputText placeholder="What you are looking for?">
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="stickySearch">
+    <div class="input-group sticky" (click)="goToSearch()">
+      <i class="pi pi-search search-icon"></i>
+      <input type="text" pInputText placeholder="What you are looking for?">
+    </div>
+  </ng-container>
+</div>

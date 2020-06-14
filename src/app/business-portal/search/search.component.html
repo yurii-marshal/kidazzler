@@ -1,0 +1,105 @@
+<div class="search-wrapper">
+  <ngx-ui-loader [overlayColor]="'#fff'" [fgsType]="'chasing-dots'" [fgsColor]="'#823cf1'"
+                 [pbColor]="'#823cf1'"></ngx-ui-loader>
+  <kz-header-search [category]="category" [isInput]="true" (onSearch)="onSearchChange($event)"
+                    [query]="businessTypeQuery"
+                    [currentLocation]="currentLocation" (onSubmit)="onSearchSubmit()"
+                    (onLocation)="onLocationChange($event)"></kz-header-search>
+  <div class="body">
+    <div class="business-block">
+
+      <ngx-ui-loader [fgsColor]="'#823cf1'" [fgsType]="'wandering-cubes'" [loaderId]="'location-results'"
+                     [hasProgressBar]="false" [fgsPosition]="'top-center'"></ngx-ui-loader>
+
+      <!-- BEGIN: Current location results block -->
+      <ng-container *ngIf="locations?.length && isQueryLocationActive">
+        <div class="location-results">
+
+          <p class="location-results__heading" (click)="setNearbyLocation()">
+            <i class="pi pi-angle-right"></i>
+            Current Location
+          </p>
+
+          <div class="location-results__item" *ngFor="let address of locations">
+            <div [innerHTML]="address.place_name | highlight: locationQuery" (click)="onApplyAddress(address)"></div>
+          </div>
+        </div>
+      </ng-container>
+      <!-- END: Current location results block -->
+      <ngx-ui-loader [fgsColor]="'#823cf1'" [fgsType]="'wandering-cubes'" [loaderId]="'search-results'"
+                     [hasProgressBar]="false" [fgsPosition]="'top-center'"></ngx-ui-loader>
+      <!-- BEGIN: Search results block -->
+      <ng-container *ngIf="(businessTypes?.length || businesses?.length) && isQuerySearchActive">
+        <!-- Business item -->
+        <div class="search-result">
+
+          <div class="search-result__item"
+               *ngFor="let business of businesses"
+               [routerLink]="['/', 'business-portal', 'business', business.id]">
+            <svg class="search-result__icon" width="17" height="14" viewBox="0 0 17 14" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M17 4.78947V2.94737H15.1111V1.84211V1.10526V0H2.07778V1.10526V1.84211V2.94737H0V4.78947H1.32222V12.3421H0.755556V12.8947H0V14H17V12.8947H16.2444V12.3421H15.6778V4.78947H17ZM8.12222 12.3421H4.34444V5.71053H8.12222V12.3421ZM12.6556 12.3421H8.87778V5.71053H12.6556V12.3421Z"
+                    fill="#B4BCC5"/>
+            </svg>
+            <p class="search-result__text" [innerHTML]="business.name | capitalize | highlight: businessTypeQuery"></p>
+          </div>
+
+          <!-- Business type -->
+          <div class="search-result__item"
+               *ngFor="let type of businessTypes"
+               (click)="goToResults({
+                 category: type.id,
+                 city: params.city || getAddress(currentLocation, 'city'),
+                 state: params.state || getAddress(currentLocation, 'region'),
+                 coordinatesBox: params.coordinatesBox || currentLocation?.bbox,
+                 country: params.country || getAddress(currentLocation, 'country')
+               })">
+            <img class="search-result__icon search-result__icon_small"
+                 src="../../../assets/images/icons/category-icon.svg" alt="">
+            <p class="search-result__text" [innerHTML]="type.code | highlight: businessTypeQuery"></p>
+          </div>
+        </div>
+      </ng-container>
+      <!-- END: Search results block -->
+
+      <ng-container *ngIf="!isQueryLocationActive && !isQuerySearchActive">
+        <!-- BEGIN: Featured block -->
+        <div class="featured">
+          <p class="featured__heading block-heading">
+            Top categories
+          </p>
+          <div class="featured__list list">
+            <div class="list__item" *ngFor="let type of bestCategories"
+                 [routerLink]="['/business-portal/category', type.id, 'sub-categories']"
+                 [queryParams]="{currentLocation: currentLocation}">
+              <!-- TODO: ICON SHOULD BE DIFFERENT ACCORDING TO CATEGORY -->
+              <i class="list__icon pi pi-tag"></i>
+              <p class="list__text">
+                {{type.code}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- END: Featured block -->
+
+        <!-- BEGIN: Nearby block -->
+        <div class="nearby" *ngIf="nearbyBusinesses?.length">
+          <p class="nearby__heading block-heading">
+            Nearby places
+          </p>
+
+          <kz-business-card class="nearby__item" [business]="business" [isLongTitle]="true"
+                            *ngFor="let business of nearbyBusinesses"
+                            [direction]="'horizontal'" [routerLink]="['/', 'business-portal', 'business', business.id]">
+          </kz-business-card>
+        </div>
+        <!-- END: Nearby block -->
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+
+
+

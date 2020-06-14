@@ -1,0 +1,44 @@
+<!-- BEGIN: Header with search -->
+<div class="header">
+  <div class="back">
+    <a (click)="goBack()">
+      <i class="pi"
+         [ngClass]="{'back__close': isInput && !onlyLocation && !onlySearch, 'pi-angle-left': !isInput || onlyLocation}">
+      </i>
+    </a>
+  </div>
+  <div class="search-box">
+    <div class="search" *ngIf="!isInput" (click)="goToSearch()">
+      <span class="nearby">
+        <img src="../../../../assets/images/icons/navigation-icon_breeze.svg" alt="">
+        {{locationPlaceholder ? locationPlaceholder : 'Nearby'}}
+      </span>
+      <span class="dot"></span>
+      <span class="category-name">{{category?.code || query || ''}}</span>
+    </div>
+    <div *ngIf="isInput" class="search-input">
+      <div class="input-wrapper query-search" *ngIf="!onlyLocation">
+        <i class="pi pi-search search-icon"></i>
+        <form (ngSubmit)="searchSubmit()">
+          <label>
+            <input type="text" placeholder="Search..." name="search" [(ngModel)]="search" kzNoWhitespace [onlyStart]="true"
+                   (ngModelChange)="onSearchChange($event.trim())" [ngModelOptions]="{standalone: true}">
+          </label>
+        </form>
+      </div>
+      <div class="input-wrapper location-search" *ngIf="!onlySearch" [class.location-search__focused]="isSearchFocused">
+        <svg class="input-wrapper__icon" width="10" height="10" viewBox="0 0 10 10" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 0L0 4L5.5 4.5L6 10L10 0Z"/>
+        </svg>
+        <input type="text"
+               (focus)="isSearchFocused = true"
+               (blur)="isSearchFocused = false"
+               [(ngModel)]="locationSearch"
+               placeholder="{{placeHolder || isSearchFocused ? 'Choose city' : 'Nearby'}}" kzNoWhitespace [onlyStart]="true"
+               (ngModelChange)="onLocationChange($event.trim())">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END: Header with search -->

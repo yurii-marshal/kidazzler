@@ -1,0 +1,14 @@
+<kz-header type="withMenu" [hideAbout]="true"></kz-header>
+
+<div class="grey-bg-section">
+    <div class="settings-container">
+        <h1>Settings</h1>
+        <div class="settings-columns">
+            <kz-settings-menu></kz-settings-menu>
+            <div class="setting-content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+    <kz-footer></kz-footer>
+</div>

@@ -1,0 +1,125 @@
+@import "../../../../styles/variables";
+
+.friends {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 712px;
+  background: #FFFFFF;
+  padding: 24px 24px 21px 24px;
+  border-radius: 8px;
+}
+
+.items-empty-list {
+  color: $muted-color;
+  font-size: 17px;
+  text-align: center;
+  padding: 60px 0;
+  width: 100%;
+  margin: 0 auto 40px;
+  border-radius: 10px;
+  border: solid 1px rgba(180, 187, 190, .2);
+
+  p {
+    padding: 0 0 16px;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto 12px;
+  }
+
+  svg {
+    fill: rgba($muted-color, .3);
+  }
+}
+
+.friend-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .friend-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    margin-bottom: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000;
+
+    .friend-owner-photo {
+      width: 54px;
+      min-width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      margin-right: 16px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    &__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(38, 49, 79, .1);
+      width: 100%;
+
+      .title {
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 600;
+        margin-bottom: 3px;
+      }
+
+      .count {
+        font-size: 17px;
+        line-height: 22px;
+        letter-spacing: -0.226667px;
+        color: #8E8E96;
+      }
+    }
+  }
+
+  .friend-item-add-more {
+    width: 100%;
+    margin: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: center;
+    transition: $base-animation;
+    padding: 18px 20px 20px;
+    position: relative;
+    border: solid 1px rgba(180, 187, 190, .2);
+
+    text-align: center;
+
+    svg {
+      height: 35px;
+      fill: rgba($muted-color, .5);
+    }
+
+    .text {
+      font-size: 15px;
+      line-height: 1.47;
+      letter-spacing: -0.4px;
+      text-align: center;
+      color: $muted-color;
+    }
+
+    a {
+      color: $accent-color;
+      text-decoration: none;
+    }
+
+    &:hover {
+      box-shadow: 0 5px 25px #ccc;
+    }
+  }
+}

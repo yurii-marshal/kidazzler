@@ -1,0 +1,48 @@
+.ng-busy, .ng-busy > *, .ng-busy > ng-component > * {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grey-backdrop + ng-busy-backdrop {
+  .ng-busy-backdrop {
+    background-color: $base-bg-grey-color;
+    opacity: .7;
+  }
+}
+
+.magenta-backdrop + ng-busy-backdrop {
+  .ng-busy-backdrop {
+    background-color: #661d7d;
+    opacity: .7;
+  }
+}
+
+.ng-busy {
+  .app-loader {
+    position: static;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    color: #666;
+  }
+  .image-loader {
+    border: 2px solid #f1f1f1; /* Light grey */
+    border-top: 2px solid #781e90; /* Blue */
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spinloader 1.5s linear infinite;
+    margin:0 8px 0 0;
+  }
+}
+@keyframes spinloader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

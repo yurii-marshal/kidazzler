@@ -1,0 +1,38 @@
+<div class="header-profile" *ngIf="profile$ | async as profile">
+  <a class="profile-link">
+    <div class="profile-name">
+      <div class="avatar">
+        <img [src]="profile.avatar"/>
+      </div>
+      <div>{{profile.firstName}} {{profile.lastName}}</div>
+    </div>
+
+    <div class="menu-mobile">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="profile-menu" *ngIf="showMenu">
+      <div class="profile-content">
+        <a *ngIf="!isBusinessUser(profile)" [routerLink]="['', {outlets: {popup: ['invite']}}]">
+          <svg-icon src="/assets/images/friends.svg"></svg-icon>
+          <span>Invite Friends</span>
+        </a>
+        <a *ngIf="!isBusinessUser(profile)" [routerLink]="['/add-business']">
+          <svg-icon src="/assets/images/business.svg"></svg-icon>
+          <span>Add a Business</span>
+        </a>
+        <a [routerLink]="['/settings/profile']">
+          <svg-icon src="/assets/images/settings.svg"></svg-icon>
+          <span>Settings</span>
+        </a>
+        <a (click)="logOut()">
+          <svg-icon src="/assets/images/logout.svg"></svg-icon>
+          <span>Log out</span>
+        </a>
+      </div>
+    </div>
+  </a>
+
+</div>

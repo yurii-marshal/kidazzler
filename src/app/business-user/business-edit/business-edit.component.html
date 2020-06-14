@@ -1,0 +1,532 @@
+<kz-header type="withMenu" [hideAbout]="true"></kz-header>
+
+<kz-title-header
+  [title]="isMobile ? pageHeader : 'Edit <span>My business</span>'"
+  [isShownBack]="isMobile"
+  [isWhite]="true"
+  [isStatic]="isMobile"
+></kz-title-header>
+
+<div class="edit-business-page">
+
+  <form [formGroup]="form" *ngIf="form">
+    <div class="page-form-content">
+      <div class="content">
+        <div class="step">
+          <p class="title">
+            Business Information
+          </p>
+          <div class="content">
+            <div class="row">
+              <div class="label label_desk">Business Name (required)</div>
+              <div class="cols">
+                <input required class="form-component" placeholder="Business Name" formControlName="name"/>
+                <div class="error-message" *ngIf="formErrors.checkControlValidation('name')">
+                  <ng-container *ngIf="form.get('name').errors?.required">
+                    {{ formErrors.getMessage('required') }}
+                  </ng-container>
+                  <ng-container *ngIf="form.get('name').errors?.maxlength">
+                    {{ formErrors.getMessage('maxlength') }} {{form.get('name').errors?.maxlength?.requiredLength}}
+                    characters
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" *ngIf="!!phoneMask">
+              <div class="label label_desk">Business Phone Number (required)</div>
+              <div class="form__group form__group_line">
+                <div class="form__field">
+                  <p-inputMask required
+                               class="form-component input-mask-component"
+                               formControlName="phone"
+                               [mask]="phoneMask"
+                               [placeholder]="phoneMask"
+                               [unmask]="true"
+                               [autoClear]="false"
+                  ></p-inputMask>
+                  <div class="error-message" *ngIf="formErrors.checkControlValidation('phone')">
+                    <ng-container *ngIf="form.get('phone').errors?.required">
+                      {{ formErrors.getMessage('required') }}
+                    </ng-container>
+                    <ng-container *ngIf="form.get('phone').errors?.invalid">
+                      {{ 'Invalid phone number' }}
+                    </ng-container>
+                    <ng-container *ngIf="form.get('phone').errors?.minlength">
+                      {{ formErrors.getMessage('phone') }}
+                    </ng-container>
+                  </div>
+                </div>
+                <div class="form__field">
+                  <p-inputMask class="form-component input-mask-component"
+                               formControlName="phone2"
+                               [mask]="phoneMask"
+                               [placeholder]="form.get('phone2').value ? phoneMask : 'Add additional phone number'"
+                               [unmask]="true"
+                               [autoClear]="false"
+                  ></p-inputMask>
+                  <div class="error-message" *ngIf="formErrors.checkControlValidation('phone2')">
+                    <ng-container *ngIf="form.get('phone2').errors?.minlength">
+                      {{ formErrors.getMessage('phone') }}
+                    </ng-container>
+                    <ng-container *ngIf="form.get('phone2').errors?.invalid">
+                      {{ 'Invalid phone number' }}
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="label label_desk">Contact Email (required)</div>
+              <input required type="text" class="form-component" placeholder="Email" formControlName="email"
+                     pInputText/>
+              <div class="error-message" *ngIf="formErrors.checkControlValidation('email')">
+                <ng-container *ngIf="form.get('email').errors?.required">
+                  {{ formErrors.getMessage('required') }}
+                </ng-container>
+                <ng-container *ngIf="form.get('email').errors.email">
+                  {{ formErrors.getMessage('email') }}
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="checkbox_form">
+                <input class="checkbox_form__input" type="checkbox" id="contact_email"
+                       formControlName="hidePhone" name="hidephone"/>
+                <label for="contact_email" class="checkbox_form__text">
+                  <span>Contact by email only (hide phone)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="row top-offset about">
+              <div class="label label_desk">About Business (required)</div>
+              <textarea type="text" class="form-component" [cMaxLength]="4000"
+                        required placeholder="Tell your customers about your business"
+                        formControlName="about" pInputTextarea [maxlength]="4000" [rows]="6"></textarea>
+              <div class="counter">{{form.get('about').value?.length || 0}}/{{4000}}</div>
+              <div class="error-message" *ngIf="formErrors.checkControlValidation('about')">
+                <ng-container *ngIf="form.get('about').errors?.required">
+                  {{ formErrors.getValidationMessage('about') }}
+                </ng-container>
+              </div>
+              <div class="error-message" *ngIf="form.get('about').hasError('maxlength')">
+                Text about the business can not be more than 4000 characters long
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <p class="title top-offset">
+            Ages (optional)
+          </p>
+          <div class="row">
+            <div class="ages_option-list">
+              <div class="filter-content__option" *ngFor="let age of agesRangeList; let i = index">
+                <input (click)="onAgeChange(age)" id="age-option-{{i}}" [checked]="age.ageFrom === form.value.ageFrom"
+                       type="radio" [value]="age" name="age">
+                <label for="age-option-{{i}}">
+                  <span class="filter-content__age-option">
+                    <i>{{age.ageFrom}}</i>
+                    <span class="white-space"></span>
+                    <i class="filter-content__age-symbol filter-content__age-symbol_additional">+</i>
+                    <i class="filter-content__age-symbol">-</i>
+                    <span class="white-space"></span>
+                    <i>{{age.ageTo}}</i>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+
+          <p class="title top-offset">
+            Choose Location Type (required)
+          </p>
+
+          <div class="row">
+            <div class="ui-fluid">
+              <p-selectButton [styleClass]="'edit-form__option'"
+                              (onChange)="onLocationTypeChange($event)"
+                              [ngModelOptions]="{standalone: true}"
+                              [options]="locationOptions"
+                              [(ngModel)]="isPhysical">
+              </p-selectButton>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="isPhysical">
+            <div class="label">Address</div>
+            <p-autoComplete [(ngModel)]="address" [ngModelOptions]="{standalone: true}"
+                            [suggestions]="addressSearchResults"
+                            (completeMethod)="searchAddress($event)"
+                            [forceSelection]="true"
+                            placeholder="Address"
+                            [delay]="1000" field="place_name"
+                            (onSelect)="selectAddress($event)"
+                            (onClear)="clearValue(isPhysical)"
+            ></p-autoComplete>
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('address')">
+              {{ formErrors.getValidationMessage('address')}}
+            </div>
+          </div>
+
+          <div class="row address2" *ngIf="isPhysical">
+            <input type="text" class="form-component"
+                   placeholder="Address 2" formControlName="address2" pInputText/>
+          </div>
+
+          <div class="row row-address" *ngIf="!isPhysical">
+            <div class="label">City/State</div>
+            <p-autoComplete [(ngModel)]="onlineAddress" [ngModelOptions]="{standalone: true}"
+                            [suggestions]="onlineAddressSearchResults"
+                            (completeMethod)="searchOnlineAddress($event)"
+                            [forceSelection]="true"
+                            placeholder="City/State"
+                            [delay]="1000" field="place_name"
+                            (onSelect)="selectOnlineAddress($event)"
+                            (onClear)="clearValue(isPhysical)"
+            ></p-autoComplete>
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('city')">
+              City and State are required
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">Website (optional)</div>
+            <input type="text" class="form-component" placeholder="Website" formControlName="website" pInputText/>
+          </div>
+
+          <div class="row">
+            <div class="checkbox_form">
+              <input class="checkbox_form__input" type="checkbox" id="appointment"
+                     formControlName="byAppointment" name="appointment"/>
+              <label for="appointment" class="checkbox_form__text">
+                <span>Contact by appointment only</span>
+              </label>
+            </div>
+
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('byAppointment')">
+              {{ formErrors.getValidationMessage('byAppointment')}}
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <p class="title top-offset">
+            Business Categories (required)
+          </p>
+          <div class="content">
+            <ng-container *ngIf="isMobile">
+              <div class="row" formArrayName="businessTypes">
+                <div class="business-type-item" *ngFor="let item of form.get('businessTypes').controls; let i = index"
+                     [formGroupName]="i">
+                  <div class="ui-fluid" (click)="openCategoryList(i)">
+                    <p-autoComplete [styleClass]="'edit-form__categories-select'" [readonly]="true"
+                                    placeholder="Choose category"
+                                    id="category-{{i}}" formControlName="code">
+                    </p-autoComplete>
+                    <img class="input-icon" src="../../../assets/images/icons/icon-shevron-down.svg" alt="">
+                  </div>
+                  <div class="close-box" (click)="removeBusinessType(item)"
+                       *ngIf="form.get('businessTypes').controls.length > 1">
+                    <div class="close-icon">
+                      <svg width="7" height="7" viewBox="0 0 12 12" fill="#ffffff" font-weight="bold"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" font-weight="bold"
+                              d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+                              fill="#ffffff"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="error-message" *ngIf="submitted && businessChosenTypes.controls.length === 0">
+                  {{ formErrors.getValidationMessage('businessType')}}
+                </div>
+              </div>
+              <div class="row add-category" (click)="openCategoryList(null)">
+                + Add Another Category
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!isMobile">
+              <div class="row">
+                <p-autoComplete placeholder="i.e. Ballet Class, Museum, Playcenter, Daycare..."
+                                #categoryAutoComplete
+                                (completeMethod)="searchCategory($event)"
+                                (onSelect)="chooseCategory($event)"
+                                [suggestions]="businessTypesList"
+                                [delay]="1000"
+                                field="code">
+                </p-autoComplete>
+                <div class="error-message" *ngIf="isChosenTypesWarning">
+                  At least one category should be selected
+                </div>
+                <div class="category__list">
+                  <div class="category__item" *ngFor="let item of form.get('businessTypes').controls">
+                    <div class="category__name">{{item.value.code}}</div>
+                    <div class="close-box" (click)="removeBusinessType(item)">
+                      <div class="close-icon">
+                        <svg width="7" height="7" viewBox="0 0 12 12" fill="#ffffff" font-weight="bold"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" font-weight="bold"
+                                d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+                                fill="#ffffff"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="step">
+          <p class="title top-offset">
+            Business Features (optional)
+          </p>
+          <div class="content">
+            <div class="row">
+              <div class="business-type-item" *ngIf="isMobile">
+                <div class="ui-fluid" (click)="openFeaturesPopup()">
+                  <p-autoComplete [styleClass]="'edit-form__categories-select'" [readonly]="true"
+                                  placeholder="Select features"
+                                  id="features" formControlName="amenities">
+                  </p-autoComplete>
+                  <img class="input-icon" src="../../../assets/images/icons/icon-shevron-down.svg" alt="">
+                </div>
+              </div>
+              <ng-container *ngIf="!isMobile">
+                <p-autoComplete placeholder="Select Features"
+                                #featureAutoComplete
+                                (onFocus)="featureAutoComplete.handleDropdownClick($event)"
+                                (completeMethod)="searchFeature($event)"
+                                (onSelect)="selectFeature($event)"
+                                [suggestions]="searchedAmenities"
+                                [delay]="1000"
+                                field="name">
+                </p-autoComplete>
+                <div class="category__list">
+                  <div class="category__item" *ngFor="let feature of selectedAmenities">
+                    <div class="category__name">{{feature.name}}</div>
+                    <div class="close-box" (click)="removeFeature(feature)">
+                      <div class="close-icon">
+                        <svg width="7" height="7" viewBox="0 0 12 12" fill="#ffffff" font-weight="bold"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" font-weight="bold"
+                                d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+                                fill="#ffffff"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <p class="title top-offset">
+            Hours of Operation (optional)
+          </p>
+          <div class="row divider"></div>
+          <div class="content">
+            <div class="hours-operation">
+              <div class="row weekday" *ngFor="let day of weekdays; let i = index;">
+                <div class="checkbox_form">
+                  <input class="checkbox_form__input" type="checkbox" id="day-{{i}}"
+                         [(ngModel)]="day.value" (change)="onWeekDayChange(i)"
+                         [ngModelOptions]="{standalone: true}" name="day"/>
+                  <label for="day-{{i}}" class="checkbox_form__text">
+                    <span>{{day.name}}</span>
+                  </label>
+                </div>
+                <div class="toggle-day" *ngIf="day.value">
+                  <div class="row date-select">
+                    <div class="edit-form__item-box">
+                      <img class="edit-form__input-icon"
+                           src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+                      <p-calendar [(ngModel)]="day.hours.startAt" [defaultDate]="minDate"
+                                  [ngModelOptions]="{standalone: true}"
+                                  placeholder="Start At" [readonlyInput]="true"
+                                  timeOnly="true" [stepHour]="1" [stepMinute]="60"
+                                  hourFormat="12" [disabled]="day.isOpenover"
+                                  [styleClass]="'timepicker-without-mins'"
+                      >
+                      </p-calendar>
+                    </div>
+                    <span>-</span>
+                    <div class="edit-form__item-box">
+                      <img class="edit-form__input-icon"
+                           src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+                      <p-calendar [(ngModel)]="day.hours.endAt" [defaultDate]="maxDate"
+                                  [ngModelOptions]="{standalone: true}"
+                                  placeholder="End At" [readonlyInput]="true"
+                                  timeOnly="true" [stepHour]="1" [stepMinute]="60"
+                                  hourFormat="12" [disabled]="day.isOpenover"
+                                  [styleClass]="'timepicker-without-mins'"
+                      >
+                      </p-calendar>
+                    </div>
+
+                    <div class="close-box" (click)="clearTimeInputs(i)">
+                      <div class="close-icon">
+                        <svg width="7" height="7" viewBox="0 0 12 12" fill="#ffffff" font-weight="bold"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" font-weight="bold"
+                                d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+                                fill="#ffffff"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div *ngIf="day.hours.startAt > day.hours.endAt"
+                       class="time-error error-message text-center">
+                    Start time can't be bigger than end time
+                  </div>
+
+                  <div class="checkbox_form openover">
+                    <input class="checkbox_form__input" type="checkbox" id="openover-{{i}}"
+                           [(ngModel)]="day.isOpenover" (change)="onOpenoverChange(i)"
+                           [ngModelOptions]="{standalone: true}" name="openover"/>
+                    <label for="openover-{{i}}" class="checkbox_form__text">
+                      <span>Open 24 hours</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row divider"></div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row form-controls">
+
+          <input class="btn btn-primary btn-smallwidth send-btn"
+                 value="Save Changes" type="button"
+                 (click)="onSubmit()"
+          />
+
+          <a class="btn btn-secondary btn-smallwidth" (click)="onCancel()">
+            Cancel
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="popup-list" [hidden]="!showCategoriesPopup">
+
+  <div class="categories-popup">
+
+    <span class="categories-popup__close">
+      <span class="categories-popup__close-box" (click)="closeCategoriesPopup()">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+              fill="#868686"/>
+        </svg>
+      </span>
+    </span>
+
+    <div class="categories-popup__body">
+
+      <p class="categories-popup__title">
+        Select Category
+      </p>
+
+      <p class="categories-popup__subtitle">
+        The more specific the better.
+      </p>
+
+      <form class="form-block">
+
+        <div class="input-wrapper">
+          <div class="pi pi-search search-icon"></div>
+          <input type="text" name="category_input"
+                 class="form-component category_input" pInputText
+                 [(ngModel)]="categorySearch"
+                 placeholder="Search categories"
+                 (ngModelChange)="searchBusinessTypes($event)"/>
+        </div>
+
+        <div class="form-block__wrapper">
+          <div class="form-block__option" (click)="chooseCategory(category)"
+               *ngFor="let category of businessTypesList">
+            <p class="form-block__option-text">
+              {{category.code}}
+            </p>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="popup-list" [hidden]="!showFeaturesPopup">
+  <div class="categories-popup categories-popup_features">
+    <span class="categories-popup__close">
+      <span class="categories-popup__close-box" (click)="closeFeaturesPopup()">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+              fill="#26314F"/>
+        </svg>
+      </span>
+    </span>
+
+    <div class="">
+      <p class="categories-popup__title">
+        Select Features
+      </p>
+      <form class="form-block">
+        <p class="form-block__title">
+          Business Features
+        </p>
+
+        <div class="form-block__wrapper">
+          <div class="form-block__option" *ngFor="let feature of currentFeatures; let i = index">
+            <p class="form-block__option-text">
+              {{feature.name}}
+            </p>
+            <input type="checkbox" id="amenity-{{i}}"
+                   (change)="onFeatureSelect(i)"
+                   [checked]="feature.value" name="amenity"/>
+            <label for="amenity-{{i}}"></label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="categories-popup__controls">
+      <p class="categories-popup__button features-btn" (click)="saveFeatures()">
+        Save
+      </p>
+    </div>
+  </div>
+</div>
+
+<ngx-ui-loader [overlayColor]="'#fff'"
+               [fgsType]="'chasing-dots'"
+               [fgsColor]="'#823cf1'"
+               [pbColor]="'#823cf1'"
+               [loaderId]="'business-edit'"
+               [hasProgressBar]="false"
+               [ngClass]="{'ngx-position-fixed': !!isLoading}"
+>
+</ngx-ui-loader>

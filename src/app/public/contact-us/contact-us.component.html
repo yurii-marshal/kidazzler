@@ -1,0 +1,78 @@
+<kz-header [type]="'empty'"></kz-header>
+
+<div class="page-form-container">
+    <div class="page-form-title">
+        <h1>Contact Us</h1>
+    </div>
+    <div class="page-form-content">
+        <form [formGroup]="contactUsForm" (ngSubmit)="onSubmit()">
+            <div class="step">
+                <div class="title">
+                    Your Information
+                </div>
+                <div class="content">
+                    <div class="row">
+                        <div class="label">Name</div>
+                        <div class="cols">
+                            <div class="col-grow">
+                                <input type="text" class="form-component" placeholder="First Name" formControlName="firstName" pInputText />
+                                <div class="error-message" *ngIf="formErrors.checkControlValidation('firstName')">
+                                    {{ formErrors.getValidationMessage('firstName')}}
+                                </div>
+                            </div>
+                            <div class="col-grow">
+                                <input type="text" class="form-component" placeholder="Last Name" formControlName="lastName" pInputText />
+                                <div class="error-message" *ngIf="formErrors.checkControlValidation('lastName')">
+                                    {{ formErrors.getValidationMessage('lastName')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Email Address</div>
+                        <input type="text" class="form-component" placeholder="Your Email Address" formControlName="email" pInputText />
+                        <div class="error-message" *ngIf="formErrors.checkControlValidation('email')">
+                            {{ formErrors.getValidationMessage('email')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="title">Your Message</div>
+                <div class="content">
+
+                    <div class="row">
+                        <div class="label">Subject</div>
+
+                        <p-dropdown [options]="subjects" [style]="{'width':'100%'}" placeholder="Select a Subject" formControlName="subject"></p-dropdown>
+                        <div class="error-message" *ngIf="formErrors.checkControlValidation('subject')">
+                            {{ formErrors.getValidationMessage('subject') }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Message</div>
+                        <textarea type="text" class="form-component" placeholder="Your message..." formControlName="message" pInputText></textarea>
+                        <div class="error-message" *ngIf="formErrors.checkControlValidation('message')">
+                            {{ formErrors.getValidationMessage('message') }}
+                        </div>
+                    </div>
+
+                    <div class="captcha-row">
+                        <kz-recaptcha formControlName="recaptchaResponse"></kz-recaptcha>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button class="btn btn-primary btn-send">
+                    Send
+                </button>
+            </div>
+        </form>
+
+    </div>
+    <kz-footer></kz-footer>
+</div>

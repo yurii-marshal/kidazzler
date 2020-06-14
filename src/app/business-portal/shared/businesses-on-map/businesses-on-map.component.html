@@ -1,0 +1,83 @@
+<div class="map">
+  <mgl-map (load)="map = $event"
+           [ngStyle]="{'width.px': width, 'height.px': height}"
+           [class.full-map]="isFullMap"
+           [style]="'mapbox://styles/mapbox/streets-v9'"
+           [fitBounds]="bounds"
+           [center]="mapConfig?.center"
+           [zoom]="mapConfig?.zoom"
+           (touchEnd)="onCoordsChange()">
+
+    <mgl-control *ngIf="showZoomControl"
+                 mglScale
+                 unit="imperial"
+                 position="top-left">
+    </mgl-control>
+
+    <mgl-control [position]="'top-left'" *ngIf="showClose">
+      <button class="rounded-button close"
+              (click)="closeMap()">
+        <img src="../../../../assets/images/icons/close-icon_gray.svg" alt="Close">
+      </button>
+    </mgl-control>
+
+    <mgl-control *ngIf="showSearchControl">
+      <button class="search"
+              (click)="onSearch()">
+        <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M11.7887 1.01001C7.2636 1.01001 3.5838 4.59492 3.5838 8.99869V9.0251L1.95911 6.64397C1.80013 6.41001 1.47441 6.34586 1.234 6.50058C0.993595 6.65529 0.927677 6.97227 1.08666 7.20624L3.44421 10.6591C3.52951 10.7836 3.66523 10.8628 3.81645 10.8817C3.83972 10.8855 3.85911 10.8855 3.88237 10.8855C4.01033 10.8855 4.13441 10.8402 4.23135 10.7534L7.50788 7.88171C7.72115 7.69303 7.74053 7.37227 7.54666 7.16095C7.35278 6.95341 7.02319 6.93454 6.80604 7.12322L4.63074 9.03642V8.99869C4.63074 5.15341 7.84135 2.02888 11.7887 2.02888C15.736 2.02888 18.9505 5.15341 18.9505 8.99869C18.9505 12.844 15.7399 15.9685 11.7926 15.9685C9.88094 15.9685 8.08176 15.244 6.73237 13.927C6.52686 13.727 6.19727 13.727 5.99176 13.927C5.78625 14.127 5.78625 14.4477 5.99176 14.6477C7.54278 16.1572 9.60176 16.9874 11.7926 16.9874C16.3138 16.9874 19.9975 13.4062 19.9975 8.99869C19.9975 4.59114 16.3138 1.01001 11.7887 1.01001Z"
+            fill="white" stroke="white" stroke-width="0.7"/>
+        </svg>
+        search in this area
+      </button>
+    </mgl-control>
+
+    <mgl-control *ngIf="showCurrentLocationControl && allowedGeolocation" [position]="'bottom-right'">
+      <button
+        class="rounded-button current-location" [class.expanded-list]="expanded"
+        (click)="findCurrentLocation()">
+        <img src="../../../../assets/images/icons/navigation-icon_blue.svg" alt="">
+      </button>
+    </mgl-control>
+    <div *ngIf="!isFullMap">
+      <ng-container *ngFor="let business of businesses">
+
+        <mgl-marker #mobileMarker [lngLat]="[+business.longitude, +business.latitude]">
+
+          <div class="marker" (click)="markerClick(business)" [class.active]="activeBusiness?.id === business?.id">
+            <div class="marker__dot"></div>
+          </div>
+
+        </mgl-marker>
+
+      </ng-container>
+    </div>
+
+    <div *ngIf="isFullMap">
+      <ng-container *ngFor="let business of businesses">
+
+        <mgl-marker #desktopMarker [lngLat]="[+business.longitude, +business.latitude]">
+          <div class="marker"
+               [class.active]="activeBusiness?.id === business?.id"
+               (click)="markerClick(business)">
+            <div class="marker__dot"></div>
+          </div>
+        </mgl-marker>
+
+        <mgl-popup [marker]="desktopMarker" [closeButton]="false">
+          <kz-business-card [direction]="'vertical'" [business]="business"
+                            [routerLink]="['/', 'business-portal', 'business', business.id]"></kz-business-card>
+        </mgl-popup>
+
+      </ng-container>
+    </div>
+
+    <div *ngIf="showMyLocation">
+      <mgl-marker
+        [lngLat]="myCoords">
+        <div class="current-location-marker"></div>
+      </mgl-marker>
+    </div>
+  </mgl-map>
+</div>

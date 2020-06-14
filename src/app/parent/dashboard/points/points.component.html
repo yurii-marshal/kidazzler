@@ -1,0 +1,119 @@
+<div class="points">
+  <div class="message" *ngIf="isPointsMessageOpen">
+    <span class="message__close">
+      <i (click)="isPointsMessageOpen = false">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+              fill="#B4BCC5"/>
+      </svg>
+      </i>
+    </span>
+    <img src="../../../../assets/images/icons/dashboard-points-icon.svg" alt="Points icon" class="message__icon">
+    <p class="message__text">
+      Earn points to win prizes and rewards. Earn more points with friends. It’s fun.
+    </p>
+  </div>
+  <div class="points__wrapper">
+
+    <div class="total-block points__item">
+      <div class="top-block">
+        <p class="top-block__title">
+          Total Points
+        </p>
+
+        <div class="top-block__select">
+          <p-dropdown [options]="timeOptions" [(ngModel)]="time"></p-dropdown>
+        </div>
+      </div>
+      <div class="points-block">
+        <img src="../../../../assets/images/icons/points-icon.svg" alt="Points icon" class="points-block__image">
+        <p class="points-block__points-text">
+          {{time === 'Monthly' ? points?.monthly.total : points?.total.total}}
+        </p>
+      </div>
+      <div class="bottom-block">
+        <div class="bottom-block__item">
+          <p class="bottom-block__number">
+            {{time === 'Monthly' ? points?.monthly.fromYou : points?.total.fromYou}}
+          </p>
+          <p class="bottom-block__text">
+            From You
+          </p>
+        </div>
+        <div class="bottom-block__item">
+          <p class="bottom-block__number">
+            {{time === 'Monthly' ? points?.monthly.fromFriends : points?.total.fromFriends}}
+          </p>
+          <p class="bottom-block__text">
+            From Friends
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-block points__item">
+      <div class="info-block__item">
+        <p class="info-block__text">
+          Check-in to a business with their Kidazzler <br>
+          Check-in code (ask them for it)
+        </p>
+        <p class="info-block__number">
+          + {{points?.config.CHECKED_IN_CODE}} Points
+        </p>
+      </div>
+      <div class="info-block__item">
+        <p class="info-block__text">
+          Add a business photo during your Check-in
+        </p>
+        <p class="info-block__number">
+          + {{points?.config.UPLOADED_PHOTO}}  Points
+        </p>
+      </div>
+      <div class="info-block__item">
+        <p class="info-block__text">
+          Check-in without business Check-in code
+        </p>
+        <p class="info-block__number">
+          + {{points?.config.CHECKED_IN}} Points
+        </p>
+      </div>
+      <div class="info-block__tip">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M4.24705 7.51319L1.35822 4.6602C1.05583 4.36156 0.556064 4.35252 0.24195 4.64C-0.0721638 4.92748 -0.081673 5.40262 0.220711 5.70126L4.57345 10L9.89626 1.12237C10.1122 0.762252 9.98015 0.303905 9.60136 0.0986263C9.22257 -0.106652 8.74046 0.0188726 8.52454 0.378994L4.24705 7.51319Z"
+                fill="#4ABBB5"/>
+        </svg>
+        <p class="info-block__tip-text">
+          Plus earn <b>+{{points?.config.REFERRAL_CHECKED_IN}} points</b> every time your <br>
+          friends earn Check-in points on <br>
+          Kidazzler
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="invite-friends">
+    <p class="invite-friends__text">
+      Move up the ranks in Kidazzler by inviting friends
+    </p>
+
+    <button class="invite-friends__button" [routerLink]="['', {outlets: {popup: ['invite']}}]">
+      <svg width="25" height="17" viewBox="0 0 25 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M16.8036 17H0.713445V14.6789C0.712198 14.1913 0.923952 13.7286 1.29079 13.4174C2.74957 12.2148 4.33077 11.1766 6.00699 10.3209C6.05756 10.296 6.08974 10.2437 6.08981 10.1863V8.62307C5.86201 8.2281 5.70679 7.79379 5.63184 7.3416C5.45644 7.32664 5.22745 7.07483 4.97897 6.1798C4.65985 5.02548 4.95949 4.79611 5.24938 4.7986C5.0959 4.12546 4.7037 1.78191 6.40894 0.717344C6.20404 0.539754 6.0856 0.279099 6.08494 0.00430808C6.08494 0.00430808 8.03378 0.22869 8.96923 0.0317326C9.90467 -0.165225 10.9181 0.590194 11.0813 1.3157C11.0813 1.3157 12.9887 1.3157 12.2482 4.80608C12.5454 4.79362 12.8693 5.00304 12.5429 6.18728C12.2993 7.08481 12.0557 7.33661 11.8901 7.34908C11.8151 7.80126 11.6599 8.23558 11.4321 8.63055V10.1937C11.4321 10.2512 11.4643 10.3035 11.5149 10.3284C13.1899 11.1819 14.7703 12.2175 16.2287 13.4174C16.5955 13.7286 16.8073 14.1913 16.806 14.6789L16.8036 17ZM16.0996 10.5902V11.5176C16.0991 11.617 16.0722 11.7144 16.0216 11.7993C16.3212 12.0262 16.6233 12.2655 16.9229 12.5173C17.5458 13.0482 17.9034 13.8369 17.8974 14.6664V16.9751H24.7134V14.7936C24.6549 14.1801 24.2845 13.6437 23.739 13.3825C23.2824 13.1524 22.8051 12.9679 22.3139 12.8315C22.2871 12.8165 20.7719 12.4101 20.0533 12.0187L19.9899 11.9888C19.8379 11.8881 19.7462 11.7154 19.7463 11.5301V10.8071V10.5577C19.7463 10.5577 21.8291 10.6226 22.8158 9.59041C22.8158 9.59041 21.3785 9.17405 21.6367 6.49394C21.8949 3.81382 21.3151 1.46279 19.2006 1.66224C19.2006 1.66224 18.2896 0.540332 16.4747 1.24589C15.8511 1.4952 14.1799 2.10103 14.2652 5.81331C14.3505 9.52559 12.9765 9.55301 12.9765 9.55301C12.9765 9.55301 13.6879 10.6126 16.0996 10.5902Z"
+              fill="white"/>
+      </svg>
+      Invite Friends
+    </button>
+  </div>
+  <!-- BEGIN: LOADER -->
+  <ngx-ui-loader [overlayColor]="'#fff'" [loaderId]="'loadPoints'" [hasProgressBar]="false" [fgsPosition]="'center-center'"
+                 [fgsType]="'chasing-dots'"
+                 [fgsColor]="'#823cf1'"
+                 [pbColor]="'#823cf1'">
+  </ngx-ui-loader>
+  <!-- END: LOADER -->
+</div>
+

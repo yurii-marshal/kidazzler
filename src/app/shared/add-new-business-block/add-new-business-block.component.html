@@ -1,0 +1,14 @@
+<div class="add-new" [style.background]="currentAddNewBackground">
+  <div class="text">
+    Can't find what you are looking for?
+  </div>
+  <button (click)="goToCreateBusiness()">
+    Add a missing place
+  </button>
+  <img alt="Place image" *ngIf="currentAddNewBackground === '#4abbb5'"
+       src="../../../assets/images/icons/missing-place-image_aqua.svg" class="img">
+  <img alt="Place image" *ngIf="currentAddNewBackground === '#4b03bd'"
+       src="../../../assets/images/icons/missing-place-image_purple.svg" class="img">
+  <img alt="Place image" *ngIf="currentAddNewBackground === '#bd10e0'"
+       src="../../../assets/images/icons/missing-place-image_pink.svg" class="img">
+</div>

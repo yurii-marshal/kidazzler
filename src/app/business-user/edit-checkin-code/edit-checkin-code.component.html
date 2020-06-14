@@ -1,0 +1,47 @@
+<div class="code-modal" [class.code-modal_focussed]="isInputFocused" [class.mobile]="isMobile">
+  <p class="code-modal__heading">
+    Your Check-In Code
+  </p>
+
+  <img src="../../../assets/images/icons/checkin-image_sm.svg" alt="" class="code-modal__image">
+
+  <form class="form" [formGroup]="editCodeForm">
+
+    <label for="code-input" class="form__label"></label>
+
+    <input id="code-input"
+           (focus)="isInputFocused = true"
+           (blur)="isInputFocused = false"
+           (input)="restrictInput($event)"
+           formControlName="editedCode" [cMaxLength]="8"
+           type="text" class="form__input"
+    >
+
+    <span class="error-message" *ngIf="editCodeForm.controls['editedCode'].hasError('required')">
+        This field is required
+      </span>
+
+    <span class="error-message"
+          *ngIf="editCodeForm.controls['editedCode'].hasError('pattern')">
+            Please use only Latin letters, digits and a dash while filling this field
+      </span>
+
+    <input
+      class="code-modal__button"
+      value="Save" type="button"
+      (click)="saveCode()"
+    >
+
+    <input class="code-modal__button code-modal__button_gray"
+           (click)="close()"
+           type="button" value="Cancel"
+    />
+  </form>
+</div>
+
+<!-- LOADER -->
+<ngx-ui-loader [overlayColor]="'#fff'" [fgsColor]="'#823cf1'"
+               [loaderId]="'edit-checking-code' + businessId" [fgsType]="'wandering-cubes'"
+               [hasProgressBar]="false" [fgsPosition]="'center-center'">
+</ngx-ui-loader>
+<!-- LOADER -->

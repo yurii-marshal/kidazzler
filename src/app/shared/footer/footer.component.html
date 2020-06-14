@@ -1,0 +1,133 @@
+<div class="footer-content" *ngIf="isFullVersion">
+  <div class="footer">
+
+    <div class="apps-container">
+
+      <div class="apps-label">
+        Available in US and Canada
+      </div>
+
+      <kz-mobile-apps direction="horizontal"></kz-mobile-apps>
+
+    </div>
+
+    <div class="social-media mobile-only">
+      <a href="https://facebook.com/kidazzler/" target="_blank">
+        <svg-icon src="/assets/images/social/icon-social-fb.svg"></svg-icon>
+      </a>
+      <a href="http://instagram.com/kidazzler" target="_blank">
+        <svg-icon src="/assets/images/social/icon-social-instagram.svg"></svg-icon>
+      </a>
+      <a href="https://twitter.com/@kidazzler" target="_blank">
+        <svg-icon src="/assets/images/social/icon-social-twitter.svg"></svg-icon>
+      </a>
+    </div>
+
+    <div class="footer-link-set">
+      <div class="footer-section">
+        <div class="section-header">
+          Company
+        </div>
+        <div class="footer-links">
+          <a routerLink="/about">About Kidazzler</a>
+          <a routerLink="/community">Our Community</a>
+          <a href="{{blogUrl}}/2018/12/20/about-kidazzler-our-mission/" target="_blank">Kidazzler Blog</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <div class="section-header">
+          For Businesses
+        </div>
+        <div class="footer-links">
+          <a routerLink="/business-claim">Claim Your Free Listing</a>
+          <a routerLink="/kidazzler-connection">Kidazzler For Business</a>
+          <a routerLink="/login/business">Promote Your Business</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <div class="section-header">
+          Support
+        </div>
+        <div class="footer-links">
+          <a href="https://kidazzler.com/contact-us">Contact Us</a>
+          <a href="https://support.kidazzler.com/help-center/jobs">Jobs</a>
+          <a href="https://support.kidazzler.com">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-divider desktop-only"></div>
+
+  <div class="after-footer">
+    <div class="after-footer-links">
+      <a>@2019 Kidazzler<span class="desktop-only inline">, Inc</span></a>
+      <a routerLink="/terms">Terms of Use</a>
+      <a routerLink="/privacy">Privacy</a>
+    </div>
+    <div class="social-media desktop-only">
+      <a href="https://facebook.com/kidazzler/" target="_blank">
+        <svg-icon src="/assets/images/social/icon-social-fb.svg"></svg-icon>
+      </a>
+      <a href="http://instagram.com/kidazzler" target="_blank">
+        <svg-icon src="/assets/images/social/icon-social-instagram.svg"></svg-icon>
+      </a>
+      <a href="https://twitter.com/@kidazzler" target="_blank">
+        <svg-icon src="/assets/images/social/icon-social-twitter.svg"></svg-icon>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="footer-content-simplified mobile-only" *ngIf="!isFullVersion">
+
+  <div class="top-links-container">
+    <div class="link">
+      <a routerLink="/kidazzler-faq">FAQs</a>
+    </div>
+    <div class="link">
+      <a href="{{blogUrl}}">Blog</a>
+    </div>
+    <div class="link">
+      <a routerLink="/contact-us">Contact</a>
+    </div>
+    <div class="link">
+      <a routerLink="/kidazzler-connection">For Businesses</a>
+    </div>
+  </div>
+
+  <div class="apps-container">
+
+    <kz-mobile-apps direction="horizontal" [isWhiteFill]="false"></kz-mobile-apps>
+
+  </div>
+
+  <div class="bottom-links-container">
+    <div class="link">
+      <a routerLink="/term-of-use">Term of Use</a>
+    </div>
+    <div class="round-divider"></div>
+    <div class="link">
+      <a routerLink="/privacy">Privacy</a>
+    </div>
+  </div>
+
+  <div class="site-label">
+    @2019 Kidazzler
+  </div>
+
+  <div class="social-media">
+    <a href="https://facebook.com/kidazzler/" target="_blank">
+      <svg-icon src="/assets/images/social/icon-social-fb-dark.svg"></svg-icon>
+    </a>
+    <a href="http://instagram.com/kidazzler" target="_blank">
+      <svg-icon src="/assets/images/social/icon-social-instagram-dark.svg"></svg-icon>
+    </a>
+    <a href="https://twitter.com/@kidazzler" target="_blank">
+      <svg-icon src="/assets/images/social/icon-social-twitter-dark.svg"></svg-icon>
+    </a>
+  </div>
+
+</div>

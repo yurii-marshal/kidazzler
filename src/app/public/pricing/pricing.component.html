@@ -1,0 +1,358 @@
+<kz-header type="withMenu"></kz-header>
+<div class="prices__banner">
+  <div class="container">
+    <div class="prices__banner__heading">Stand Out. Get Found. Get More Customers.</div>
+    <div class="prices__banner__text">Get the competitive advantage your business needs with Kidazzler’s All-In-One
+      advertising package that fit any sized budget
+    </div>
+  </div>
+</div>
+<div class="prices">
+  <div class="container">
+    <div class="prices__wrap">
+      <ul class="prices__field">
+        <li class="prices__field__heading"><span
+          class="prices__field__text">Exclusive <span>featured</span> Listing</span></li>
+        <li class="prices__field_hide"><span class="prices__field__text"><span>Premium</span> positioning in search results</span>
+        </li>
+        <li class="prices__field_hide"><span class="prices__field__text"><span>Featured</span> placements in mobile apps & desktop</span>
+        </li>
+        <li class="prices__field_hide"><span class="prices__field__text"><span>Featured</span> premium appearance in multiple categories</span>
+        </li>
+        <li class="prices__field_hide"><span class="prices__field__text"><span>Exclusive</span> ability to appear in “Best of” lists on homepage</span>
+        </li>
+        <li class="prices__field_hide"><span class="prices__field__text"><span>Special</span> icon displayed on listing and in search results</span>
+        </li>
+        <li class="prices__field__heading"><span class="prices__field__text">Expert Enhancements & Tools</span></li>
+        <li class="prices__field_hide"><span class="prices__field__text">Ability to run special deals & offers (unlimited)</span>
+        </li>
+        <li class="prices__field_hide"><span class="prices__field__text">Ability to create unique events & promotions (unlimited)</span>
+        </li>
+        <li class="prices__field_hide"><span class="prices__field__text">Engage customers in real-time</span></li>
+        <li class="prices__field_hide"><span class="prices__field__text">Create and provide customers unique check-in codes</span>
+        </li>
+        <li class="prices__field_hide"><span
+          class="prices__field__text">Preferred placement in multiple categories</span></li>
+        <li class="prices__field_hide"><span
+          class="prices__field__text">Stand out in search results with special icons</span></li>
+        <li class="prices__field_hide"><span class="prices__field__text">Remove competitor ads</span></li>
+        <li class="prices__field_hide"><span class="prices__field__text">Photo gallery/slideshow</span></li>
+        <li class="prices__field_hide"><span class="prices__field__text">Homepage spotlight: deals and events</span>
+        </li>
+        <li class="prices__field__heading"><span
+          class="prices__field__text">Current Price Guaranteed Upon Renewal</span></li>
+      </ul>
+      <div class="prices__column prices__column_popular" *ngFor="let plan of plans">
+        <div class="prices__column__badge">Most Popular</div>
+        <div class="prices__column__period">{{plan?.period}}</div>
+        <div class="prices__column__price">${{plan?.price}}<span>/mo</span></div>
+        <div class="prices__column__discount">Regular price <span>${{plan?.regularPrice}}/mo</span></div>
+        <div class="prices__column__save">SAVE <strong>60%</strong> for a limited time</div>
+        <div class="prices__column__period2">Billed {{plan?.billed}}</div>
+        <div class="prices__column__button">
+          <p-button label="Choose this plan" (onClick)="choosePlan(plan?.id)"></p-button>
+        </div>
+        <div class="prices__column__content">
+          <ul class="prices__field">
+            <li class="prices__field__heading"><span class="prices__field__text">Exclusive <span>featured</span> Listing</span>
+            </li>
+            <li class="prices__field_hide"><span class="prices__field__text"><span>Premium</span> positioning in search results</span>
+            </li>
+            <li class="prices__field_hide"><span class="prices__field__text"><span>Featured</span> placements in mobile apps & desktop</span>
+            </li>
+            <li class="prices__field_hide"><span class="prices__field__text"><span>Featured</span> premium appearance in multiple categories</span>
+            </li>
+            <li class="prices__field_hide"><span class="prices__field__text"><span>Exclusive</span> ability to appear in “Best of” lists on homepage</span>
+            </li>
+            <li class="prices__field_hide"><span class="prices__field__text"><span>Special</span> icon displayed on listing and in search results</span>
+            </li>
+            <li class="prices__field__heading"><span class="prices__field__text">Expert Enhancements & Tools</span></li>
+            <li class="prices__field_hide"><span class="prices__field__text">Ability to run special deals & offers (unlimited)</span>
+            </li>
+            <li class="prices__field_hide"><span class="prices__field__text">Ability to create unique events & promotions (unlimited)</span>
+            </li>
+            <li class="prices__field_hide"><span class="prices__field__text">Engage customers in real-time</span></li>
+            <li class="prices__field_hide"><span class="prices__field__text">Create and provide customers unique check-in codes</span>
+            </li>
+            <li class="prices__field_hide"><span
+              class="prices__field__text">Preferred placement in multiple categories</span></li>
+            <li class="prices__field_hide"><span class="prices__field__text">Stand out in search results with special icons</span>
+            </li>
+            <li class="prices__field_hide"><span class="prices__field__text">Remove competitor ads</span></li>
+            <li class="prices__field_hide"><span class="prices__field__text">Photo gallery/slideshow</span></li>
+            <li class="prices__field_hide"><span class="prices__field__text">Homepage spotlight: deals and events</span>
+            </li>
+            <li class="prices__field__heading"><span
+              class="prices__field__text">Current Price Guaranteed Upon Renewal</span></li>
+          </ul>
+          <ul class="prices__column__content__check">
+            <li>
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li>
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li class="prices__column__content__check_hide">
+              <i class="pi pi-check"></i>
+            </li>
+            <li>
+              <i class="pi pi-check"></i>
+            </li>
+          </ul>
+        </div>
+        <div class="prices__column__more" (click)="toggleBlock(1)">
+          View All Features <i class="pi pi-angle-down" [ngClass]="{'opened' : openedBlocks['1']}"></i>
+        </div>
+        <div class="prices__column__button">
+          <p-button label="Choose this plan" (onClick)="choosePlan(plan?.id)"></p-button>
+        </div>
+      </div>
+      <!--      <div class="prices__column" [class.opened]="openedBlocks['2']">-->
+      <!--        <div class="prices__column__period">6 Months</div>-->
+      <!--        <div class="prices__column__price">$24.99<span>/mo</span></div>-->
+      <!--        <div class="prices__column__discount">Regular price <span>$54.99/mo</span></div>-->
+      <!--        <div class="prices__column__save">SAVE <strong>55%</strong> for a limited time</div>-->
+      <!--        <div class="prices__column__period2">Billed bi-annually</div>-->
+      <!--        <div class="prices__column__button">-->
+      <!--          <p-button label="Choose this plan" (onClick)="choosePlan(2)"></p-button>-->
+      <!--        </div>-->
+      <!--        <div class="prices__column__content">-->
+      <!--          <ul class="prices__field">-->
+      <!--            <li class="prices__field__heading"><span class="prices__field__text">Exclusive <span>featured</span> Listing</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text"><span>Premium</span> positioning in search results</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text"><span>Featured</span> placements in mobile apps & desktop</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text"><span>Featured</span> premium appearance in multiple categories</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text"><span>Exclusive</span> ability to appear in “Best of” lists on homepage</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text"><span>Special</span> icon displayed on listing and in search results</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field__heading"><span class="prices__field__text">Expert Enhancements & Tools</span></li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Ability to run special deals & offers (unlimited)</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Ability to create unique events & promotions (unlimited)</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Engage customers in real-time</span></li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Create and provide customers unique check-in codes</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span-->
+      <!--              class="prices__field__text">Preferred placement in multiple categories</span></li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Stand out in search results with special icons</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Remove competitor ads</span></li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Photo gallery/slideshow</span></li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Homepage spotlight: deals and events</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field__heading"><span-->
+      <!--              class="prices__field__text">Current Price Guaranteed Upon Renewal</span></li>-->
+      <!--          </ul>-->
+      <!--          <ul class="prices__column__content__check">-->
+      <!--            <li>-->
+      <!--              <i class="pi pi-times"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-times"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-times"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-times"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-times"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--          </ul>-->
+      <!--        </div>-->
+      <!--        <div class="prices__column__more" (click)="toggleBlock(2)">-->
+      <!--          View All Features <i class="pi pi-angle-down" [ngClass]="{'opened' : openedBlocks['2']}"></i>-->
+      <!--        </div>-->
+      <!--        <div class="prices__column__button">-->
+      <!--          <p-button label="Choose this plan" (onClick)="choosePlan(2)"></p-button>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div class="prices__column" [class.opened]="openedBlocks['3']">-->
+      <!--        <div class="prices__column__period">Monthly</div>-->
+      <!--        <div class="prices__column__price">$29.99<span>/mo</span></div>-->
+      <!--        <div class="prices__column__discount">Regular price <span>$59.99/mo</span></div>-->
+      <!--        <div class="prices__column__save">SAVE <strong>50%</strong> for a limited time</div>-->
+      <!--        <div class="prices__column__period2">Billed monthly</div>-->
+      <!--        <div class="prices__column__button">-->
+      <!--          <p-button label="Choose this plan" (onClick)="choosePlan(3)"></p-button>-->
+      <!--        </div>-->
+      <!--        <div class="prices__column__content">-->
+      <!--          <ul class="prices__field">-->
+      <!--            <li class="prices__field__heading"><span class="prices__field__text">Exclusive <span>featured</span> Listing</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text"><span>Premium</span> positioning in search results</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text"><span>Featured</span> placements in mobile apps & desktop</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text"><span>Featured</span> premium appearance in multiple categories</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text"><span>Exclusive</span> ability to appear in “Best of” lists on homepage</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text"><span>Special</span> icon displayed on listing and in search results</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field__heading"><span class="prices__field__text">Expert Enhancements & Tools</span></li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Ability to run special deals & offers (unlimited)</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Ability to create unique events & promotions (unlimited)</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Engage customers in real-time</span></li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Create and provide customers unique check-in codes</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span-->
+      <!--              class="prices__field__text">Preferred placement in multiple categories</span></li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Stand out in search results with special icons</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Remove competitor ads</span></li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Photo gallery/slideshow</span></li>-->
+      <!--            <li class="prices__field_hide"><span class="prices__field__text">Homepage spotlight: deals and events</span>-->
+      <!--            </li>-->
+      <!--            <li class="prices__field__heading"><span-->
+      <!--              class="prices__field__text">Current Price Guaranteed Upon Renewal</span></li>-->
+      <!--          </ul>-->
+      <!--          <ul class="prices__column__content__check">-->
+      <!--            <li>-->
+      <!--              <i class="pi pi-times"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-times"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-times"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-times"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-times"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li class="prices__column__content__check_hide">-->
+      <!--              <i class="pi pi-check"></i>-->
+      <!--            </li>-->
+      <!--            <li>-->
+      <!--              <i class="pi pi-times"></i>-->
+      <!--            </li>-->
+      <!--          </ul>-->
+      <!--        </div>-->
+      <!--        <div class="prices__column__more" (click)="toggleBlock(3)">-->
+      <!--          View All Features <i class="pi pi-angle-down" [ngClass]="{'opened' : openedBlocks['3']}"></i>-->
+      <!--        </div>-->
+      <!--        <div class="prices__column__button">-->
+      <!--          <p-button label="Choose this plan" (onClick)="choosePlan(3)"></p-button>-->
+      <!--        </div>-->
+      <!--      </div>-->
+    </div>
+  </div>
+</div>
+<kz-footer></kz-footer>

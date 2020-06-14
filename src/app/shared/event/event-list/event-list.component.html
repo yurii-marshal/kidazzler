@@ -1,0 +1,32 @@
+<div class="deals-list" [ngClass]="{'deals-list_empty': !events?.length}">
+  <div class="deals-list__wrapper">
+    <div class="add-deal" *ngIf="role === 0" [routerLink]="['add']">
+      <div class="add-deal__box">
+        <img src="../../../../assets/images/icons/plus-icon.svg" alt="Plus icon" class="add-deal__icon">
+        <p class="add-deal__text">
+          Add new event
+        </p>
+      </div>
+      <img src="../../../../assets/images/icons/ticket-image.svg" alt="Ticket icon" class="add-deal__icon">
+    </div>
+
+    <!-- EVENT CARD -->
+    <kz-event-card [event]="event" *ngFor="let event of events" [business]="business" [role]="role"></kz-event-card>
+    <!-- EVENT CARD -->
+
+    <div class="empty-state" *ngIf="!events?.length">
+      <img src="../../../../assets/images/icons/events-empty-state.svg" alt="" class="empty-state__image">
+      <h2 class="empty-state__heading">
+        No events were added yet
+      </h2>
+      <p class="empty-state__text">
+        Call the business and ask them if they have any <br>
+        special events for Kidazzler customers.
+      </p>
+    </div>
+
+    <a *ngIf="role === 0" class="deals-list__link" href="https://blog.kidazzler.com/event-ideas-to-post-on-kidazzler/" target="_blank">
+      View Event Ideas
+    </a>
+  </div>
+</div>

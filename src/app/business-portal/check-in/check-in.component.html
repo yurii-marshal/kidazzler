@@ -1,0 +1,174 @@
+<div class="check-in-wrapper">
+  <ngx-ui-loader [fgsColor]="'#823cf1'" [loaderId]="'check-in'" [fgsType]="'wandering-cubes'" [hasProgressBar]="false"
+                 [fgsPosition]="'center-center'"></ngx-ui-loader>
+  <kz-title-header [title]="'Check-in'" [isShownBack]="!isSuccessfullyCheckIn"></kz-title-header>
+  <div class="check-in">
+    <ngx-ui-loader [overlayColor]="'#fff'" [fgsType]="'chasing-dots'" [fgsColor]="'#823cf1'"
+                   [pbColor]="'#823cf1'"></ngx-ui-loader>
+
+    <!-- CHECKIN BLOCK -->
+    <div class="check-in__create-check-in" *ngIf="!isSuccessfullyCheckIn" [class.add-margin]="codeFocused">
+      <div class="check-in__text-block">
+        <h1 class="check-in__heading">
+          {{business?.name}}
+        </h1>
+        <p class="check-in__description">
+          Earn points to win prizes and rewards.
+          <i (click)="isShownInfoPopup = true" class="check-in__icon pi pi-info"></i>
+        </p>
+      </div>
+
+      <form class="check-in-form" #checkInForm="ngForm">
+        <!--BLOCK WITH CODE-->
+        <div class="check-in-form__item check-in-form__item_code">
+
+          <div class="check-in-form__item-box">
+            <img src="../../../assets/images/checkin/checkin-icon_1.svg" alt="Checkin Icon" class="check-in-form__icon">
+            <p class="check-in-form__text">
+              Ask business for their <br>
+              Kidazzler Check-in Code
+            </p>
+            <p class="check-in-form__number">
+          <span>
+            +20
+          </span>
+              Points
+            </p>
+          </div>
+          <input class="check-in-form__input" type="text" placeholder="Enter Code (Optional)" [(ngModel)]="code"
+                 (focus)="onCodeFocus()" (blur)="onCodeBlur()"
+                 name="code">
+        </div>
+
+        <!--BLOCK WITH UPLOADER-->
+        <div class="check-in-form__item check-in-form__item_upload">
+          <div class="check-in-form__item-box">
+            <img src="../../../assets/images/checkin/checkin-icon_2.svg" alt="Checkin Icon"
+                 class="check-in-form__icon">
+            <p class="check-in-form__text">
+              Upload a <br>
+              Business Photo
+            </p>
+            <p class="check-in-form__number">
+          <span>
+            +10
+          </span>
+              Points
+            </p>
+          </div>
+          <div class="upload-wrapper" *ngIf="!this.photoUrl">
+            <ngx-ui-loader [fgsColor]="'#823cf1'" [loaderId]="'upload-img'" [fgsType]="'wandering-cubes'"
+                           [hasProgressBar]="false" [fgsPosition]="'center-center'"></ngx-ui-loader>
+
+            <input class="check-in-form__input" type="file" accept="image/*" (change)="onUploadPhoto($event)">
+          </div>
+        </div>
+
+        <div class="check-in-form__image-box">
+          <img src="{{this.photoUrl}}" alt="Checkin Icon" *ngIf="this.photoUrl">
+
+          <span class="check-in-form__delete-box" *ngIf="this.photoUrl">
+          <img (click)="removePhoto()" src="../../../assets/images/icons/trash-icon.svg" alt="Delete">
+        </span>
+        </div>
+
+        <!--BLOCK WITH ANONYMOUS CHECK-->
+        <div class="check-in-form__item check-in-form__item_checkbox">
+          <input class="check-in-form__checkbox" type="checkbox" [(ngModel)]="isAnonymously" name="anonymously">
+          <p class="check-in-form__text">
+            Add photo anonymously
+          </p>
+        </div>
+
+        <button class="check-in__submit" [disabled]="checkInForm.submitted" type="submit" (click)="onSubmit()">
+          Continue
+        </button>
+      </form>
+    </div>
+
+    <!-- SUCCESSFUL CHECKIN BLOCK -->
+    <div class="check-in__checked-in checked-in" *ngIf="isSuccessfullyCheckIn">
+      <div>
+        <img src="../../../assets/images/checkin/checkin-icon_3.svg" alt="" class="checked-in__icon">
+        <p class="checked-in__text">
+          You've Checked in! <br>
+          +{{checkInPoints}} points
+        </p>
+        <p class="checked-in__info">
+          Earn more points with friends. It’s fun! <br>
+          Get <b>+2 extra points</b> every time your friends <br>
+          Earn Check-in points on Kidazzler
+        </p>
+
+        <p class="checked-in__link" (click)="shareBusiness()">
+          Invite Friends
+        </p>
+      </div>
+
+      <button class="check-in__submit" type="submit" (click)="goToBusinessDetail()">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- BEGIN: MODAL WITH REWARDS INFO -->
+<p-dialog [visible]="isShownInfoPopup" [styleClass]="'reward-modal'" [modal]="true" [showHeader]="false">
+  <div class="check-in-popup check-in-popup_info">
+    <span class="check-in-popup__close">
+      <span class="check-in-popup__close-box">
+        <svg (click)="isShownInfoPopup = false" width="12" height="12" viewBox="0 0 12 12" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+                fill="#26314F"/>
+        </svg>
+      </span>
+    </span>
+    <div class="check-in-popup__tips">
+      <div class="check-in-popup__tips-item">
+        <p class="check-in-popup__tips-text">
+          Check-in to a business with their Kidazzler <br>
+          Check-in code (ask them for it)
+        </p>
+        <span class="check-in-popup__tips-number">
+          + 20 Points
+        </span>
+      </div>
+      <div class="check-in-popup__tips-item">
+        <p class="check-in-popup__tips-text">
+          Add a business photo during your Check-in
+        </p>
+        <span class="check-in-popup__tips-number">
+          + 10 Points
+        </span>
+      </div>
+      <div class="check-in-popup__tips-item">
+        <p class="check-in-popup__tips-text">
+          Check-in without business Check-in code
+        </p>
+        <span class="check-in-popup__tips-number">
+          + 2 Points
+        </span>
+      </div>
+    </div>
+    <div class="check-in-popup__banner">
+      <i class="pi pi-check"></i>
+      <p class="check-in-popup__banner-text">
+        Plus earn <b>+2 points</b> every time your <br>
+        friends earn Check-in points on <br>
+        Kidazzler
+      </p>
+    </div>
+  </div>
+</p-dialog>
+<!-- END: MODAL WITH REWARDS INFO -->
+
+<!-- BEGIN: MODAL WITH SHARE OPTIONS -->
+<kz-share-options-modal *ngIf="business"
+                        (onClose)="isShownSharePopup=false"
+                        [referralSignupUrl]="externalLinkToCheckIn"
+                        [isShownSharePopup]="isShownSharePopup"
+>
+</kz-share-options-modal>
+<!-- END: MODAL WITH SHARE OPTIONS -->
+
+

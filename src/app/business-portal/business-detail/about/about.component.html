@@ -1,0 +1,238 @@
+<div class="about">
+  <div class="about-body">
+    <!-- BUSINESS GENERAL INFO -->
+    <div class="title">
+      About
+    </div>
+    <div class="text">
+      {{business.about}}
+    </div>
+    <a (click)="showAbout = true" class="view-all">
+      Read More
+    </a>
+
+    <!-- BLOCK WITH CONTACTS -->
+    <div class="contacts">
+      <div class="contacts__info-item contacts__info-item_phone" *ngIf="business.phone && showPhone">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M13.6861 11.0733L11.5241 8.9061C11.0934 8.47621 10.3803 8.48927 9.93461 8.9361L8.84534 10.0276C8.77653 9.98957 8.70529 9.94987 8.6304 9.90774C7.94254 9.52574 7.00109 9.00217 6.0104 8.00851C5.01678 7.01276 4.49391 6.06772 4.11161 5.37786C4.07127 5.30478 4.03262 5.23431 3.99445 5.16739L4.7255 4.43577L5.08492 4.07509C5.53125 3.62763 5.54356 2.91305 5.11392 2.48192L2.95184 0.314451C2.52219 -0.116083 1.80871 -0.103021 1.36238 0.344444L0.753032 0.95868L0.769684 0.975248C0.565361 1.23655 0.394623 1.53793 0.267564 1.86292C0.150441 2.17228 0.0775199 2.46748 0.0441767 2.76329C-0.241312 5.13542 0.840231 7.30337 3.7754 10.2452C7.8327 14.3114 11.1023 14.0043 11.2434 13.9893C11.5506 13.9525 11.845 13.8789 12.1442 13.7624C12.4657 13.6366 12.7662 13.4657 13.0267 13.2613L13.04 13.2732L13.6573 12.6673C14.1028 12.22 14.1156 11.5051 13.6861 11.0733Z"
+            fill="#B4BCC5"/>
+        </svg>
+        <a href="tel:{{business.phone | phoneNumberForCall:(phoneInfo)}}">
+          {{business.phone | phoneNumber:(phoneInfo)}}
+        </a>
+      </div>
+      <div class="contacts__info-item" *ngIf="business.email">
+        <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M3 0H11C12.6569 0 14 1.34315 14 3V9C14 10.6569 12.6569 12 11 12H3C1.34315 12 0 10.6569 0 9V3C0 1.34315 1.34315 0 3 0ZM3.4427 2L7 5.16205L10.5573 2H3.4427ZM12 3.39351L8.32873 6.65686C7.57096 7.33044 6.42904 7.33044 5.67127 6.65686L2 3.39351V9C2 9.55229 2.44772 10 3 10H11C11.5523 10 12 9.55229 12 9V3.39351Z"
+                fill="#B4BCC5"/>
+        </svg>
+        <a href="mailto:{{business.email}}">
+          Email Business
+        </a>
+      </div>
+      <div class="contacts__info-item" *ngIf="business.website">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M13 8C12.4477 8 12 8.44771 12 9V11C12 11.5523 11.5523 12 11 12H3C2.44772 12 2 11.5523 2 11V3C2 2.44772 2.44772 2 3 2H5C5.55228 2 6 1.55228 6 1C6 0.447715 5.55228 0 5 0H3C1.34315 0 0 1.34315 0 3V11C0 12.6569 1.34315 14 3 14H11C12.6569 14 14 12.6569 14 11V9C14 8.44771 13.5523 8 13 8ZM14 1C14 0.447715 13.5523 0 13 0H9C8.44771 0 8 0.447715 8 1C8 1.55228 8.44771 2 9 2H10.5858L7 5.58579C6.60948 5.97631 6.60948 6.60948 7 7C7.39052 7.39052 8.02369 7.39052 8.41421 7L12 3.41421V5C12 5.55228 12.4477 6 13 6C13.5523 6 14 5.55228 14 5V3V1Z"
+                fill="#B4BCC5"/>
+        </svg>
+        <a href="{{business.website}}" target="_blank" (click)="openWebSite(business.website)">
+          View Website
+        </a>
+      </div>
+      <div class="contacts__info-item contacts__info-item_time" *ngIf="!isEmptyHours">
+        <div class="contacts__info-box">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M13.4412 4.27356C13.813 5.14048 14 6.04272 14 6.99231C14 7.94209 13.8129 8.85199 13.4412 9.71893C12.7029 11.4406 11.4487 12.7006 9.71346 13.4411C8.84633 13.811 7.93759 14 6.98849 14C6.0394 14 5.13768 13.8129 4.27121 13.4411C2.55054 12.7024 1.29054 11.4435 0.551124 9.71893C0.180605 8.85476 0 7.94209 0 6.99231C0 6.04272 0.180605 5.13755 0.551124 4.27356C1.29054 2.54901 2.55038 1.29761 4.27121 0.559117C5.13752 0.18725 6.03942 0 6.98849 0C7.93773 0 8.84633 0.189035 9.7136 0.559117C11.4488 1.29958 12.7031 2.55178 13.4412 4.27356ZM11.3281 9.50631C11.7775 8.73586 12 7.89553 12 6.99375C12 6.09199 11.776 5.25868 11.328 4.49382C10.8799 3.72884 10.2692 3.12082 9.49843 2.67172C8.73229 2.22528 7.89299 2 6.99064 2C6.08843 2 5.25444 2.22396 4.48922 2.67172C3.72387 3.1195 3.11173 3.72754 2.66593 4.49384C2.2217 5.25736 2 6.09199 2 6.99376C2 7.67171 2.12797 8.32579 2.39204 8.94032C2.65689 9.5571 3.01108 10.0939 3.45608 10.5386C3.90109 10.9832 4.43305 11.3347 5.04917 11.602C5.66531 11.8695 6.31251 12 6.99077 12C7.89299 12 8.73243 11.7749 9.49856 11.3284C10.2694 10.8793 10.8814 10.2719 11.3281 9.50631ZM7.60332 4.47206V6.59741L9.1652 7.83868C9.60686 8.22273 9.6169 8.86076 9.16402 9.25183C8.78109 9.5827 8.14171 9.5827 7.77493 9.26543L5.83894 7.73123C5.60223 7.5265 5.48895 7.24457 5.51684 6.99495C5.51216 6.97032 5.5066 6.941 5.5 6.90613V4.47206C5.5 3.9212 5.98785 3.5 6.53697 3.5C7.10032 3.5 7.60332 3.91379 7.60332 4.47206Z"
+                  fill="#B4BCC5"/>
+          </svg>
+          <div class="contacts__info-item-wrapper">
+            <span class="contacts__open-text" *ngIf="isOpen">Open Now</span>
+            <span class="contacts__open-text" *ngIf="!isOpen">Closed Now</span>
+            <span class="contacts__time">{{startDate | AMPM}} - {{endDate | AMPM}}</span>
+          </div>
+        </div>
+
+        <a (click)="showAbout = true">
+          Show Hours
+          <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L5 5L1 9" stroke="#242424" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- BLOCK WITH MAP -->
+    <kz-location-snapshot *ngIf="business?.businessDirection === 'Physical'"
+                          [business]="business"
+                          [isShownDirectionBtn]="true"
+    ></kz-location-snapshot>
+
+    <!-- PHOTO BLOCK -->
+    <div class="title title_photo">
+      Photos
+      <a class="title__link" href="" [routerLink]="['photos']">Show All</a>
+    </div>
+    <div class="photos">
+
+      <!-- LOADER -->
+      <ngx-ui-loader [overlayColor]="'#fff'"
+                     [fgsColor]="'#823cf1'"
+                     [loaderId]="'upload-business-photo'"
+                     [fgsType]="'wandering-cubes'"
+                     [hasProgressBar]="false"
+                     [fgsPosition]="'center-center'">
+      </ngx-ui-loader>
+      <!-- LOADER -->
+
+      <div class="photo" *ngFor="let photo of photos">
+        <img src="{{photo.url}}" alt="{{photo.url}}">
+      </div>
+      <label class="add-photo">
+        <input class="add-photo__input"
+               type="file"
+               accept="image/*"
+               (change)="uploadPhoto($event)">
+        <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M5.93733 0.00243569C5.74291 0.0255357 5.56918 0.173508 5.51547 0.361766L4.19519 5.00179H0.453112C0.207327 5.02494 -0.00106436 5.25488 4.65348e-07 5.50173V18.5001C3.15153e-05 18.7618 0.238204 19 0.499986 19H16.4995C16.7613 19 16.9995 18.7618 16.9995 18.5001V17.7345L17.8589 17.9767C18.1124 18.0527 18.4122 17.8878 18.4838 17.633L21.9837 4.88462C22.0545 4.63104 21.8864 4.33601 21.6322 4.26751C21.6322 4.26751 11.4092 0.943968 6.13264 0.0180607L6.12799 0.0172443C6.06515 0.00619363 6.00104 -0.00507911 5.93733 0.00243569ZM6.35138 1.11167L20.8822 5.09553L17.6479 16.8753L16.9995 16.6956V5.50173C16.9995 5.23997 16.7613 5.00182 16.4995 5.00179H5.23423L6.35138 1.11167ZM15.9995 6.00167H0.999972V14.4381L4.7733 12.5477C4.8175 12.5253 4.86507 12.5093 4.91392 12.5008C5.07951 12.4749 5.25644 12.5389 5.36703 12.6649L7.29667 14.7896L12.2731 12.2977C12.3197 12.2746 12.37 12.2586 12.4215 12.2509C12.5871 12.2249 12.764 12.289 12.8746 12.4149L15.9995 15.9301V6.00167ZM7.99977 8.00141C6.90115 8.00141 5.99983 8.90265 5.99983 10.0011C5.99983 11.0996 6.90115 12.0009 7.99977 12.0009C9.09839 12.0009 9.99971 11.0996 9.99971 10.0011C9.99971 8.90265 9.09839 8.00141 7.99977 8.00141ZM8.99974 10.0011C8.99974 9.44302 8.55796 9.0013 7.99977 9.0013C7.44158 9.0013 6.9998 9.44302 6.9998 10.0011C6.9998 10.5593 7.44158 11.001 7.99977 11.001C8.55796 11.001 8.99974 10.5593 8.99974 10.0011ZM12.3825 13.3679L15.9995 17.4299V18.0001H10.2263L7.99977 15.5551L12.3825 13.3679ZM8.86693 18.0001L4.88267 13.6179L0.999972 15.5629V18.0001H8.86693Z"
+                fill="#4B03BD"/>
+        </svg>
+        Add Photo
+      </label>
+    </div>
+
+    <!-- SHARE BUSINESS: hide a block accordingly to task #38245 -->
+    <div class="share-business" *ngIf="false">
+      <div class="title">
+        Share this Business
+      </div>
+      <div class="share-business__box">
+        <div class="block" *ngIf="business.email">
+          <a href="mailto:{{business.email}}">
+            <div class="icon">
+              <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M5.51623 22.1936V18.7961C5.51623 18.479 5.3495 18.1675 5.05319 18.0095C1.28424 15.9995 0.485 12.5959 0.485 10.0332C0.485 4.64169 5.148 0.485 11.5004 0.485C17.8527 0.485 22.515 4.64165 22.515 10.0332C22.515 15.4247 17.8521 19.5806 11.4996 19.5806C11.3009 19.5806 11.1028 19.5695 10.89 19.5567L10.8889 19.5566L10.7647 19.5494C10.5584 19.5281 10.3774 19.598 10.2481 19.6824L5.51623 22.1936Z"
+                  fill="white" stroke="#242424" stroke-width="0.97"/>
+                <rect x="5" y="9" width="3" height="3" rx="1.5" fill="#242424"/>
+                <rect x="10" y="9" width="3" height="3" rx="1.5" fill="#242424"/>
+                <rect x="15" y="9" width="3" height="3" rx="1.5" fill="#242424"/>
+              </svg>
+            </div>
+            <div class="name">Email</div>
+          </a>
+        </div>
+        <div class="block" (click)="copyLink()">
+          <div class="icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="17.8388" y="0.00439453" width="8" height="25" rx="4" transform="rotate(45 17.8388 0.00439453)"
+                    fill="white"/>
+              <path
+                d="M13.754 2.46648L9.99959 6.1288C9.74368 6.37843 9.74368 6.7849 9.99959 7.03453C10.2522 7.28092 10.6585 7.28092 10.9111 7.03453L14.6655 3.37217C15.3884 2.66702 16.3539 2.2787 17.3862 2.2787C18.4188 2.2787 19.3841 2.6671 20.1073 3.37257C20.8293 4.0768 21.2262 5.01562 21.2262 6.01868C21.2262 7.02165 20.8293 7.9601 20.1073 8.6644L15.1982 13.4543C13.699 14.9168 11.2552 14.9168 9.75558 13.4543C9.50302 13.2079 9.09669 13.2079 8.8441 13.4543C8.5882 13.7039 8.5882 14.1104 8.8441 14.36C9.81988 15.3115 11.1229 15.8261 12.4767 15.8261C13.8307 15.8261 15.1341 15.3114 16.1093 14.36L21.0192 9.57013C21.9877 8.62545 22.5217 7.36325 22.5217 6.01829C22.5217 4.67333 21.9877 3.41114 21.0192 2.46646C19.0158 0.511304 15.7577 0.511051 13.754 2.46648Z"
+                fill="#242424"/>
+              <path
+                d="M8.45346 20.1194C7.76952 20.8366 6.85857 21.2306 5.88561 21.2306C4.91279 21.2306 4.00217 20.8367 3.31772 20.1193C1.89489 18.6272 1.89488 16.1933 3.31779 14.7007L7.70338 10.1016C9.12023 8.61611 11.4221 8.61635 12.8391 10.1016C13.0849 10.3593 13.4875 10.3593 13.7333 10.1016C13.973 9.85024 13.973 9.44805 13.7333 9.19673C11.8259 7.19562 8.71679 7.19535 6.80912 9.19676L2.42315 13.7963C1.50517 14.759 1 16.0429 1 17.4105C1 18.7778 1.50545 20.0619 2.42358 21.0243C3.34404 21.9891 4.5745 22.5219 5.88523 22.5219C7.19704 22.5219 8.42745 21.9893 9.34734 21.0242L12.3623 17.8625C12.6019 17.6111 12.6019 17.2089 12.3623 16.9576C12.1166 16.7 11.7145 16.7002 11.4686 16.9574L8.45346 20.1194Z"
+                fill="#242424"/>
+            </svg>
+          </div>
+          <div class="name">Copy Link</div>
+        </div>
+        <div (click)="isShownSharePopup = true" class="block" hidden>
+          <div class="icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" fill="white" stroke="#242424"/>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M6 14C7.10457 14 8 13.1046 8 12C8 10.8954 7.10457 10 6 10C4.89543 10 4 10.8954 4 12C4 13.1046 4.89543 14 6 14Z"
+                    fill="#242424"/>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z"
+                    fill="#242424"/>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M18 14C19.1046 14 20 13.1046 20 12C20 10.8954 19.1046 10 18 10C16.8954 10 16 10.8954 16 12C16 13.1046 16.8954 14 18 14Z"
+                    fill="#242424"/>
+            </svg>
+          </div>
+          <div class="name">More</div>
+        </div>
+      </div>
+    </div>
+    <!-- CLAIM BLOCK -->
+    <div class="share-business__claim-block claim-block" *ngIf="!business.isClaimed">
+      <div class="claim-block__box">
+        <p class="claim-block__heading">
+          Is this your business?
+        </p>
+        <p class="claim-block__text">
+          Claim it now to help your <br>
+          customers find you
+        </p>
+        <p [ngClass]="{'disabled': !isBusinessUser}" class="claim-block__button disabled-btn" (click)="claimBusiness()">
+          Claim Business
+        </p>
+      </div>
+      <img src="../../../../assets/images/icons/icon-success-lrg.svg" alt="Claim icon">
+    </div>
+  </div>
+  <!-- BLOCK WITH RELATED BUSINESSES -->
+  <!--  <div class="related-block">-->
+  <!--    <div class="title title_related-business">-->
+  <!--      Related Businesses-->
+  <!--      <a class="title__link" href="">See All</a>-->
+  <!--    </div>-->
+
+  <!--    <div class="related-block__wrapper">-->
+  <!--      &lt;!&ndash; ADD DATA FOR RELATED BUSINESS &ndash;&gt;-->
+  <!--      <kz-business-card *ngFor="let business of businesses"-->
+  <!--                        [business]="business"-->
+  <!--                        [direction]="'vertical'"-->
+  <!--                        [category]="category"-->
+  <!--                        [routerLink]="['/', 'business-portal', 'business', business.id]">-->
+  <!--      </kz-business-card>-->
+  <!--    </div>-->
+  <!--  </div>-->
+</div>
+
+<p-dialog [visible]="isShownClaimPopup"
+          [modal]="true"
+          [styleClass]="'custom-popup custom-popup_claim'"
+          [style]="{'border':'none', 'box-shadow':'none'}">
+  <div class="claim-popup">
+    <div class="claim-popup__close close" (click)="closePopup()"></div>
+    <div class="claim-popup__title">
+      Please check your e-mail to proceed with business claiming
+    </div>
+  </div>
+</p-dialog>
+
+<kz-share-options-modal *ngIf="business"
+                        (onClose)="isShownSharePopup=false"
+                        [referralSignupUrl]="externalLinkToBusiness"
+                        [isShownSharePopup]="isShownSharePopup">
+</kz-share-options-modal>
+
+<!-- BEGIN: MODAL WITH ABOUT INFO -->
+<p-dialog [modal]="true"
+          [visible]="showAbout">
+  <div class="categories-popup">
+    <span class="categories-popup__close">
+      <span class="categories-popup__close-box" (click)="showAbout = false">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+                fill="#26314F"/>
+        </svg>
+      </span>
+    </span>
+    <div>
+      <kz-business-about [business]="business" (onClose)="closeAbout()"></kz-business-about>
+    </div>
+  </div>
+</p-dialog>
+<!-- END: MODAL WITH ABOUT INFO -->
+

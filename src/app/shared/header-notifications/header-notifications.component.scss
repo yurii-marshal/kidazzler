@@ -1,0 +1,192 @@
+@import "../../../styles/variables";
+
+$avatar-size: 54px;
+
+:host {
+  display: block;
+  position: relative;
+  color: #000;
+}
+
+.bell {
+  cursor: pointer;
+  padding: 0 25px;
+  height: $header-height;
+  display: flex;
+  align-items: center;
+
+  ::ng-deep svg-icon {
+    fill: $white;
+    display: flex;
+    height: 22px;
+    line-height: 22px;
+
+    svg {
+      height: 22px;
+      width: auto;
+    }
+  }
+
+  &::before {
+    opacity: 0;
+    transition: $base-animation;
+  }
+
+  &.has-new-messages {
+    &::before {
+      position: absolute;
+      right: 24px;
+      top: 24px;
+      content: " ";
+      width: 8px;
+      height: 8px;
+      background-color: $accent-color-2;
+      border: solid 2px $white;
+      border-radius: 50%;
+      opacity: 1;
+    }
+  }
+}
+
+.notifications {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: #{$header-height - 5px};
+  width: 350px;
+  min-height: 200px;
+
+  .notifications-scrollbar {
+    height: 350px;
+    margin: 12px 0;
+    display: block;
+    position: relative;
+  }
+
+  border-radius: 10px;
+  background-color: $white;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1), 0 26px 90px 0 rgba(0, 0, 0, 0.14);
+
+  &::before {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 12px 12px 12px;
+    border-color: transparent transparent #ffffff transparent;
+    content: " ";
+    display: block;
+    top: -11px;
+    right: 22px;
+    position: absolute;
+  }
+}
+
+.notification {
+  display: flex;
+  align-items: flex-start;
+
+  padding: 6px 24px 12px 18px;
+
+  .messages {
+    position: relative;
+    flex: 0 0 $avatar-size;
+
+    &::before {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: block;
+      content: " ";
+      width: 15px;
+      height: 15px;
+      background-color: $accent-color-2;
+      border: solid 3px #ffffff;
+      border-radius: 17px;
+      opacity: 0;
+    }
+
+    &.has-new-messages {
+      &::before {
+        opacity: 1;
+        transition: none;
+      }
+    }
+    &.no-new-messages {
+      &::before {
+        transition-delay: 1.5s;
+        transition: 1s linear all;
+        opacity: 0;
+      }
+    }
+  }
+
+  .avatar {
+    border-radius: 50%;
+    overflow: hidden;
+    width: $avatar-size;
+    height: $avatar-size;
+
+    img {
+      width: $avatar-size;
+      height: $avatar-size;
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+    margin-left: 10px;
+
+    &::after {
+      content: " ";
+      display: block;
+      opacity: 0.1;
+      padding-top: 12px;
+      border-bottom: 1px solid #26314f;
+    }
+  }
+
+  .text {
+    word-break: break-all;
+  }
+
+  .date {
+    font-size: 15px;
+    line-height: 1.47;
+    letter-spacing: -0.4px;
+    text-align: left;
+    color: $muted-color;
+  }
+}
+
+.empty-list {
+  color: $muted-color;
+  font-size: 17px;
+  text-align: center;
+  padding: 90px 0;
+
+  ::ng-deep svg {
+    fill: rgba($muted-color, 0.3);
+    display: block;
+    margin: 0 auto 12px;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  :host {
+    display: none !important;
+  }
+
+  .notifications {
+    position: fixed;
+    top: 120px;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+}
+
+@media (min-width: $breakpoint-sm) {
+  .bell {
+    padding: 0 35px;
+  }
+}

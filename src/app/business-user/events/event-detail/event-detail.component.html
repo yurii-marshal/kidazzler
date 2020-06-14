@@ -1,0 +1,19 @@
+<kz-header type="withMenu"></kz-header>
+
+<kz-title-header
+  [title]="'Event Details'"
+  [isWhite]="true"
+  [isShownBack]="true"
+  [isShownEdit]="true"
+  [isStatic]="true"
+  (onEdit)="onEventEdit()"
+></kz-title-header>
+
+<kz-event-detail [user]="roles?.business" [business]="business" [event]="event" (onAddPhotos)="addPhotos($event)"></kz-event-detail>
+
+<ngx-ui-loader [overlayColor]="'#fff'"
+               [fgsType]="'chasing-dots'"
+               [fgsColor]="'#823cf1'"
+               [pbColor]="'#823cf1'">
+</ngx-ui-loader>
+

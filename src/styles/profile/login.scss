@@ -1,0 +1,264 @@
+@import '../../styles/variables';
+
+.login-header {
+  position: relative;
+  background: $base-bg-gradient;
+  height: $header-height;
+  padding: 15px 20px 10px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .logo {
+    display: block;
+    width: 100%;
+    max-width: 115px;
+    position: relative;
+    z-index: 1;
+
+    &__icon {
+      margin-bottom: 1px;
+    }
+
+    &__text {
+      display: block;
+      font-size: 13px;
+      width: 100%;
+      line-height: 100%;
+      text-align: right;
+      color: #ffffff;
+    }
+  }
+}
+
+.login-container {
+  margin: 0 auto;
+  padding: 40px 30px;
+  max-width: 500px;
+  min-height: calc(100vh - 210px - 70px);
+
+  &__heading {
+    h1 {
+      padding: 0;
+      margin-bottom: 18px;
+    }
+
+    .small-container.notes {
+      padding: 0;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__type {
+    margin: 40px 0;
+  }
+
+  .login-type {
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    overflow: hidden;
+    display: flex;
+
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+      color: $note-color;
+      cursor: pointer;
+
+      &--isActive {
+        background-color: $link-color;
+        color: #fff;
+
+        .login-type__icon {
+          mix-blend-mode: hard-light;
+        }
+      }
+    }
+
+    &__icon {
+      height: 20px;
+      margin-right: 10px;
+    }
+  }
+
+  h1, h2, h3 {
+    padding: 0 0 15px;
+  }
+
+  h1, h2 {
+    text-align: center;
+
+    &.login-sub-title {
+      font-size: 22px;
+    }
+  }
+
+  .bordered-block {
+    border-bottom: solid 1px $muted-color;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+
+  .row {
+    padding: 8px 0;
+    display: flex;
+
+    &.centered {
+      justify-content: center;
+    }
+
+    .col {
+      flex-grow: 1;
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .row-extra {
+    padding: 20px 0 5px;
+
+    &_login {
+      padding-top: 0;
+    }
+  }
+
+  .notes {
+    text-align: center;
+    color: $note-color;
+    padding: 15px 0 25px;
+
+    &_forgot-password {
+      padding-bottom: 0;
+      margin-bottom: 24px;
+    }
+
+    a {
+      color: $accent-color;
+    }
+  }
+
+  .large-notes {
+    color: $note-color;
+    font-size: 17px;
+    padding: 6px 0 0;
+  }
+
+  .large-centered-notes {
+    color: $note-color;
+    font-size: 17px;
+    padding: 6px 0 0;
+    text-align: center;
+  }
+
+  .text-divider {
+    text-align: center;
+    padding: 20px 0;
+
+    &::before,
+    &::after {
+      display: inline-block;
+      content: " ";
+      border-top: 1px solid $muted-color;
+      width: 20px;
+      position: relative;
+      top: -3px;
+      margin: 0 7px;
+    }
+  }
+
+  .icon-screen {
+    padding: 40px 0 25px;
+    text-align: center;
+  }
+
+  .social-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: solid 1px $muted-color;
+    padding: 24px 0 0;
+    margin: 24px 0 0;
+    position: relative;
+
+    a {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: flex-start;
+
+      &:hover {
+        svg-icon {
+          opacity: 1;
+        }
+      }
+
+      &.fb svg-icon {
+        width: 11px;
+      }
+    }
+
+    svg-icon {
+      margin: 0 12px;
+      display: flex;
+      line-height: 24px;
+      opacity: .8;
+      transition: $base-animation;
+      fill: #5e7988;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+.small-container {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.important-note-message {
+  max-width: 440px;
+  border-radius: 8px;
+  background-color: rgba(#d0011b, .05);
+  padding: 24px;
+  font-size: 17px;
+  line-height: 1.41;
+  text-align: left;
+  color: #242424;
+
+  &.hide-message {
+    transform: scaleY(0);
+    opacity: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    height: 0;
+  }
+
+  &.show-message {
+    transform: scaleY(1);
+    opacity: 1;
+    margin-bottom: 50px;
+    height: auto;
+  }
+}
+
+@media (min-width: 320px) and (max-width: $breakpoint-sm) {
+  .login-header {
+    justify-content: flex-start;
+  }
+}

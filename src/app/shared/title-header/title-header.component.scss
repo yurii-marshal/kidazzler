@@ -1,0 +1,88 @@
+@import '../../../styles/variables';
+
+.title-header {
+  position: relative;
+  padding: 0 20px;
+  height: 40px;
+  background: $base-bg-gradient;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+
+  &.transparent {
+    color: $base-color;
+    background: transparent;
+
+    .title-header__back {
+      svg {
+        stroke: #242424;
+      }
+    }
+  }
+
+  &.white {
+    color: $base-color;
+    background: $white;
+
+    .title-header__back {
+      svg {
+        stroke: $base-color;
+      }
+    }
+  }
+
+  &.static {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+  }
+
+  &__back {
+    cursor: pointer;
+
+    svg {
+      stroke: #ffffff;
+    }
+  }
+
+  &__title {
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    letter-spacing: -0.141429px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__clear {
+    pointer-events: none;
+    opacity: 0.5;
+    font-size: 15px;
+    letter-spacing: 0.22px;
+
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+  }
+
+  &__edit, &__cancel {
+    font-size: 17px;
+    line-height: 21px;
+    text-align: right;
+    letter-spacing: -0.309091px;
+    color: $link-color;
+
+    &:visited {
+      color: $link-color;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

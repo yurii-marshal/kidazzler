@@ -1,0 +1,77 @@
+<kz-header></kz-header>
+
+<div class="login-container">
+
+  <h1>Business Sign Up</h1>
+
+  <div class="small-container notes">
+    By Signing Up, you agree to Kidazzler’s <a [routerLink]="['/terms']">Terms of Service</a>
+    and <a [routerLink]="['/privacy']">Privacy Policy</a>.
+  </div>
+
+  <div *ngIf="userForm">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-component" nameTransformation="true" placeholder="First Name*" id="firstName"
+            formControlName="firstName" pInputText>
+          <div class="error-message" *ngIf="formErrorsService.checkControlValidation('firstName')">
+            {{ formErrorsService.getValidationMessage('firstName')}}
+          </div>
+        </div>
+        <div class="col">
+          <input type="text" class="form-component" nameTransformation="true" placeholder="Last Name*" id="lastName"
+            formControlName="lastName" pInputText>
+          <div class="error-message" *ngIf="formErrorsService.checkControlValidation('lastName')">
+            {{ formErrorsService.getValidationMessage('lastName')}}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-component" placeholder="Email*" id="email" formControlName="email" pInputText>
+          <div class="error-message" *ngIf="formErrorsService.checkControlValidation('email')">
+            {{ formErrorsService.getValidationMessage('email') }}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col" formGroupName="passwords">
+          <input type="password" class="form-component" placeholder="Password*" id="password" formControlName="password"
+            pInputText maxlength="128">
+          <div class="error-message" *ngIf="formErrorsService.checkControlOnTyping('passwords.password')">
+            {{ formErrorsService.getValidationMessage('passwords.password') }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" formGroupName="passwords">
+          <input type="password" class="form-component" placeholder="Confirm password*"
+            formControlName="passwordConfirmation" pInputText maxlength="128">
+          <div class="error-message" *ngIf="formErrorsService.checkControlValidation('passwords.passwordConfirmation')">
+            {{ formErrorsService.getValidationMessage('passwords.passwordConfirmation') }}
+          </div>
+
+          <div class="error-message" *ngIf="formErrorsService.checkControlValidation('passwords')">
+            {{ formErrorsService.getValidationMessage('passwords') }}
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row-extra">
+        <button class="btn btn-primary btn-fullwidth">
+          Sign Up
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="notes">
+    Already have a Business account Kidazzler?
+    <a [routerLink]="['/login/business']">Login</a>
+  </div>
+</div>
+<kz-footer></kz-footer>

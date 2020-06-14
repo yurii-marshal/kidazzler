@@ -1,0 +1,81 @@
+<!--  Roles       -->
+<!--  business: 0 -->
+<!--  user: 1     -->
+
+<div class="deal-item" [ngClass]="{'deal-item_user' : role === 1}">
+  <div class="deal-image">
+    <div class="deal-image__button" [ngClass]="{'wide' : !deal?.photos?.length}"
+         *ngIf="role === 0 && !deal?.photos?.length" (click)="photo.click()">
+      <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M5.93733 0.00243569C5.74291 0.0255357 5.56918 0.173508 5.51547 0.361766L4.1952 5.00179H0.453116C0.207331 5.02494 -0.00106076 5.25488 4.06281e-06 5.50173V18.5001C3.51128e-05 18.7618 0.238208 19 0.49999 19H16.4995C16.7613 19 16.9995 18.7618 16.9995 18.5001V17.7345L17.8589 17.9767C18.1124 18.0527 18.4123 17.8878 18.4838 17.633L21.9837 4.88462C22.0545 4.63104 21.8864 4.33601 21.6322 4.26751C21.6322 4.26751 11.4092 0.943968 6.13264 0.0180607L6.128 0.0172445C6.06515 0.00619372 6.00105 -0.00507914 5.93733 0.00243569ZM6.35138 1.11167L20.8822 5.09553L17.6479 16.8753L16.9995 16.6956V5.50173C16.9995 5.23997 16.7613 5.00182 16.4995 5.00179H5.23423L6.35138 1.11167ZM15.9995 6.00167H0.999975V14.4381L4.7733 12.5477C4.81751 12.5253 4.86507 12.5093 4.91393 12.5008C5.07951 12.4749 5.25644 12.5389 5.36704 12.6649L7.29667 14.7896L12.2731 12.2977C12.3197 12.2746 12.37 12.2586 12.4215 12.2509C12.5871 12.2249 12.764 12.289 12.8746 12.4149L15.9995 15.9301V6.00167ZM7.99977 8.00141C6.90115 8.00141 5.99983 8.90265 5.99983 10.0011C5.99983 11.0996 6.90116 12.0009 7.99977 12.0009C9.09839 12.0009 9.99972 11.0996 9.99972 10.0011C9.99972 8.90265 9.09839 8.00141 7.99977 8.00141ZM8.99975 10.0011C8.99975 9.44302 8.55796 9.0013 7.99977 9.0013C7.44158 9.0013 6.9998 9.44302 6.9998 10.0011C6.9998 10.5593 7.44158 11.001 7.99977 11.001C8.55796 11.001 8.99975 10.5593 8.99975 10.0011ZM12.3825 13.3679L15.9995 17.4299V18.0001H10.2263L7.99977 15.5551L12.3825 13.3679ZM8.86694 18.0001L4.88268 13.6179L0.999975 15.5629V18.0001H8.86694Z"
+              fill="white"/>
+      </svg>
+      <p class="deal-image__text">
+        <span>Add Photo</span>
+        <input style="display: none;"
+               #photo
+               type="file"
+               accept="image/*"
+               (change)="addPhoto($event)">
+      </p>
+    </div>
+    <div class="deal-image__button" [ngClass]="{'wide' : !deal?.photos?.length}"
+         *ngIf="role === 0 && deal?.photos?.length" [routerLink]="[deal.id, 'photos']">
+      <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M5.93733 0.00243569C5.74291 0.0255357 5.56918 0.173508 5.51547 0.361766L4.1952 5.00179H0.453116C0.207331 5.02494 -0.00106076 5.25488 4.06281e-06 5.50173V18.5001C3.51128e-05 18.7618 0.238208 19 0.49999 19H16.4995C16.7613 19 16.9995 18.7618 16.9995 18.5001V17.7345L17.8589 17.9767C18.1124 18.0527 18.4123 17.8878 18.4838 17.633L21.9837 4.88462C22.0545 4.63104 21.8864 4.33601 21.6322 4.26751C21.6322 4.26751 11.4092 0.943968 6.13264 0.0180607L6.128 0.0172445C6.06515 0.00619372 6.00105 -0.00507914 5.93733 0.00243569ZM6.35138 1.11167L20.8822 5.09553L17.6479 16.8753L16.9995 16.6956V5.50173C16.9995 5.23997 16.7613 5.00182 16.4995 5.00179H5.23423L6.35138 1.11167ZM15.9995 6.00167H0.999975V14.4381L4.7733 12.5477C4.81751 12.5253 4.86507 12.5093 4.91393 12.5008C5.07951 12.4749 5.25644 12.5389 5.36704 12.6649L7.29667 14.7896L12.2731 12.2977C12.3197 12.2746 12.37 12.2586 12.4215 12.2509C12.5871 12.2249 12.764 12.289 12.8746 12.4149L15.9995 15.9301V6.00167ZM7.99977 8.00141C6.90115 8.00141 5.99983 8.90265 5.99983 10.0011C5.99983 11.0996 6.90116 12.0009 7.99977 12.0009C9.09839 12.0009 9.99972 11.0996 9.99972 10.0011C9.99972 8.90265 9.09839 8.00141 7.99977 8.00141ZM8.99975 10.0011C8.99975 9.44302 8.55796 9.0013 7.99977 9.0013C7.44158 9.0013 6.9998 9.44302 6.9998 10.0011C6.9998 10.5593 7.44158 11.001 7.99977 11.001C8.55796 11.001 8.99975 10.5593 8.99975 10.0011ZM12.3825 13.3679L15.9995 17.4299V18.0001H10.2263L7.99977 15.5551L12.3825 13.3679ZM8.86694 18.0001L4.88268 13.6179L0.999975 15.5629V18.0001H8.86694Z"
+              fill="white"/>
+      </svg>
+      <p class="deal-image__text">
+        <span>See all</span>
+      </p>
+    </div>
+    <img *ngIf="deal.photos.length > 0" (click)="redirectOnPhotoClick()" [src]="primaryPhotoUrl" alt="Business Name"
+         class="deal-image__image">
+    <img *ngIf="deal.photos.length === 0" (click)="redirectOnPhotoClick()"
+         src="../../../../assets/images/bg-landing.jpg" alt="Business Name" class="deal-image__image">
+  </div>
+  <div class="deal-item__text-box">
+    <div class="deal-text">
+      <p class="deal-text__expire-info">
+        {{deal.expireAt ? 'Expires: ' + (deal.expireAt | date: 'MMMM d, y') : 'Never expires'}}
+      </p>
+      <p class="deal-text__heading">
+        {{deal.title}}
+      </p>
+      <div class="deal-text__location">
+        {{business?.name}} - {{deal.city}}, {{deal.state | shortenState}}
+      </div>
+      <p class="deal-text__categories" *ngIf="deal?.eventCategories?.length > 0">
+        <i class="pi pi-tag"></i>
+        <span *ngFor="let category of deal?.eventCategories; let last = last">{{category.name}} {{last ? '' : ', '}}</span>
+      </p>
+    </div>
+    <div class="deal-item__discount-block">
+      <p *ngIf="deal.discount" class="deal-item__discount-text deal-item__discount-text_percent">
+        <img src="../../../../assets/images/icons/percent-icon_purple.svg"
+             alt="Discount icon"
+             class="deal-item__discount-icon">
+        {{deal.discount}}%
+        OFF
+      </p>
+
+      <p class="deal-item__discount-text">
+        {{deal.price ? '$' + deal.price : (!deal.discount ? 'FREE' : '')}}
+      </p>
+    </div>
+    <p class="deal-item__description">
+      {{deal.description}}
+    </p>
+    <div class="deal-item__button-block" [ngClass]="{'single' : role === 1}">
+      <p class="deal-item__button" (click)="viewDetails(business?.id, deal?.id)">
+        View Details
+      </p>
+      <p *ngIf="role === 0" class="deal-item__button deal-item__button_gray"
+         [routerLink]="['/businesses', business?.id, 'deals', deal.id, 'edit']">
+        Edit
+      </p>
+    </div>
+  </div>
+</div>

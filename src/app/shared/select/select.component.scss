@@ -1,0 +1,87 @@
+@import '../../../styles/variables';
+
+:host {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+.search-input {
+  padding-right: 35px;
+}
+
+.dropdown-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 35px;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+
+  cursor: pointer;
+}
+
+.dropdown-caret, .popup-arrow {
+  width: 12px;
+  height: 12px;
+  margin-bottom: 4px;
+  margin-right: 10px;
+
+  display: inline-block;
+
+  border-radius: 0;
+  border-bottom: solid 1.8px $input-base-color-dropdown;
+  border-right: solid 1.8px $input-base-color-dropdown;
+}
+
+.dropdown-caret {
+  transform: rotate(45deg);
+}
+
+.popup-arrow {
+  transform: rotate(-45deg);
+}
+
+.select-panel {
+  width: 100%;
+  max-height: 200px;
+  padding: 10px;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  overflow-y: auto;
+  z-index: 1000;
+
+  background: $input-base-color;
+  border: 1px solid $input-base-color-accent;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+
+  font-family: $font-family;
+  color: $base-color;
+  font-size: 15px;
+}
+
+.select-options-list {
+  padding: .4em;
+  border: 0 none;
+}
+
+.select-option {
+  margin: 1px 0;
+  padding: .186em .313em;
+
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    color: $white;
+    background: $accent-color;
+  }
+}

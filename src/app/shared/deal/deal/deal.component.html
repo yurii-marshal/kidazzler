@@ -1,0 +1,251 @@
+<div class="deal-wrapper" *ngIf="form">
+  <div class="deal-edit">
+    <p class="deal-edit__heading">
+      Deal Information
+    </p>
+    <form class="edit-form" [formGroup]="form" (ngSubmit)="submit()">
+      <!-- TITLE EDIT -->
+      <div class="edit-form__item">
+        <label for="title" class="edit-form__label">Title</label>
+        <input placeholder="Enter Title" class="edit-form__input" type="text" id="title" formControlName="title"
+               maxlength="80">
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('title')">
+          {{ formErrors.getValidationMessage('title') }}
+        </div>
+      </div>
+      <!-- TOWN/CITY EDIT -->
+      <div class="edit-form__item">
+        <label for="city" class="edit-form__label">City/Town</label>
+        <kz-location-picker id="city" class="edit-form__input" [pickCity]="true" [placeholder]="'Enter City'"
+                            formControlName="city"></kz-location-picker>
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('city')">
+          {{ formErrors.getValidationMessage('city') }}
+        </div>
+      </div>
+      <!-- STATE/PROVINCE EDIT -->
+      <div class="edit-form__item">
+        <label for="state" class="edit-form__label">State/Province</label>
+        <kz-location-picker id="state" class="edit-form__input" [pickState]="true"
+                            [placeholder]="'Enter State/Province'"
+                            formControlName="state"></kz-location-picker>
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('state')">
+          {{ formErrors.getValidationMessage('state') }}
+        </div>
+      </div>
+      <!-- DETAILS EDIT -->
+      <div class="edit-form__item">
+        <label for="description" class="edit-form__label">Deal Details</label>
+
+        <textarea placeholder="Enter Deal Detail" class="edit-form__input" id="description" maxlength="4000"
+                  formControlName="description"></textarea>
+        <div class="edit-form__text-counter">{{form.get('description').value.length}}/4000</div>
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('description')">
+          {{ formErrors.getValidationMessage('description') }}
+        </div>
+      </div>
+      <!-- CATEGORIES EDIT -->
+      <div class="edit-form__item edit-form__item_categories">
+        <p class="edit-form__label edit-form__label_bold">Deal Categories</p>
+        <div class="edit-form__item-box">
+          <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+          <div class="ui-fluid" (click)="showCategoriesPopup = true">
+            <div class="edit-form__input" id="categories">
+              <p class="edit-form__placeholder" *ngIf="selectedCategories.length < 1">
+                Select Categories
+              </p>
+
+              <p class="edit-form__category-list">
+                  <span *ngFor="let category of selectedCategories; let last = last">
+                  {{category.name}} {{last ? '' : ',' }}
+                </span>
+              </p>
+            </div>
+            <div class="error-message"
+                 *ngIf="formErrors.checkControlValidation('eventCategories') && !selectedCategories?.length">
+              {{ formErrors.getValidationMessage('eventCategories') }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- EXPIRING DATE EDIT -->
+      <div class="edit-form__item">
+        <p class="edit-form__label edit-form__label_bold">Expires date</p>
+
+        <div class="ui-fluid">
+          <p-selectButton [styleClass]="'edit-form__option'" (onChange)="onExpireTypeChange()"
+                          [options]="expiresOptions" [(ngModel)]="isExpire" [ngModelOptions]="{standalone: true}">
+          </p-selectButton>
+        </div>
+
+        <div *ngIf="isExpire" class="edit-form__item edit-form__item_inner">
+          <p class="edit-form__label edit-form__label_bold">Choose Date</p>
+          <div class="edit-form__item-box">
+            <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+            <p-calendar formControlName="expireAt"
+                        placeholder="Select Date"
+                        [defaultDate]="startDate">
+            </p-calendar>
+          </div>
+          <div class="edit-form__item-box">
+            <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+            <p-calendar formControlName="expireAt"
+                        placeholder="11:59 PM"
+                        timeOnly="true"
+                        hourFormat="12"
+                        [defaultDate]="startDate">
+            </p-calendar>
+          </div>
+        </div>
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('expireAt')">
+          {{ formErrors.getValidationMessage('expireAt') }}
+        </div>
+      </div>
+      <!-- CODE EDIT -->
+      <div class="edit-form__item">
+        <label for="code" class="edit-form__label edit-form__label_bold">Kidazzler Code</label>
+        <p class="edit-form__label">Type code here</p>
+        <input placeholder="Enter Deal Code" class="edit-form__input edit-form__input_code" type="text" id="code"
+               formControlName="code" maxlength="20">
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('code')">
+          {{ formErrors.getValidationMessage('code') }}
+        </div>
+      </div>
+      <!-- PRICE EDIT -->
+      <div class="edit-form__item radio-select">
+        <p class="edit-form__label edit-form__label_bold">Price</p>
+        <div class="radio-select__item">
+          <p-radioButton name="groupname" value="free" [(ngModel)]="paymentType"
+                         (ngModelChange)="onPaymentTypeChange($event)"
+                         [ngModelOptions]="{standalone: true}"></p-radioButton>
+          <p class="radio-select__text">
+            Free
+          </p>
+        </div>
+
+        <div class="radio-select__item radio-select__item_column">
+          <div class="flex-box">
+            <p-radioButton name="groupname" value="fixed" [(ngModel)]="paymentType"
+                           (ngModelChange)="onPaymentTypeChange($event)"
+                           [ngModelOptions]="{standalone: true}"></p-radioButton>
+            <p class="radio-select__text">
+              Fixed Price
+            </p>
+          </div>
+
+          <div class="radio-select__box" *ngIf="paymentType === 'fixed'">
+            <input placeholder="Price" class="edit-form__input radio-select__input"
+                   type="number" id="price"
+                   formControlName="price">
+
+            <p-dropdown [options]="currency" [styleClass]="'currency-select'"
+                        class="edit-form__input radio-select__input"
+                        id="currency"
+                        formControlName="currency">
+            </p-dropdown>
+
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('price')">
+              {{ formErrors.getValidationMessage('price') }}
+            </div>
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('currency')">
+              {{ formErrors.getValidationMessage('currency') }}
+            </div>
+          </div>
+        </div>
+        <div class="radio-select__item radio-select__item_column radio-select__item_single-input">
+          <div class="flex-box">
+            <p-radioButton name="groupname" value="discount" [(ngModel)]="paymentType"
+                           (ngModelChange)="onPaymentTypeChange($event)"
+                           [ngModelOptions]="{standalone: true}"></p-radioButton>
+            <p class="radio-select__text">
+              % Discount
+            </p>
+          </div>
+
+          <div class="radio-select__box" *ngIf="paymentType === 'discount'">
+            <input type="number" placeholder="Enter Discount Value" class="edit-form__input radio-select__input"
+                   id="discount" formControlName="discount" (keyup)="onDiscountChange(form.get('discount').value)">
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBMIT AND CANCEL BUTTONS -->
+      <div class="edit-form__submit-wrapper">
+        <button class="edit-form__submit" type="submit">{{deal.id ? 'Edit' : 'Create'}} Deal</button>
+        <button class="edit-form__submit edit-form__submit_gray" (click)="deleteDeal()" *ngIf="deal.id">
+          Delete Deal
+        </button>
+        <button class="edit-form__submit edit-form__submit_gray" (click)="cancel()" *ngIf="!deal.id">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- BEGIN: MODAL WITH CATEGORIES SELECT -->
+<p-dialog [showHeader]="false"
+          [style]="{'border':'none', 'box-shadow':'none', 'margin-top':'35px', 'overflow':'hidden', 'height':'calc(100vh - 70px)'}"
+          [visible]="showCategoriesPopup">
+  <div class="categories-popup">
+    <span class="categories-popup__close">
+      <span class="categories-popup__close-box" (click)="showCategoriesPopup = false">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+                fill="#26314F"/>
+        </svg>
+      </span>
+    </span>
+    <div>
+      <p class="categories-popup__title">
+        Select Categories
+      </p>
+      <form class="form-block">
+        <p class="form-block__title">
+          Categories list
+        </p>
+        <div class="form-block__option" (click)="updateSelectedCategories(category)"
+             *ngFor="let category of categories">
+          <p class="form-block__option-text">
+            {{category.name}}
+          </p>
+          <input id="{{category.id}}" type="checkbox" [checked]="isSelectedCategory(category.id)">
+          <label for="{{category.id}}"></label>
+        </div>
+      </form>
+    </div>
+
+    <p class="categories-popup__button" (click)="onCategoriesSubmit()">
+      Save
+    </p>
+  </div>
+</p-dialog>
+<!-- END: MODAL WITH CATEGORIES SELECT -->
+
+<!-- BEGIN: DELETE EVENT MODAL -->
+<p-dialog [showHeader]="false"
+          [modal]="true"
+          [styleClass]="'question-dialog__wrapper'"
+          [visible]="showDeletePopup"
+          [style]="{'border':'none'}">
+  <div class="question-dialog">
+    <p class="question-dialog__text">
+      Are you sure you want to delete this event?
+    </p>
+
+    <div class="question-dialog__button-wrapper">
+      <button class="question-dialog__button" (click)="onDeleteDeal()">Yes</button>
+      <button class="question-dialog__button question-dialog__button_gray" (click)="showDeletePopup = false">No</button>
+    </div>
+  </div>
+</p-dialog>
+<!-- END: DELETE EVENT MODAL -->
+
+<!-- LOADER -->
+<ngx-ui-loader [overlayColor]="'#fff'"
+               [fgsType]="'chasing-dots'"
+               [fgsColor]="'#823cf1'"
+               [pbColor]="'#823cf1'">
+</ngx-ui-loader>
+<!-- LOADER -->

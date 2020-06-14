@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="79px" height="65px" viewBox="0 0 79 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>D3AC8A84-12CA-4FA7-99CD-36172E675FA5</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#9C0D98" offset="0%"></stop>
+            <stop stop-color="#B71A85" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="6.1-Add-Business---Mobile" transform="translate(-593.000000, -417.000000)" stroke-width="2" stroke="url(#linearGradient-1)">
+            <g id="Group" transform="translate(594.000000, 418.000000)">
+                <g id="icon-physical-copy">
+                    <path d="M76.0929008,21.5435436 L76.0929008,13.2575653 L67.6381341,13.2575653 L67.6381341,8.28597831 L67.6381341,4.97158699 L67.6381341,0 L9.30024343,0 L9.30024343,4.97158699 L9.30024343,8.28597831 L9.30024343,13.2575653 L0,13.2575653 L0,21.5435436 L5.91833673,21.5435436 L5.91833673,55.5160547 L3.3819067,55.5160547 L3.3819067,58.0018482 L0,58.0018482 L0,62.9734352 L76.0929008,62.9734352 L76.0929008,58.0018482 L72.7109941,58.0018482 L72.7109941,55.5160547 L70.1745641,55.5160547 L70.1745641,21.5435436 L76.0929008,21.5435436 L76.0929008,21.5435436 Z M36.3554971,55.5160547 L19.4459635,55.5160547 L19.4459635,25.6865328 L36.3554971,25.6865328 L36.3554971,55.5160547 L36.3554971,55.5160547 Z M56.6469373,55.5160547 L39.7374038,55.5160547 L39.7374038,25.6865328 L56.6469373,25.6865328 L56.6469373,55.5160547 L56.6469373,55.5160547 Z" id="Shape-Copy-78"></path>
+                    <path d="M13.5,11 L63.509999,11" id="Line-3-Copy-4"></path>
+                    <path d="M29,41 L33,41" id="Line-3-Copy-5"></path>
+                    <path d="M43,41 L47,41" id="Line-3-Copy-6"></path>
+                    <path d="M13.5,6 L63.509999,6" id="Line-3"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

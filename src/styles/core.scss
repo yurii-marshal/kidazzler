@@ -1,0 +1,620 @@
+@import '~@ngx-share/button/themes/default/default-theme';
+@import '../styles/variables';
+
+html {
+  font-family: $font-family;
+}
+
+body {
+  position: relative;
+  font-size: 15px;
+  line-height: 1.46;
+  font-weight: 400;
+  backface-visibility: hidden;
+  font-family: $font-family;
+  color: $base-color;
+  background: $base-bg-color;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: $link-color-accent;
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: $link-color-accent;
+  }
+
+  :disabled, &.disabled {
+    opacity: .3;
+    cursor: default;
+  }
+}
+
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+input[type="checkbox"],
+select:focus,
+textarea {
+  font-size: 16px;
+}
+
+.disabled-btn {
+  pointer-events: none;
+  opacity: .3;
+  cursor: default;
+}
+
+kz-terms-page,
+kz-privacy-page {
+  .info-page {
+    max-width: 640px;
+    padding: 70px 20px 50px;
+    text-align: left;
+    margin: 0 auto;
+
+    h1, h2 {
+      text-align: center;
+      padding: 0 0 24px;
+    }
+
+    p {
+      padding: 0 0 24px;
+      text-align: justify;
+    }
+
+    ul {
+      padding: 0 0 24px 24px;
+      list-style: square;
+
+      li {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+kz-business-lookup {
+  p-autocomplete.ui-inputwrapper-focus {
+    .ui-inputtext {
+      color: #242424;
+
+      &::placeholder {
+        color: #242424;
+      }
+    }
+  }
+
+  .ui-autocomplete {
+    width: 100%;
+
+    .ui-autocomplete-panel {
+      border: 1px solid #d5d6d7;
+    }
+
+    .ui-autocomplete-input {
+      font-family: $font-family;
+      padding: 0 14px;
+    }
+
+    .ui-inputtext:enabled:hover {
+      border: none;
+    }
+
+    .ui-inputtext:focus {
+      box-shadow: none;
+    }
+  }
+
+  .ui-widget {
+    font-size: 17px;
+    line-height: 22px;
+    color: rgba(36, 36, 36, .5);
+  }
+}
+
+kz-deal .edit-form__option {
+  .ui-selectbutton .ui-button.ui-state-active {
+    background-color: $checkbox-color;
+  }
+}
+
+.ui-selectbutton .ui-button.ui-state-active {
+  background-color: $checkbox-color;
+}
+
+kz-deal .edit-form__option,
+kz-event .edit-form__option,
+kz-business-edit .edit-form__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  .ui-button.ui-state-default {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    height: 50px;
+    outline: none;
+
+    &:last-of-type {
+      border-radius: 0 10px 10px 0;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.ui-state-active {
+      span {
+        color: #ffffff;
+      }
+    }
+
+    span {
+      padding: 0;
+      font-size: 15px;
+      line-height: 20px;
+      color: #627887;
+    }
+  }
+}
+
+p-radioButton#missingEmail {
+  .ui-radiobutton-box.ui-state-active {
+    background: #BD10E0;
+    color: #BD10E0;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      content: '';
+      display: block;
+      height: 6px;
+      width: 9px;
+      border-left: 2px solid #FFFFFF;
+      border-bottom: 2px solid #FFFFFF;
+      transform: rotate(-50deg);
+    }
+  }
+
+  .ui-radiobutton-box.ui-state-focus {
+    box-shadow: none;
+  }
+
+  .ui-state-default {
+    border: 2px solid #B4BCC5;
+    border-radius: 4px;
+  }
+}
+
+kz-event {
+  .filter-content__option-list {
+    .ui-chkbox.ui-widget,
+    .ui-chkbox .ui-chkbox-box {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+// END: SELECT CUSTOMIZATION
+
+// BEGIN: CALENDAR CUSTOMIZATION
+kz-event-business-user,
+kz-deal {
+  .ui-datepicker.ui-widget .ui-datepicker-calendar thead th {
+    background-color: #FFFFFF;
+
+    span {
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #627887;
+
+    }
+  }
+
+  .ui-widget-content {
+    background: #FFFFFF;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: none;
+  }
+
+  .ui-widget-header {
+    background: #FFFFFF;
+  }
+
+  .ui-datepicker.ui-widget .ui-datepicker-calendar td {
+    border: none;
+  }
+
+  .ui-datepicker td > span,
+  .ui-datepicker td > a {
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    line-height: 20px;
+    color: #627887;
+  }
+
+  .ui-datepicker .ui-datepicker-title {
+    text-align: center;
+    font-size: 17px;
+    line-height: 30px;
+    font-weight: 600;
+    color: #242424;
+  }
+
+  .ui-datepicker td > a,
+  .ui-datepicker.ui-widget .ui-datepicker-calendar td a.ui-state-highlight {
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    line-height: 20px;
+    color: #627887;
+  }
+
+  .ui-datepicker.ui-widget .ui-datepicker-calendar td a.ui-state-active {
+    background-color: transparent;
+    color: #242424;
+    border: 2px solid #4B03BD;
+    border-radius: 50%;
+  }
+
+  .ui-datepicker .ui-datepicker-calendar td:not(.ui-state-disabled) a:hover {
+    border-radius: 50%;
+  }
+}
+
+kz-checkin-code p-dialog .code-edit-modal {
+  .ui-dialog-content {
+    display: block;
+    height: 100vh; // Fallback
+    height: calc(var(--vh, 1vh) * 100);
+    position: relative;
+  }
+}
+
+.timepicker-without-mins {
+  .ui-datepicker {
+    display: block;
+    top: 50px !important;
+    z-index: 9 !important;
+  }
+
+  .ui-minute-picker {
+    display: none;
+  }
+
+  .ui-ampm-picker {
+    margin-left: 0;
+  }
+}
+
+kz-deal {
+  .ui-widget-content {
+    border-radius: 0;
+  }
+}
+
+.ui-ampm-picker {
+  margin-right: .5rem;
+}
+
+// END: CALENDAR CUSTOMIZATION
+
+kz-points {
+  .ui-dropdown.ui-state-default .ui-dropdown-trigger {
+    background: #ffffff;
+  }
+
+  .ui-dropdown.ui-state-default .ui-dropdown-label {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: -0.2px;
+    color: #8E8E96;
+  }
+
+  .ui-dropdown.ui-state-default {
+    width: 150px;
+    min-width: auto;
+
+    &.ui-dropdown-open {
+      width: 150px;
+      min-width: auto;
+    }
+  }
+}
+
+.toast a {
+  color: inherit;
+  font-weight: bold;
+  text-decoration: underline;
+
+  &:hover, &:visited {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.button-link {
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  font-size: 100%;
+  color: $link-color;
+
+  &:hover {
+    color: $link-color-accent;
+    text-decoration: underline;
+  }
+}
+
+b {
+  font-weight: 600;
+}
+
+p {
+  padding: 0;
+  font-family: $font-family;
+}
+
+.coming-soon {
+  pointer-events: none;
+  position: relative;
+
+  :not(:last-child) {
+    opacity: .2;
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    line-height: 16px;
+    letter-spacing: -0.2px;
+    color: #4B03BD;
+    max-width: 50px;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-success {
+  color: $success-color;
+}
+
+h1, h2, h3 {
+  color: $title-color;
+  font-family: $font-family;
+  line-height: 1.36;
+  padding: 0 0 20px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 21px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: 400;
+}
+
+ul {
+  padding: 24px 0;
+}
+
+ul li {
+  padding: 5px 0 5px 20px;
+  margin: 0 0 6px;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul.arrow-list {
+  li:before {
+    display: block;
+    content: " ";
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid $link-color;
+    border-bottom: 2px solid $link-color;
+    transform: rotate(-45deg);
+    position: absolute;
+    left: 0;
+    top: 14px;
+  }
+}
+
+.container {
+  width: $siteWidth;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+
+  &_lg {
+    width: $siteWidthLg;
+  }
+}
+
+.relative-container {
+  position: relative;
+}
+
+.full-grey-screen {
+  background-color: $light-grey;
+  min-height: calc(100vh);
+}
+
+.paginator {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.pi.pi-tag {
+  transform: rotate(90deg);
+}
+
+.ui-autocomplete .ui-autocomplete-input {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-right: 40px;
+  font-size: 16px;
+}
+
+.autocomplete-container .not-found {
+  display: none;
+}
+
+.autocomplete-container {
+  box-shadow: none !important;
+  height: 50px !important;
+}
+
+.autocomplete-container .input-container input {
+  transition: $base-animation !important;
+  font-family: $font-family !important;
+  height: 50px !important;
+  padding: 0 20px !important;
+  border-radius: 4px !important;
+  background-color: $input-base-color !important;
+  border: 1px solid $input-base-color !important;
+  font-size: 17px !important;
+
+  &:focus,
+  &:active {
+    border: 1px solid $input-base-color-accent !important;
+    outline: none !important;
+  }
+}
+
+.pz-zoom-button {
+  display: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.ngx-position-fixed {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@media (max-width: $breakpoint-lg) {
+  .container {
+    width: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  h1 {
+    font-size: 36px;
+    padding: 0 0 20px;
+  }
+  h2 {
+    font-size: 24px;
+    padding: 0 0 20px;
+  }
+}
+
+.ui-widget {
+  font-family: $font-family;
+}

@@ -1,0 +1,39 @@
+<div class="info-message" *ngIf="isUnverified">
+    <div class="close" (click)="closeMessage()"> </div>
+
+    <div class="info-message-content">
+        Please confirm your email address sent to {{ unverifiedEmail }} to proceed.
+        <button class="button-link" (click)="sendVerificationMessage()">Resend Email</button>
+    </div>
+</div>
+
+<kz-facebook-auth>Login with Facebook</kz-facebook-auth>
+
+<div class="text-divider">
+    <span>or</span>
+</div>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" kzForm>
+    <div class="row">
+        <kz-form-field class="col">
+            <input class="form-component" placeholder="Email" type="text" formControlName="email" pInputText>
+        </kz-form-field>
+    </div>
+    <div class="row">
+        <kz-form-field class="col">
+            <input type="password" class="form-component" placeholder="Password" pInputText formControlName="password" maxlength="128">
+        </kz-form-field>
+    </div>
+
+    <div class="notes">
+        <a [routerLink]="['/forgot-password']">Forgot Password?</a>
+    </div>
+
+    <div class="row">
+        <button class="btn btn-primary btn-fullwidth">Login with Email</button>
+    </div>
+
+    <div class="notes">
+        New to Kidazzler? <a [routerLink]="['../']">Sign Up</a>
+    </div>
+</form>

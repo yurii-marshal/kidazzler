@@ -1,0 +1,104 @@
+@import "../../../styles/variables";
+
+:host {
+  ::ng-deep {
+    p-progressspinner .ui-progress-spinner {
+      width: 15px;
+      height: 15px;
+      margin: 0 3px;
+      vertical-align: middle;
+    }
+  }
+}
+
+.search-result {
+  position: relative;
+  padding: 42px 0 0 0;
+  .results-body {
+
+    .filters {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      margin: 12px;
+      width: 78px;
+      height: 30px;
+      border-radius: 6px;
+      border: solid 1px #e8eced;
+      background-color: #ffffff;
+      font-family: $font-family;
+
+      img {
+        margin-right: 4px;
+      }
+
+      span {
+        font-size: 15px;
+        color: #8e8e96;
+      }
+    }
+
+    .businesses {
+      margin: 0 20px 0;
+      padding-bottom: 20px;
+
+      &__see-more {
+        width: 100%;
+        max-width: 335px;
+        height: 35px;
+        border-radius: 8px;
+        background-color: rgba(75, 3, 189, .12);
+        font-size: 17px;
+        line-height: 21px;
+        text-align: center;
+        letter-spacing: -0.309091px;
+        color: #4B03BD;
+        cursor: pointer;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto 0;
+
+        @keyframes ui-progress-spinner-color {
+          100%,
+          0% {
+            stroke: #4B03BD;
+          }
+          40% {
+            stroke: #4B03BD;
+          }
+          66% {
+            stroke: #4B03BD;
+          }
+          80%,
+          90% {
+            stroke: #4B03BD;
+          }
+        }
+      }
+    }
+  }
+}
+
+.show-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  box-shadow: 0 20px 36px 0 rgba(0, 0, 0, 0.24);
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  .pi {
+    line-height: 2.2;
+    margin-left: 14px;
+    color: #4b03bd;
+    font-size: 25px;
+  }
+}

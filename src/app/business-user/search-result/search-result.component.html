@@ -1,0 +1,31 @@
+<kz-header [type]="'withMenu'"></kz-header>
+
+<div class="results-body">
+  <button class="filters" (click)="goToFilter()">
+    <img src="../../../assets/images/icons/filter-icon.svg" alt="Filter">
+    Filters
+  </button>
+  <div class="businesses">
+    <ng-container *ngIf="firstBusinessesPart?.length">
+<!--      <kz-business-card [direction]="'horizontal'" [business]="business"-->
+<!--                        *ngFor="let business of firstBusinessesPart"-->
+<!--                        [routerLink]="['/', 'business-portal', 'business', business.id]"></kz-business-card>-->
+
+
+    </ng-container>
+    <kz-add-new-business-block></kz-add-new-business-block>
+    <ng-container *ngIf="secondBusinessesPart?.length">
+<!--      <kz-business-card [direction]="'horizontal'" [business]="business"-->
+<!--                        *ngFor="let business of secondBusinessesPart"-->
+<!--                        [routerLink]="['/', 'business-portal', 'business', business.id]"></kz-business-card>-->
+    </ng-container>
+  </div>
+
+</div>
+
+
+
+<p-dialog>
+  <!--invite by email-->
+
+</p-dialog>

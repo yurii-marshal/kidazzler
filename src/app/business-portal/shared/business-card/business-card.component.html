@@ -1,0 +1,111 @@
+<!-- BEGIN: VERTICAL CARD -->
+<div class="business-card vertical" [ngClass]="additionalClass" *ngIf="direction === 'vertical'">
+   <span class="business-card__badge" *ngIf="business?.featured">
+    FEATURED
+  </span>
+  <div class="card">
+    <div class="card-header">
+      <img class="img"
+           [src]="(business?.primaryPhoto?.url || business?.businessTypes[0]?.picture) | safe: 'url'">
+    </div>
+    <div class="card-body">
+      <div class="card-title" [ngClass]="{'two-row' : isLongTitle}">{{business?.name | capitalize}}</div>
+      <div class="card-subtitle">
+        {{business?.city | capitalize}} {{business?.state ? ',' : ''}} {{business?.state  | shortenState}}
+      </div>
+      <div class="card-content">
+        <div class="card-content__wrapper">
+          <div class="rating">
+            <i class="pi pi-star"></i>
+            <span class="rate">{{business?.rating ? (business?.rating | number:'1.1-1') : '-'}}</span>
+          </div>
+          <div class="checkins" *ngIf="business?.checkInsCount">
+            <img src="../../../../assets/images/icons/checkin-icon.svg" alt="">
+            <span class="rate">{{business?.checkInsCount}} Check-ins</span>
+          </div>
+        </div>
+
+        <div class="categories">
+          <i class="pi pi-tag"></i>
+          <span *ngFor="let category of business?.businessTypes; let last = last">
+            {{category.code}}
+            <span *ngIf="!last">{{', '}}</span>
+          </span>
+        </div>
+      </div>
+      <div class="card-footer" *ngIf="business?.dealsCount || business?.eventsCount">
+        <a [routerLink]="['/business-portal/business', business?.id, 'deals']" class="footer-button"
+           *ngIf="business?.dealsCount">
+          <span class="footer-button__image-box">
+            <img src="../../../../assets/images/icons/promotion-icon.svg" alt="">
+            <span class="badge">{{business?.dealsCount}}</span>
+          </span>
+          Deals
+        </a>
+        <a [routerLink]="['/business-portal/business', business?.id, 'events']" class="footer-button"
+           *ngIf="business?.eventsCount">
+          <span class="footer-button__image-box">
+            <img src="../../../../assets/images/icons/calendar-icon.svg" alt="">
+            <span class="badge">{{business?.eventsCount}}</span>
+          </span>
+          Events
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END: VERTICAL CARD -->
+
+<!-- BEGIN: HORIZONTAL CARD -->
+<div class="business-card horizontal" [ngClass]="additionalClass" *ngIf="direction === 'horizontal'">
+  <span class="business-card__badge" *ngIf="business?.featured">
+    FEATURED
+  </span>
+  <div class="card">
+    <div class="card-header">
+      <img class="img"
+           [src]="(business?.primaryPhoto?.url || business?.businessTypes[0]?.picture) | safe: 'url'">
+    </div>
+    <div class="card-body">
+      <div class="card-title" [ngClass]="{'two-row' : isLongTitle}">{{business?.name | capitalize}}</div>
+      <div
+        class="card-subtitle">{{business?.city | capitalize}} {{business?.state ? ',' : ''}} {{business?.state | shortenState}}</div>
+      <div class="card-content">
+        <div class="rating">
+          <i class="pi pi-star"></i> <span
+          class="rate">{{business?.rating ? (business?.rating | number:'1.1-1') : '-'}}</span>
+        </div>
+        <div class="checkins" *ngIf="business?.checkInsCount">
+          <i class="pi pi-check"></i> <span class="rate">{{business?.checkInsCount}} Check-ins</span>
+        </div>
+        <div class="categories">
+          <i class="pi pi-tag"></i>
+          <div class="category" *ngFor="let category of business?.businessTypes; let last = last">
+            {{category.code}}
+            <ng-container *ngIf="!last">, </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer" *ngIf="business?.dealsCount || business?.eventsCount">
+        <a [routerLink]="['/business-portal/business', business.id, 'deals']" class="footer-button"
+           *ngIf="business?.dealsCount">
+          <span class="footer-button__image-box">
+            <img src="../../../../assets/images/icons/promotion-icon.svg" alt="">
+            <span class="badge">{{business?.dealsCount}}</span>
+          </span>
+          Deals
+        </a>
+        <a [routerLink]="['/business-portal/business', business.id, 'events']" class="footer-button"
+           *ngIf="business?.eventsCount">
+          <span class="footer-button__image-box">
+            <img src="../../../../assets/images/icons/calendar-icon.svg" alt="">
+            <span class="badge">{{business?.eventsCount}}</span>
+          </span>
+          Events
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END: HORIZONTAL CARD -->
+

@@ -1,0 +1,83 @@
+<kz-business-header></kz-business-header>
+<!--<kz-title-header [title]="'Verify Phone Number'"></kz-title-header>-->
+
+<div class="wrapper">
+  <div class="verify-phone">
+    <h2 class="verify-phone_title">Enter code</h2>
+    <p class="verify-phone_description">
+      We just sent a code to {{businessPhone | phoneNumber: (phoneInfo$ | async)}}
+    </p>
+    <p class="verify-phone_description" *ngIf="subscribeTimer">
+      Request a new code in: <span>{{time}}</span>
+    </p>
+  </div>
+
+  <div class="verify-phone-code">
+    <label class="verify-phone-code_label">
+      <span *ngIf="isMobile">SMS Code</span>
+      <span *ngIf="!isMobile">Verification Code</span>
+    </label>
+
+    <div class="verify-phone-code_code">
+      <input
+        min="0" max="9"
+        maxlength="1"
+        #firstInput
+        data-next="secondInput"
+        class="verify-phone-code_number"
+        type="number"
+        (keyup)="onKey($event, 0)"
+      />
+      <input
+        min="0" max="9"
+        maxlength="1"
+        #secondInput
+        class="verify-phone-code_number"
+        data-prev="firstInput"
+        data-next="thirdInput"
+        type="number"
+        (keyup)="onKey($event, 1)"
+      />
+      <input
+        min="0" max="9"
+        maxlength="1"
+        #thirdInput
+        data-next="fourthInput"
+        data-prev="secondInput"
+        class="verify-phone-code_number"
+        type="number"
+        (keyup)="onKey($event, 2)"
+      />
+      <input
+        min="0" max="9"
+        maxlength="1"
+        #fourthInput
+        data-prev="thirdInput"
+        class="verify-phone-code_number"
+        type="number"
+        (keyup)="onKey($event, 3)"
+      />
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+
+  </div>
+
+  <button [disabled]="isCodeSent" class="resend-button"
+          (click)="resendCode()" [class.active]="!isCodeSent">
+    Resend Code
+  </button>
+
+  <button class="verify-phone-code_cta" (click)="submit()" [disabled]="!isCodeComplete">
+    Continue
+  </button>
+</div>
+
+<ngx-ui-loader [fgsColor]="'#823cf1'"
+               [loaderId]="'submit-verification'"
+               [fgsType]="'wandering-cubes'"
+               [hasProgressBar]="false"
+               [fgsPosition]="'center-center'"
+></ngx-ui-loader>

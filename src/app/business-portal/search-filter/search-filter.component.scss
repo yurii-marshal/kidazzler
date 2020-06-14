@@ -1,0 +1,252 @@
+@import '../../../styles/variables';
+
+.filter {
+  &__submit {
+    width: 100%;
+    max-width: 335px;
+    height: 45px;
+    border-radius: 25px;
+    background-color: #bd10e0;
+    font-size: 17px;
+    color: #ffffff;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+  }
+}
+
+.filter-content {
+  padding: 42px 0 0 0;
+
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-bottom: 1px solid rgba(36, 36, 36, 0.12);
+
+    // label position styling for rating filter
+    &.filter-content__box_rating {
+      padding: 20px 20px 0 20px;
+
+      .filter-content__option:last-of-type {
+        border: none;
+      }
+
+      .filter-content__option label::after {
+        top: -5px;
+      }
+    }
+
+    &.filter-content__box_other {
+      border-bottom: none;
+      margin-bottom: 13px;
+
+      .filter-content__option:first-of-type {
+        padding-top: 0;
+      }
+    }
+
+    &.filter-content__box_wrapped {
+      .filter-content__option:last-of-type {
+        border: none;
+      }
+
+      div:first-of-type {
+        .filter-content__option {
+          padding-top: 0;
+          position: relative;
+        }
+      }
+    }
+  }
+
+  &__box-header {
+    font-size: 17px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 20px;
+  }
+
+  &__option {
+    position: relative;
+    width: 100%;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(38, 49, 79, 0.1);
+    font-size: 17px;
+    line-height: 1.41;
+    color: #242424;
+    text-transform: capitalize;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &.filter-content__option_single {
+      border-bottom: none;
+      padding: 0;
+      margin-bottom: 0;
+    }
+
+    span {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    label {
+      padding: 0;
+
+      &::before {
+        position: absolute;
+        top: 3px;
+        right: 0;
+        content: "";
+        display: inline-block;
+        height: 16px;
+        width: 16px;
+      }
+
+      &::after {
+        position: absolute;
+        right: 4px;
+        top: 7px;
+        content: "";
+        display: inline-block;
+        height: 7px;
+        width: 11px;
+        border-left: 1.5px solid #4b03bd;
+        border-bottom: 1.5px solid #4b03bd;
+        transform: rotate(-55deg);
+      }
+    }
+  }
+
+  input[type='radio'],
+  input[type='checkbox'] {
+    z-index: 1;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  input[type="radio"] + label::after,
+  input[type="checkbox"] + label::after {
+    content: none;
+  }
+
+  input[type="radio"]:checked + label,
+  input[type="checkbox"]:checked + label {
+    padding: 0;
+
+    &::after {
+      content: "";
+    }
+
+    .filter-content__age-option {
+      color: #ffffff;
+    }
+  }
+
+  &__more-button {
+    font-size: 17px;
+    color: #4b03bd;
+    cursor: pointer;
+  }
+
+  &__option-list {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+
+    .filter-content__option:last-of-type {
+      .filter-content__age-option {
+        .filter-content__age-symbol {
+          display: none;
+
+          &.filter-content__age-symbol_additional {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .filter-content__age-option {
+      pointer-events: none;
+      z-index: 2;
+
+      .filter-content__age-symbol.filter-content__age-symbol_additional {
+        display: none;
+      }
+    }
+
+    .filter-content__option {
+      padding: 0;
+      font-size: 15px;
+      color: #2d2f39;
+      width: 59px;
+      height: 30px;
+      border-radius: 15px;
+      border: solid 1px #dcdee5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      line-height: 0;
+      margin-bottom: 0;
+
+      &.selected-option {
+        background: $base-bg-gradient;
+        color: #ffffff;
+      }
+
+      &:last-of-type {
+        i:last-of-type {
+          display: none;
+        }
+      }
+
+      label {
+        &::before {
+          content: none;
+        }
+
+        &::after {
+          position: absolute;
+          right: 0;
+          top: 0;
+          content: "";
+          display: inline-block;
+          height: 100%;
+          width: 100%;
+          border-left: none;
+          border-bottom: none;
+          background-color: #4b03bd;
+          transform: none;
+          border-radius: 15px;
+          z-index: -1;
+        }
+      }
+    }
+  }
+
+  &__option-text {
+    width: 100%;
+  }
+}

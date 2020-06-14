@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb" prefix="og: http://ogp.me/ns#">
+
+<head>
+  <meta charset="utf-8">
+  <title>Kidazzler | An Exclusive Community of Parents</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+  <!--Open Graph data-->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://staging.kidazzler.com/"/>
+  <meta property="og:image" content="https://staging.kidazzler.com/assets/images/open-graph.png"/>
+  <meta property="og:title" content="Kidazzler"/>
+  <meta property="og:description"
+        content="Download Kidazzler for free. It’s a new PARENTING app that helps you find everything you need exactly when you need it. Discover special deals at your favorite places, explore fun events around the city, and earn points for a chance to win exciting giveaways and prizes."/>
+  <meta property="fb:app_id" content="180325962725531"/>
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+
+  <script type="text/javascript">
+    function postAppMessage(msg) {
+      if (window.webkit
+        && window.webkit.messageHandlers
+        && window.webkit.messageHandlers.appInterface
+        && window.webkit.messageHandlers.appInterface.postMessage) {
+        window.webkit.messageHandlers.appInterface.postMessage(msg);
+      }
+      if (window.appInterface
+        && window.appInterface.postMessage) {
+        window.appInterface.postMessage(msg);
+      }
+    }
+  </script>
+
+  <script type="text/javascript">
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    window.addEventListener('resize', () => {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
+  </script>
+</head>
+
+<body class="kz">
+<kz-root>
+  <style type="text/css">
+    .app-loader {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      color: #666;
+      font: 400 14px/16px Tahoma, Arial, sans-serif;
+    }
+
+    .image-loader {
+      border: 2px solid #f1f1f1;
+      /* Light grey */
+      border-top: 2px solid #781e90;
+      /* Blue */
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      animation: spin 1.5s linear infinite;
+      margin: 0 8px 0 0;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <div class="app-loader">
+    <span class="image-loader"></span>
+    <span>
+                Loading...
+            </span>
+  </div>
+</kz-root>
+
+<script src="//connect.facebook.net/en_US/sdk.js"></script>
+</body>
+
+</html>

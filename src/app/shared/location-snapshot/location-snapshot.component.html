@@ -1,0 +1,22 @@
+<a class="location" *ngIf="locationUrl" [href]="googleMapUrl | safe:'url'" target="_blank">
+  <div class="map-box">
+    <img class="marker" src="../../../../assets/images/map_pin.svg" alt="">
+    <img class="map" [src]="locationUrl" alt="">
+  </div>
+  <div class="address">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M7 0C4.24284 0 2 2.35525 2 5.25C2 9.12313 6.61318 13.7266 6.80958 13.9208C6.86328 13.9735 6.93164 14 7 14C7.06836 14 7.13672 13.9735 7.19044 13.9208C7.38682 13.7266 12 9.12313 12 5.25C12 2.35525 9.75716 0 7 0ZM7 8.16668C5.46841 8.16668 4.22221 6.85817 4.22221 5.25C4.22221 3.64183 5.46844 2.33332 7 2.33332C8.53156 2.33332 9.77779 3.64186 9.77779 5.25C9.77779 6.85814 8.53159 8.16668 7 8.16668Z"
+            fill="#B4BCC5"/>
+    </svg>
+    <div class="full-address">
+      <span *ngIf="business?.address">{{business?.address}}</span>
+      <span *ngIf="business?.city">, {{business?.city}}</span>
+      <span *ngIf="business?.state">, {{business?.state | shortenState}}</span>
+      <!--<span *ngIf="business?.country">, {{business?.country}}</span>-->
+      <span *ngIf="business?.zip">, {{business?.zip}}</span>
+    </div>
+  </div>
+
+  <a [href]="googleMapUrl | safe:'url'" target="_blank" class="view-all" *ngIf="isShownDirectionBtn">Get Directions</a>
+</a>

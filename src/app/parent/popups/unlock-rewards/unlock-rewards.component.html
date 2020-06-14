@@ -1,0 +1,68 @@
+<p-dialog [visible]="true" [modal]="true" [dismissableMask]="true" [styleClass]="'custom-popup popup-rewards'" [closable]="false" [draggable]="false" [resizable]="false" [showHeader]="false" (onHide)="onHide()" width="472">
+    <div class="close" (click)="closeDialog()"></div>
+    <div class="popup-title">
+        <div>Unlock Extra Earnings</div>
+    </div>
+    <div class="unlock-popup-header">
+        Unlock your ability to earn from businesses <br>added by <em>FRIENDS</em> of <em>YOUR FRIENDS</em>
+    </div>
+    <div class="popup-content unlock-popup-content relative-container">
+        <div class="headings">
+            <div>Achieve</div>
+            <div>Rank</div>
+            <div>Earn</div>
+        </div>
+        <div class="unlock-row">
+            <div>
+                <strong>15</strong>
+                <span>Friends joined</span>
+            </div>
+            <div>
+                <img src="/assets/images/badges/badge-master.png" alt="">
+            </div>
+            <div>
+                <strong>$0.25</strong>
+                <span>Per business</span>
+            </div>
+        </div>
+        <div class="unlock-row">
+            <div>
+                <strong>30</strong>
+                <span>Friends joined</span>
+            </div>
+            <div>
+                <img src="/assets/images/badges/badge-bronze.png" alt="">
+            </div>
+            <div>
+                <strong>$0.50</strong>
+                <span>Per business</span>
+            </div>
+        </div>
+        <div class="unlock-row">
+            <div>
+                <strong>50</strong>
+                <span>Friends joined</span>
+            </div>
+            <div>
+                <img src="/assets/images/badges/badge-silver.png" alt="">
+            </div>
+            <div>
+                <strong>$0.75</strong>
+                <span>Per business</span>
+            </div>
+        </div>
+        <div class="unlock-row">
+            <div>
+                <strong>75+</strong>
+                <span>Friends joined</span>
+            </div>
+            <div>
+                <img src="/assets/images/badges/badge-gold.png" alt="">
+            </div>
+            <div>
+                <strong>$1.00</strong>
+                <span>Per business</span>
+            </div>
+        </div>
+    </div>
+</p-dialog>

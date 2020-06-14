@@ -1,0 +1,46 @@
+<div>
+  <kz-title-header [title]="'Verify Phone'"></kz-title-header>
+  <div class="wrapper">
+    <div class="verify-phone">
+      <h2 class="verify-phone_title">Verify Your Phone Number</h2>
+      <p class="verify-phone_description">
+        Phone number must be verified to protect your
+        account and to receive rewards from Kidazzler
+      </p>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="form">
+      <div class="verify-phone-input">
+        <label class="verify-phone-input_label">Phone Number</label><br/>
+        <p-inputMask class="verify-phone-input_input" formControlName="phone" [mask]="phoneMask"
+                     (onFocus)="onPhoneFocus()"
+                     [placeholder]="'+1(___) __-____'" [unmask]="true" [autoClear]="false"></p-inputMask>
+        <div class="error-message" *ngIf="errMessage">
+          {{errMessage}}
+        </div>
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('phone')">
+          <ng-container *ngIf="form.get('phone').errors?.required">
+            {{ formErrors.getMessage('required') }}
+          </ng-container>
+        </div>
+        <p class="verify-phone-input_description">
+          By tapping "Send Me Code" you agree to receive a verification code via SMS from Kidazzler.
+          Standard data and message rates may apply.
+        </p>
+        <button class="verify-phone-input_cta" [disabled]="form.get('phone').value.length < 10">
+          Send Me Code
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- LOADER -->
+<ngx-ui-loader [overlayColor]="'#fff'"
+               [fgsType]="'chasing-dots'"
+               [fgsColor]="'#823cf1'"
+               [pbColor]="'#823cf1'">
+</ngx-ui-loader>
+
+<ngx-ui-loader [fgsColor]="'#823cf1'" [loaderId]="'send-verify-code'" [fgsType]="'wandering-cubes'"
+               [hasProgressBar]="false" [fgsPosition]="'center-center'"></ngx-ui-loader>
+<!-- LOADER -->

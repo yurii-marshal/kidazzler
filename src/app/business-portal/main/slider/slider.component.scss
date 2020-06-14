@@ -1,0 +1,96 @@
+$transition_time: .2s;
+$white: #fff;
+.slider {
+  .carousel {
+    color: $white;
+
+    .content {
+      display: flex;
+
+      .slide-content {
+        color: #fff;
+      }
+
+      .item {
+        display: block;
+        opacity: 0.01;
+        transition: opacity 0.2s ease-in $transition_time;
+
+        &.visible {
+          opacity: 1;
+        }
+
+        .img-container {
+          position: relative;
+
+          .img {
+            height: 300px;
+            display: block;
+            object-fit: cover;
+            width: 100%;
+          }
+
+          .text {
+            position: absolute;
+            bottom: 66px;
+            left: 20px;
+            max-width: 330px;
+            width: 100%;
+
+            .heading {
+              font-weight: bold;
+              font-size: 24px;
+              line-height: 28px;
+              letter-spacing: -0.266667px;
+              color: #FFFFFF;
+            }
+
+            .description {
+              font-size: 18px;
+              line-height: 32px;
+              letter-spacing: -0.2px;
+              color: #FFFFFF;
+            }
+          }
+        }
+      }
+    }
+
+    .ball {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $white;
+      border: 2px solid;
+      opacity: 0.4;
+
+      &.visible {
+        opacity: 1;
+      }
+    }
+
+    .click-area {
+      width: 50px;
+      text-align: center;
+
+      i {
+        font-size: 3em;
+      }
+    }
+  }
+}
+
+ngx-hm-carousel::ng-deep .indicators {
+  left: 20px !important;
+  text-align: left !important;
+  bottom: 2.5rem !important;
+
+  li {
+    padding: 0.2rem !important;
+  }
+}
+
+
+
+
+

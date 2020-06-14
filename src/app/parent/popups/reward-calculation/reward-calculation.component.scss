@@ -1,0 +1,82 @@
+.calc-row-wrapper {
+  position: relative;
+}
+
+em {
+  font-style: italic;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  span {
+    text-transform: lowercase;
+  }
+}
+
+.locked {
+
+  button {
+    border-radius: 100px;
+    color: white;
+    border: none;
+    width: 235px;
+    cursor: pointer;
+    background-color: #bd10e0;
+    display: none;
+  }
+
+  .unlock-more-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background: url('/assets/images/lock.png') 25px center no-repeat #bd10e0;
+    padding: 12px 12px 12px 30px;
+  }
+}
+
+.highlite-frame{
+  border: solid 4px #4a90e2;
+  border-radius: 20px;
+  padding: 15px 15px 0;
+  margin-left: -15px;
+  margin-right: -15px;
+
+  .calc{
+    border: none;
+  }
+}
+
+hr.divider{
+  border: none;
+  border-bottom: 1px solid white;
+  margin: 20px 0;
+}
+
+.unlock-more {
+
+  .calc {
+    filter: blur(4px);
+  }
+
+  .unlock-more-btn {
+    display: block;
+  }
+}
+
+.unlock-max {
+
+  .calc {
+    padding-bottom: 55px;
+  }
+
+  .unlock-max-btn {
+    display: block;
+    position: absolute;
+    width: 200px;
+    padding: 12px;
+    clear: both;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+  }
+}

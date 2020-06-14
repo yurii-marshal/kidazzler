@@ -1,0 +1,36 @@
+<!--<p-autoComplete [(ngModel)]="location"-->
+<!--[suggestions]="results"-->
+<!--(completeMethod)="search($event)"-->
+<!--[forceSelection]="true"-->
+<!--placeholder="{{placeholder}}"-->
+<!--[delay]="1000"-->
+<!--[field]="'text'"-->
+<!--(onSelect)="onChange($event)"-->
+<!--(onClear)="clearValue()"-->
+<!--[disabled]="disabled"-->
+<!--(onBlur)="blur()"-->
+<!--&gt;</p-autoComplete>-->
+
+<div class="ng-autocomplete">
+  <ng-autocomplete
+    [data]="results"
+    [searchKeyword]="'text'"
+    [(ngModel)]="location"
+    [name]="'location'"
+    (selected)='onChange($event.text)'
+    [placeHolder]="placeholder"
+    [debounceTime]="1000"
+    [disabled]="disabled"
+    (inputChanged)='search($event)'
+
+    [itemTemplate]="itemTemplate">
+  </ng-autocomplete>
+
+  <ng-template #itemTemplate let-item>
+    <a [innerHTML]="item.text | highlight: location.text || location"></a>
+  </ng-template>
+
+  <ng-template #notFoundTemplate let-notFoundText>
+    <div [innerHTML]="notFoundText"></div>
+  </ng-template>
+</div>

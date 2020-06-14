@@ -1,0 +1,29 @@
+<div class="invitation-screen">
+  <kz-header [type]="'login'"></kz-header>
+  <div class="invitation-screen__wrap">
+    <h1>Kidazzler</h1>
+    <p>Built by parents for parents, Kidazzler makes it simple to find and discover family-friendly businesses and
+      service providers.<br>
+      From Birth to College. All for Free. All in One Place.</p>
+
+    <div class="invite-input-row">
+      <div>
+        <label class="label">Invitation Code</label>
+        <input type="text" class="invite-input" placeholder="Enter Invitation Code" [(ngModel)]="invitationCode">
+        <button class="btn-icon" (click)="redirectToSignup()">
+          <img src="/assets/images/icon-arrow-white.svg" alt="check code"/>
+        </button>
+      </div>
+    </div>
+
+    <div class="invitation-screen__link">
+      <a class="semi-transparent" [routerLink]="['', {outlets: {popup: ['get-invitation']}}]">
+        No code? Request an invite
+      </a>
+    </div>
+    <div class="invitation-screen__link">
+      Already have an account? <a class="menu-login semi-transparent" [routerLink]="['/login']">Login</a>
+    </div>
+  </div>
+</div>
+<kz-footer></kz-footer>

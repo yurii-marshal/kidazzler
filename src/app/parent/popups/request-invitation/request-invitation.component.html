@@ -1,0 +1,37 @@
+<p-dialog [visible]="true" [modal]="true" [dismissableMask]="true" [styleClass]="'custom-popup request'" [closable]="false" [draggable]="false" [resizable]="false" [showHeader]="false" (onHide)="onHide()" breakpoint="360">
+    <div class="close" (click)="closeDialog()"></div>
+    <div class="popup-title">
+        <div>Request an Invite</div>
+    </div>
+    <div class="popup-content group-popup-content" *ngIf="!invitationSent">
+        <form [formGroup]="form" kzForm>
+            <div class="group-note">
+                Enter your email address
+            </div>
+            <kz-form-field class="group-row">
+                <input type="text" class="form-component" placeholder="i.e. name@domain.com" formControlName="email" kzNoWhitespace>
+            </kz-form-field>
+            <div class="group-row">
+                <button (click)="sendInvite()" class="btn btn-primary btn-fullwidth">
+                    Request an Invite
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="login-container small-container" *ngIf="invitationSent" style="padding-top: 0; min-height:auto;">
+
+        <div class="icon-screen">
+            <img src="/assets/images/icon-mail.svg" alt="" />
+        </div>
+
+        <h1 class="login-sub-title">
+            Thanks for your request. <br>
+            Please check your email for further instructions.
+        </h1>
+
+        <div class="row">
+            <button class="btn btn-primary btn-fullwidth" (click)="closeDialog()">Ok</button>
+        </div>
+    </div>
+</p-dialog>

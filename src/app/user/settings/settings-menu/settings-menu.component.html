@@ -1,0 +1,6 @@
+<div class="settings-menu">
+    <a routerLink="/settings/profile" [routerLinkActive]="['active']">Edit Profile / Update Payment Info</a>
+    <a *ngIf="isEmailVerified$ | async" routerLink="/settings/email" [routerLinkActive]="['active']">Email</a>
+    <a *ngIf="isEmailVerified$ | async" routerLink="/settings/password" [routerLinkActive]="['active']">Password</a>
+    <a routerLink="/settings/notifications" [routerLinkActive]="['active']">Notifications</a>
+</div>

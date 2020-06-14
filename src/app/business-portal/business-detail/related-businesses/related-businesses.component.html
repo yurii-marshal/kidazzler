@@ -1,0 +1,12 @@
+<div class="related-businesses">
+  <div class="container">
+    <div class="businesses-list">
+      <div class="title">Related businesses<span class="title__link" [routerLink]="['/business-portal/search']"
+                                                 >See all</span></div>
+      <div class="businesses" *ngIf="isLoaded">
+        <kz-business-card *ngFor="let business of businesses" [business]="business" direction="vertical"
+                          [routerLink]="['/', 'business-portal', 'business', business.id]"></kz-business-card>
+      </div>
+    </div>
+  </div>
+</div>

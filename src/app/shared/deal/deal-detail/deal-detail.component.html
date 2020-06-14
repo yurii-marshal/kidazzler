@@ -1,0 +1,193 @@
+<div class="deal-detail" [ngClass]="{'wide': user}">
+  <!-- BEGIN: BUSINESS HEADER -->
+  <div *ngIf="user" class="business-detail-header">
+    <div class="buttons-left">
+      <i class="pi pi-chevron-left" (click)="goBack()"></i>
+    </div>
+    <div class="buttons-right">
+      <!-- Share icon -->
+      <div class="header-icon" (click)="isShownSharePopup=true">
+        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M5.8 2H4C2.34314 2 1 3.34315 1 5L1 14.5C1 16.1569 2.34315 17.5 4 17.5H14C15.6569 17.5 17 16.1569 17 14.5V12"
+            stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <path
+            d="M10 7.5C8.58545 7.89398 7 9 7 9C7 9 7 7.5 7.5 6.5C8 5.5 9 4 10.5 3.5C12 3 14 3 14 3V0L19.6667 5L14 10V7.01456C13 7 10.8869 7.253 10 7.5Z"
+            fill="white"/>
+        </svg>
+      </div>
+
+      <!-- Bookmark icon -->
+      <div class="header-icon" (click)="saveToBookmarks()">
+        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M6.3892 11.8082L1 15.9656V4C1 2.34315 2.34315 1 4 1H10C11.6569 1 13 2.34315 13 4V15.9656L7.6108 11.8082L7 11.337L6.3892 11.8082Z"
+            stroke="white" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <!-- END: BUSINESS HEADER -->
+
+  <!-- Image block -->
+  <div class="deal-image" (click)="openImagesList()">
+    <div *ngIf="user === 0" class="deal-image__button" [ngClass]="{'wide' : !deal?.photos?.length}">
+      <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M5.93733 0.00243569C5.74291 0.0255357 5.56918 0.173508 5.51547 0.361766L4.1952 5.00179H0.453116C0.207331 5.02494 -0.00106076 5.25488 4.06281e-06 5.50173V18.5001C3.51128e-05 18.7618 0.238208 19 0.49999 19H16.4995C16.7613 19 16.9995 18.7618 16.9995 18.5001V17.7345L17.8589 17.9767C18.1124 18.0527 18.4123 17.8878 18.4838 17.633L21.9837 4.88462C22.0545 4.63104 21.8864 4.33601 21.6322 4.26751C21.6322 4.26751 11.4092 0.943968 6.13264 0.0180607L6.128 0.0172445C6.06515 0.00619372 6.00105 -0.00507914 5.93733 0.00243569ZM6.35138 1.11167L20.8822 5.09553L17.6479 16.8753L16.9995 16.6956V5.50173C16.9995 5.23997 16.7613 5.00182 16.4995 5.00179H5.23423L6.35138 1.11167ZM15.9995 6.00167H0.999975V14.4381L4.7733 12.5477C4.81751 12.5253 4.86507 12.5093 4.91393 12.5008C5.07951 12.4749 5.25644 12.5389 5.36704 12.6649L7.29667 14.7896L12.2731 12.2977C12.3197 12.2746 12.37 12.2586 12.4215 12.2509C12.5871 12.2249 12.764 12.289 12.8746 12.4149L15.9995 15.9301V6.00167ZM7.99977 8.00141C6.90115 8.00141 5.99983 8.90265 5.99983 10.0011C5.99983 11.0996 6.90116 12.0009 7.99977 12.0009C9.09839 12.0009 9.99972 11.0996 9.99972 10.0011C9.99972 8.90265 9.09839 8.00141 7.99977 8.00141ZM8.99975 10.0011C8.99975 9.44302 8.55796 9.0013 7.99977 9.0013C7.44158 9.0013 6.9998 9.44302 6.9998 10.0011C6.9998 10.5593 7.44158 11.001 7.99977 11.001C8.55796 11.001 8.99975 10.5593 8.99975 10.0011ZM12.3825 13.3679L15.9995 17.4299V18.0001H10.2263L7.99977 15.5551L12.3825 13.3679ZM8.86694 18.0001L4.88268 13.6179L0.999975 15.5629V18.0001H8.86694Z"
+              fill="white"/>
+      </svg>
+      <p class="deal-image__text">
+        See all
+      </p>
+    </div>
+    <img *ngIf="deal?.photos.length === 0" src="../../../../assets/images/bg-landing.jpg" alt="Business Name"
+         class="deal-image__image">
+    <img *ngIf="deal?.coverImg?.url" [src]="deal?.coverImg?.url" alt="Business Name" class="deal-image__image">
+  </div>
+  <input
+    #fileInput
+    type="file"
+    accept="image/*"
+    id="cameraInput"
+    name="cameraInput"
+    data-role="none"
+    style="display: none"
+    [multiple]="false"
+    (change)="uploadPhotos($event)">
+
+  <p *ngIf="user === 0" class="deal-detail__button" (click)="fileInput.click()">
+    <img src="../../../../assets/images/icons/plus-icon_purple.svg" alt="Plus" class="deal-detail__button-icon">
+    Add Photos
+  </p>
+
+  <div class="deal-detail__content">
+    <!-- Text block -->
+    <div class="deal-text">
+      <p class="deal-text__expire-info">
+        {{deal.expireAt ? 'Expires: ' + (deal.expireAt | date: 'EEE, d MMM') : 'Never expires'}}
+      </p>
+      <p class="deal-text__heading">
+        {{deal?.title}}
+      </p>
+      <p class="deal-text__location">
+        {{deal?.city}}, {{deal?.state | shortenState}}
+      </p>
+      <p class="deal-text__categories" *ngIf="deal?.eventCategories.length > 0">
+        <i class="pi pi-tag"></i>
+        <span *ngFor="let category of deal?.eventCategories; let i = index;let last = last">
+          <span>{{category.name}} {{last ? '' : ', ' }}</span>
+        </span>
+      </p>
+    </div>
+
+    <!-- Code block -->
+    <div class="deal-code">
+      <img src="../../../../assets/images/icons/percent-icon_bg.svg" alt="" class="deal-code__bg-image">
+      <p class="deal-code__heading">
+        {{!deal?.discount ? 'Deal price' : 'Deal discount'}}
+      </p>
+      <p class="deal-code__number" *ngIf="deal?.discountType === 'percent'">
+        -{{deal?.discount}}% off
+      </p>
+      <p class="deal-code__number" *ngIf="!deal?.discountType && deal?.price">
+        {{deal?.price | currency: deal?.currency.toUpperCase()}}
+      </p>
+      <p class="deal-code__number" *ngIf="deal?.discountType === 'amount'">
+        -{{deal?.discount | currency: deal?.currency.toUpperCase()}} off
+      </p>
+      <p class="deal-code__number" *ngIf="!deal?.discountType && deal?.discount">
+        -{{deal?.discount}}% off
+      </p>
+      <p class="deal-code__number" *ngIf="!deal?.discount && (!deal?.price || deal?.price === '0')">
+        FREE
+      </p>
+
+      <p class="deal-code__code">
+        <img src="../../../../assets/images/icons/ticket-icon.svg" alt="Ticket Icon">
+        Use code: <b>{{deal?.code}}</b>
+      </p>
+    </div>
+
+    <!-- Details block -->
+    <div class="detail-block">
+      <p class="detail-block__heading">
+        Deal Details
+      </p>
+      <p class="detail-block__text">
+        {{deal?.description}}
+      </p>
+    </div>
+
+    <!-- PHOTO BLOCK -->
+    <div>
+      <div class="title">
+        Photos
+        <a *ngIf="deal?.photos.length > 0" class="title__link" href="" [routerLink]="['photos']">Show All</a>
+      </div>
+      <div class="photos">
+
+        <!-- LOADER -->
+        <ngx-ui-loader [overlayColor]="'#fff'"
+                       [fgsColor]="'#823cf1'"
+                       [loaderId]="'upload-business-photo'"
+                       [fgsType]="'wandering-cubes'"
+                       [hasProgressBar]="false"
+                       [fgsPosition]="'center-center'">
+        </ngx-ui-loader>
+        <!-- LOADER -->
+
+        <div class="photo" *ngFor="let photo of deal?.photos; let i = index">
+          <img *ngIf="i < 3" [src]="photo.url" alt="">
+        </div>
+
+        <div class="photo" *ngIf="deal?.photos.length === 0">
+          <!--<img src="../../../../assets/images/business-type-placeholder.png" alt="">-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Footer -->
+  <div class="footer-sticky fixed" *ngIf="user">
+    <div class="footer-sticky__item">
+      <div class="image">
+        <img *ngIf="deal?.coverImg?.preview" [src]="deal?.coverImg?.preview" alt="" width="40" height="40"/>
+        <img *ngIf="!deal?.coverImg?.preview" src="../../../../assets/images/aboutus-hero-mobile.jpg" alt="" width="40"
+             height="40"/>
+      </div>
+      <div class="info">
+        <p class="name">
+          {{business?.name}}
+        </p>
+        <p class="location" *ngIf="deal?.discountType === 'percent'">
+          -{{deal?.discount}}% off
+        </p>
+        <p class="location" *ngIf="deal?.discountType === 'amount'">
+          -{{deal?.discount | currency: deal?.currency.toUpperCase()}} off
+        </p>
+        <p class="location" *ngIf="!deal?.discountType && deal?.price != '0'">
+          {{deal?.price | currency: deal?.currency.toUpperCase()}}
+        </p>
+        <p class="location" *ngIf="!deal?.discountType && deal?.price === '0'">
+          FREE
+        </p>
+      </div>
+    </div>
+    <div class="footer-sticky__item">
+      <div class="check-in">
+        <button [routerLink]="['../../check-in']">
+          Use Code
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<kz-share-options-modal *ngIf="deal"
+                        (onClose)="isShownSharePopup=false"
+                        [referralSignupUrl]="externalLinkToDeal"
+                        [isShownSharePopup]="isShownSharePopup"
+>
+</kz-share-options-modal>

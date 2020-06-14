@@ -1,0 +1,61 @@
+<!-- BEGIN: MODAL WITH SHARE OPTIONS -->
+<p-dialog class="share-options__modal" [visible]="isShownSharePopup" [modal]="true" [showHeader]="false"
+          [style]="{'background':'transparent', 'box-shadow':'none', 'border':'none'}">
+  <div class="share-options-popup share-options-popup_share">
+    <span class="share-options-popup__close">
+      <span class="share-options-popup__close-box" (click)="closePopup()">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+                fill="#26314F"/>
+        </svg>
+      </span>
+    </span>
+    <p class="share-options-popup__header">
+      Share
+    </p>
+    <div class="share-options-popup__list">
+      <div class="share-options-popup__list-item">
+        <button shareButton="facebook" [style.backgroundColor]="'#ffffff'" [url]="referralSignupUrl">
+          <img src="../../../../assets/images/social/icon-social-fb_color.svg" alt=""
+               class="share-options-popup__list-icon">
+          <span class="share-options-popup__list-text">Facebook</span>
+        </button>
+      </div>
+      <div class="share-options-popup__list-item">
+        <button shareButton="twitter" [style.backgroundColor]="'#ffffff'" [url]="referralSignupUrl">
+          <img src="../../../../assets/images/social/icon-social-twitter_color.svg" alt=""
+               class="share-options-popup__list-icon">
+          <span class="share-options-popup__list-text">Twitter</span>
+        </button>
+
+      </div>
+      <div class="share-options-popup__list-item">
+        <button shareButton="whatsapp" [style.backgroundColor]="'#ffffff'" [url]="referralSignupUrl">
+          <img src="../../../../assets/images/social/icon-social-whatsapp_color.svg" alt=""
+               class="share-options-popup__list-icon">
+          <span class="share-options-popup__list-text">WhatsApp</span>
+        </button>
+      </div>
+      <div class="share-options-popup__list-item">
+        <button shareButton="email" [style.backgroundColor]="'#ffffff'" [url]="referralSignupUrl">
+          <img src="../../../../assets/images/social/icon-social-mail.svg" alt=""
+               class="share-options-popup__list-icon">
+          <p class="share-options-popup__list-text">Email</p>
+        </button>
+      </div>
+    </div>
+    <div class="share-options-popup__code-block code-block">
+      <p class="code-block__heading">
+        Tap and hold to copy link
+      </p>
+      <input contenteditable="false" (click)="copyLink()"
+             readonly
+             placeholder="{{referralSignupUrl}}"
+             type="text"
+             class="code-block__input">
+    </div>
+  </div>
+</p-dialog>
+<!-- END: MODAL WITH SHARE OPTIONS -->

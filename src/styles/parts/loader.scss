@@ -1,0 +1,24 @@
+.kz-app-loader {
+  position: relative;
+  padding:10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b4bcc5;
+  font: 400 14px/16px Tahoma, Arial, sans-serif;
+
+  .image-loader {
+    border: 2px solid #f1f1f1; /* Light grey */
+    border-top: 2px solid $muted-color; /* Blue */
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: loaderspin 1.5s linear infinite;
+    margin:0 8px 0 0;
+    line-height: 16px;
+  }
+}
+@keyframes loaderspin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

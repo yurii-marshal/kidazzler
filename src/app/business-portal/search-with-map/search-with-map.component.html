@@ -1,0 +1,36 @@
+<div class="search-with-map">
+  <!-- BEGIN: LOADERS -->
+  <!-- Main loader -->
+  <ngx-ui-loader [overlayColor]="'#fff'"
+                 [fgsType]="'chasing-dots'"
+                 [fgsColor]="'#823cf1'"
+                 [pbColor]="'#823cf1'">
+  </ngx-ui-loader>
+
+  <!-- Search process loader -->
+  <ngx-ui-loader [fgsColor]="'#823cf1'"
+                 [loaderId]="'search-with-map'"
+                 [fgsType]="'wandering-cubes'"
+                 [hasProgressBar]="false"
+                 [fgsPosition]="'center-center'">
+  </ngx-ui-loader>
+  <!-- END: LOADERS -->
+
+  <kz-businesses-on-map [businesses]="businesses"
+                        [isFullMap]="!isMobile"
+                        [showClose]="true"
+                        [showSearchControl]="true"
+                        (onLocationChange)="onSearch($event)"
+                        [showCurrentLocationControl]="true" (onMarkerClick)="markerClick($event)"
+                        [expanded]="isOpened" [activeBusiness]="currentBusiness">
+  </kz-businesses-on-map>
+
+  <div class="businesses" *ngIf="currentBusiness?.id" (swipeleft)="onSwipeLeft()" (swiperight)="onSwipeRight()">
+    <kz-business-card id="business-{{currentBusiness?.id}}"
+                      [business]="currentBusiness"
+                      [additionalClass]="'business-on-map'"
+                      [direction]="'horizontal'"
+                      [routerLink]="['/business-portal/business', currentBusiness?.id]">
+    </kz-business-card>
+  </div>
+</div>

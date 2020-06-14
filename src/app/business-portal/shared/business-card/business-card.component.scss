@@ -1,0 +1,355 @@
+@import "../../../../styles/variables";
+
+.business-card.vertical {
+  position: relative;
+  display: inline-block;
+  width: 250px;
+  border-radius: 8px;
+  background-color: #fff;
+  margin-right: 12px;
+  vertical-align: text-top;
+
+  .business-card__badge {
+    z-index: 9;
+    position: absolute;
+    width: 58px;
+    text-align: center;
+    top: 10px;
+    left: -4px;
+    padding: 2px 4px;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: bold;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+    border-radius: 4px;
+    background-image: linear-gradient(to left, #781e90, #531b6a);
+  }
+
+  .card-header {
+    position: relative;
+    cursor: pointer;
+
+    .img {
+      width: 100%;
+      object-fit: cover;
+      height: 105px;
+      display: block;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px 8px 0 0;
+    }
+  }
+
+  .card-body {
+    padding: 14px;
+
+    .card-title {
+      @include limited-text(1);
+      width: 100%;
+      display: inline-block;
+      text-overflow: ellipsis;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.33;
+      color: #000000;
+      cursor: pointer;
+
+      &.two-row {
+        @include limited-text(2);
+      }
+    }
+
+    .card-subtitle {
+      font-size: 15px;
+      line-height: 1.33;
+      color: #000000;
+      cursor: pointer;
+    }
+
+    .card-content {
+      padding: 8px 0;
+
+      &__wrapper {
+        display: flex;
+        align-items: center;
+      }
+
+      .checkins {
+        img {
+          margin-right: 6px;
+        }
+      }
+
+      .rating,
+      .checkins {
+        border-radius: 4px;
+        background-color: #f4f8f9;
+        padding: 0 6px;
+        display: flex;
+        align-items: center;
+        margin-right: 8px;
+        cursor: pointer;
+
+        .rate {
+          font-size: 13px;
+          line-height: 1.23;
+          letter-spacing: -0.2px;
+          color: #000000;
+        }
+
+        i {
+          color: #bd10e0;
+        }
+      }
+
+      .categories {
+        margin: 8px 0;
+        font-size: 15px;
+        line-height: 1.33;
+        color: #8e8e96;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .card-footer {
+    display: flex;
+
+    .footer-button {
+      border-radius: 8px;
+      background-color: #f4f8f9;
+      line-height: 20px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      color: #242424;
+      height: 35px;
+      width: 100%;
+      max-width: 225px;
+      margin: 0 auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:not(:first-of-type) {
+        margin-left: 10px;
+      }
+
+      &__image-box {
+        position: relative;
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 19px;
+        }
+      }
+
+      .badge {
+        color: #fff;
+        font-size: 12px;
+        line-height: 0;
+        letter-spacing: -0.218182px;
+        font-weight: bold;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: -8px;
+        top: -6px;
+        border-radius: 50%;
+        border: solid 2px #ffffff;
+        background-color: #bd10e0;
+      }
+    }
+  }
+}
+
+.business-card.horizontal {
+  position: relative;
+  display: block;
+  border-radius: 8px;
+  background-color: #fff;
+  margin-top: 12px;
+
+  &.business-on-map {
+    .card {
+      .card-body {
+        .card-title {
+          @include limited-text(2);
+        }
+      }
+    }
+  }
+
+  .business-card__badge {
+    z-index: 9;
+    position: absolute;
+    width: 58px;
+    text-align: center;
+    top: 18px;
+    left: 8px;
+    padding: 2px 4px;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: bold;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+    border-radius: 4px;
+    background-image: linear-gradient(to left, #781e90, #531b6a);
+  }
+
+  .card-header {
+    position: relative;
+    display: inline-block;
+    padding: 12px;
+    vertical-align: top;
+    width: 30%;
+    cursor: pointer;
+
+    .img {
+      width: 78px;
+      height: 78px;
+      display: block;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }
+
+  .card {
+    position: relative;
+
+    .card-body {
+      padding: 14px 14px 0 14px;
+      display: inline-block;
+      width: 60%;
+
+      .card-title {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.33;
+        color: #000000;
+        @include limited-text(1);
+        cursor: pointer;
+
+        &.two-row {
+          @include limited-text(2);
+        }
+      }
+
+      .card-subtitle {
+        font-size: 15px;
+        line-height: 1.33;
+        color: #000000;
+        cursor: pointer;
+      }
+
+      .card-content {
+        padding: 8px 0;
+
+        .rating, .checkins {
+          border-radius: 4px;
+          background-color: #f4f8f9;
+          padding: 0 6px;
+          display: inline-block;
+          margin-right: 8px;
+          cursor: pointer;
+
+          .rate {
+            font-size: 13px;
+            line-height: 1.23;
+            letter-spacing: -0.2px;
+            color: #000000;
+          }
+
+          i {
+            color: #bd10e0;
+          }
+        }
+
+        .categories {
+          margin: 8px 0;
+          font-size: 15px;
+          line-height: 1.33;
+          color: #8e8e96;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .card-footer {
+      display: flex;
+      padding-bottom: 14px;
+
+      .footer-button {
+        border-radius: 8px;
+        background-color: #f4f8f9;
+        line-height: 20px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        color: #242424;
+        height: 35px;
+        width: 100%;
+        max-width: 225px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:not(:last-of-type) {
+          margin-right: 10px;
+        }
+
+
+        &__image-box {
+          position: relative;
+          margin-right: 15px;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 19px;
+          }
+        }
+
+        .badge {
+          color: #fff;
+          font-size: 12px;
+          line-height: 0;
+          letter-spacing: -0.218182px;
+          font-weight: bold;
+          width: 18px;
+          height: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          right: -8px;
+          top: -6px;
+          border-radius: 50%;
+          border: solid 2px #ffffff;
+          background-color: #bd10e0;
+        }
+      }
+    }
+
+    .bookmark {
+      position: absolute;
+      top: 7px;
+      left: calc(100% - 33px);
+      font-size: 28px;
+      opacity: 0.4;
+    }
+  }
+}
+

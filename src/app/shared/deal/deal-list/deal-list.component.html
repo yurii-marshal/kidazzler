@@ -1,0 +1,32 @@
+<div class="deals-list" [ngClass]="{'deals-list_empty': !deals?.length}">
+  <div class="deals-list__wrapper">
+    <div class="add-deal" *ngIf="role === 0" [routerLink]="['add']">
+      <div class="add-deal__box">
+        <img src="../../../../assets/images/icons/plus-icon.svg" alt="Plus icon" class="add-deal__icon">
+        <p class="add-deal__text">
+          Add new Deal
+        </p>
+      </div>
+
+      <img src="../../../../assets/images/icons/percent-icon.svg" alt="Percent icon" class="add-deal__icon">
+    </div>
+
+    <ng-container *ngIf="deals?.length">
+      <kz-deal-card *ngFor="let deal of deals"
+                    [role]="role" [deal]="deal"
+                    [business]="business">
+      </kz-deal-card>
+    </ng-container>
+
+    <div class="empty-state" *ngIf="!deals?.length">
+      <img src="../../../../assets/images/icons/deals-empty-state.png" alt="" class="empty-state__image">
+      <h2 class="empty-state__heading">
+        No deals were added yet
+      </h2>
+      <p class="empty-state__text">
+        Call the business and ask them if they have any <br>
+        special deals for Kidazzler customers.
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,147 @@
+<kz-header [type]="'login'"></kz-header>
+
+<div class="main">
+  <div class="main_desk_wrapper wrapper">
+    <h2>Kidazzler</h2>
+    <p>
+      Built by parents for parents,
+      Kidazzler makes it simple to find and discover
+      family friendly businesses and service providers.
+      From Birth to Collge. All for Free.
+      <br *ngIf="isMobile"/>All in One Place.
+    </p>
+  </div>
+
+  <div class="global-search-container">
+    <kz-global-search
+      [showSuggestions]="userLocation"
+      [customStyle]="'home-customization'"
+      (click)="onGlobalSearchClick($event)"
+    ></kz-global-search>
+  </div>
+</div>
+<div class="explore wrapper" *ngIf="bestCategories.length > 0">
+  <h2>explore</h2>
+  <p>Most Popular Categories</p>
+  <!--<div *ngFor="let category of bestCategories" class="category-container">-->
+  <!--<kz-businesses-list [category]="category"-->
+  <!--[businesses]="category.businesses"-->
+  <!--[title]="getTitle(category.code)"-->
+  <!--&gt;</kz-businesses-list>-->
+  <!--</div>-->
+  <div class="explore_list">
+    <div class="explore_list-item"
+         *ngFor="let category of bestCategories"
+         [routerLink]="['/business-portal/search-result']"
+         [queryParams]="{category: category?.id}">
+      <img [src]="category.picture || defaultPictureUrl" alt="{{category.picture}}">
+      <span>{{category.description}}</span>
+    </div>
+  </div>
+
+  <button class="explore_button" (click)="viewAllCategories()">
+    View All Categories
+  </button>
+</div>
+
+<div class="back">
+  <div class="wrapper">
+    <h2>Our Pledge to Give Back</h2>
+    <p>
+      Every family and every child has a story.
+      <br/>So does every business and every community.
+      <br/>We’re determined to make every story better.
+    </p>
+    <button routerLink="/about">Read More</button>
+  </div>
+</div>
+<div class="join">
+  <h2>join us!</h2>
+  <p>
+    We Bring Businesses & Communities Together
+  </p>
+  <div class="join_list">
+    <div class="join_list-item" routerLink="/kidazzler-connection">
+      <img src="../../../assets/images/home/business.svg" alt="business">
+      <div><img src="../../../assets/images/home/arrow.svg" alt=""></div>
+      <h3>For Businesses</h3>
+      <p>
+        Join Kidazzler to make sure that when parents are looking for something
+        they need - and it’s something
+        you offer - they’ll find you.
+      </p>
+    </div>
+
+    <div class="join_list-item" routerLink="/community">
+      <img src="../../../assets/images/home/users.png" alt="users">
+      <div><img src="../../../assets/images/home/arrow.svg" alt=""></div>
+      <h3>For Users</h3>
+      <p>
+        Join Kidazzler to find & connect with great
+        family friendly local businesses, merchants, and service providers in your city or while traveling.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="out">
+  <h2>check out</h2>
+  <p>
+    Special Offers &
+    Fun Events Throughout the City
+  </p>
+  <div class="out_list">
+    <div class="out_list-item">
+      <img src="../../../assets/images/home/business_icon.svg" alt="">
+      <h3>Deals</h3>
+      <button routerLink="/deals">View All</button>
+    </div>
+    <div class="out_list-item">
+      <img src="../../../assets/images/home/user_icon.svg" alt="">
+      <h3>Events</h3>
+      <button routerLink="/events">View All</button>
+    </div>
+  </div>
+</div>
+
+<div class="discover" *ngIf="!isMobile && userLocation && popularPlaces.length > 0">
+  <h2> discover and find </h2>
+  <p>Popular Places & Hidden Gems</p>
+
+  <div class="discover_list" *ngFor="let place of popularPlaces">
+
+    <div class="discover_list-title" *ngIf="place.businesses.length > 0">
+      <h4>Best {{place.code}} in {{place.businesses[0].city}}</h4>
+      <span [routerLink]="['/business-portal/search-result']"
+            [queryParams]="{category: place.id}">
+          Show all
+        </span>
+    </div>
+
+    <div class="discover_list-items" *ngIf="place.businesses">
+      <kz-business-card *ngFor="let business of place.businesses; let i = index"
+                        [business]="business" direction="vertical"
+                        [additionalClass]="{'home' : true, 'full-line' : (i+1) % 3 === 0}"
+                        (click)="onBusinessCardClick(business)"
+      ></kz-business-card>
+    </div>
+
+  </div>
+</div>
+
+<kz-footer></kz-footer>
+
+<p-dialog [visible]="isLocationPopupShown" [modal]="true"
+          [styleClass]="'custom-popup popup-rewards'"
+          width="472" [height]="isMobile ? '100%' : '514'"
+          [showHeader]="false" (onHide)="onHideLocationDialog()">
+
+  <div class="close white" (click)="closeLocationDialog()"></div>
+
+  <!--<kz-set-location-->
+    <!--(onEnableLocation)="useSystemLocation()"-->
+    <!--(onLocationChange)="locationChanged($event)"-->
+    <!--[allowLocationSearch]="true"-->
+  <!--&gt;</kz-set-location>-->
+
+</p-dialog>

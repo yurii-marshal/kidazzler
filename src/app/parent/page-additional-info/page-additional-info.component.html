@@ -1,0 +1,60 @@
+<kz-header></kz-header>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="login-container">
+        <h1>Additional Info</h1>
+
+        <div class="bordered-block">
+            <div class="row" *ngIf="form.get('email')">
+                <div class="col">
+                    <input class="form-component" placeholder="Email*" id="email" formControlName="email" pInputText>
+                    <div class="error-message" *ngIf="formErrors.checkControlValidation('email')">
+                        {{ formErrors.getValidationMessage('email') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bordered-block" *ngIf="form.get('country')">
+            <div class="row">
+                <div class="col">
+                    <label>Your Country</label>
+                    <kz-select formControlName="country" [options]="countries | async" (search)="searchCountries($event)" displayWith="description" valueAs="code" placeholder="Your Country"></kz-select>
+
+                    <div class="error-message" *ngIf="formErrors.checkControlValidation('country')">
+                        {{ formErrors.getValidationMessage('country') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bordered-block" *ngIf="form.get('representedOrganization')">
+            <div class="row">
+                <div class="col">
+                    <div class="flex-between">
+                        <label>Are you creating an account on behalf of an organization?</label>
+                        <kz-input-switcher (onSwitch)="toggleOrganization($event)"></kz-input-switcher>
+                    </div>
+                    <div class="large-notes" *ngIf="!isOrganization">
+                        If not, press Save
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="isOrganization">
+                <div class="col">
+                    <input class="form-component" placeholder="Organization Name*" id="representedOrganization" formControlName="representedOrganization" pInputText>
+                    <div class="error-message" *ngIf="formErrors.checkControlValidation('representedOrganization')">
+                        {{ formErrors.getValidationMessage('representedOrganization') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <button class="btn btn-primary btn-fullwidth" type="submit">Save</button>
+        </div>
+    </div>
+
+</form>
+
+<kz-footer></kz-footer>

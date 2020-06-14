@@ -1,0 +1,22 @@
+<div class="title-header" [ngClass]="{'transparent': isTransparent, 'white': isWhite, 'static': isStatic}">
+  <span (click)="goBack()" class="title-header__back" *ngIf="isShownBack">
+    <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 15L1 8L8 1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+
+  <p class="title-header__title" [innerHTML]="title"></p>
+  <div>
+    <p class="title-header__clear" *ngIf="isShownClear" [ngClass]="{'active' : isClearActive}" (click)="clear()">
+      Clear
+    </p>
+
+    <a class="title-header__edit" *ngIf="isShownEdit" (click)="edit()">
+      Edit
+    </a>
+
+    <a class="title-header__cancel" *ngIf="isShownCancel" (click)="goBack()">
+      Cancel
+    </a>
+  </div>
+</div>

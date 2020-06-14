@@ -1,0 +1,24 @@
+<kz-title-header [title]="'Events'"
+                 [isShownBack]="true"
+                 [isStatic]="true">
+</kz-title-header>
+
+
+<div class="events-list">
+  <kz-event-list [business]="business" [events]="events?.items" [role]="roles.user"></kz-event-list>
+</div>
+
+<p-paginator class="paginator"
+             [rows]="events?.limit"
+             [totalRecords]="events?.count"
+             [alwaysShow]="false"
+             (onPageChange)="onPagination($event)">
+</p-paginator>
+
+<!-- LOADER -->
+<ngx-ui-loader [overlayColor]="'#fff'"
+               [fgsType]="'chasing-dots'"
+               [fgsColor]="'#823cf1'"
+               [pbColor]="'#823cf1'">
+</ngx-ui-loader>
+<!-- LOADER -->

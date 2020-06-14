@@ -1,0 +1,105 @@
+<div class="filter-block">
+  <div class="filter-block__wrapper">
+    <div class="filters-box">
+      <p class="filter-block__item active" (click)="filterBusinesses('')"
+         [class.active]="currentFilter === ''">
+        All
+      </p>
+      <p class="filter-block__item" (click)="filterBusinesses('claimed')"
+         [class.active]="currentFilter === 'claimed'">
+        Claimed
+      </p>
+      <p class="filter-block__item" (click)="filterBusinesses('unclaimed')"
+         [class.active]="currentFilter === 'unclaimed'">
+        Unclaimed
+      </p>
+      <p class="filter-block__item" (click)="filterBusinesses('member')"
+         [class.active]="currentFilter === 'member'">
+        Member
+      </p>
+    </div>
+    <div class="radio-select">
+      <p-checkbox id="missingEmail" [(ngModel)]="hasNoEmail" [binary]="true"
+                  (ngModelChange)="filterBusinesses(this.currentFilter)"></p-checkbox>
+      <p class="radio-select__text">
+        With missing email
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<div class="business-list" *ngIf="businesses?.items?.length">
+  <ng-container *ngFor="let business of this.businesses?.items">
+
+    <div class="business-item"
+         [ngClass]="{'member': business.isClaimed && business.memberAt && !business.closed}">
+      <div class="status-label" [ngClass]="{'verified' : business.isClaimed, 'muted' : !business.isClaimed}">
+        {{business.closed ? 'Closed' : business.isClaimed ? (business.memberAt ? 'Member ' : 'Claimed') : 'Unclaimed'}}
+      </div>
+         <a class="edit-business" [routerLink]="['/edit-business/'+business.id]"
+         *ngIf="profile?.canEditFriendsBusinesses">
+           <svg-icon src="/assets/images/pen.svg"></svg-icon>
+           <i>Edit Info</i>
+         </a>
+      <div class="business-item-content">
+        <div class="title">{{business.name}}</div>
+
+        <div *ngIf="business.address" class="business-info-block">
+          <p class="business-address">
+            {{business.address}}
+            <span *ngIf="business.address">, </span>
+
+            {{business.city}}
+            <span *ngIf="business.city">, </span>
+
+            {{business.state | shortenState}}
+            <span *ngIf="business.state">, </span>
+
+            {{business.zip}}
+          </p>
+        </div>
+
+        <div class="business-info-block">
+          <p>
+            Phone:
+            <i>
+              {{business.phone | phoneNumber:(phoneInfo)}}
+            </i>
+            <span class="error-message" *ngIf="!business.phone">Missing</span>
+          </p>
+          <p>
+            Website: {{business.website}}
+            <span class="error-message" *ngIf="!business.website">Missing</span>
+          </p>
+          <p>
+            Email: {{business.email}}
+            <span class="error-message" *ngIf="!business.email">Missing</span>
+          </p>
+        </div>
+      </div>
+      <div class="tag">
+        <img src="../../../../assets/images/icons/category-icon.svg" alt="" class="">
+        {{business?.businessTypes[0]?.code}}
+      </div>
+    </div>
+
+  </ng-container>
+
+
+  <p-paginator class="paginator" [first]="businesses?.offset"
+               [rows]="businesses?.limit"
+               [totalRecords]="businesses?.count"
+               [alwaysShow]="false"
+               (onPageChange)="onPagination($event)">
+  </p-paginator>
+
+  <!--  <div class="business-item-add-more" [routerLink]="['/add-business']">-->
+  <!--    <div>-->
+  <!--      <svg-icon src="/assets/images/business.svg"></svg-icon>-->
+  <!--      <div class="text">Add more businesses</div>-->
+  <!--      <a [routerLink]="['/add-business']">Add a Business</a>-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+</div>

@@ -1,0 +1,19 @@
+<p-dialog [visible]="true" [modal]="true" [draggable]="false" [resizable]="false" [dismissableMask]="true" [showHeader]="false" [styleClass]="'custom-popup popup-agent-status'" (onHide)="close()">
+    <div class="close" (click)="close()"></div>
+    <div class="popup-title">
+        <div>Congrats, Rockstar!</div>
+    </div>
+
+    <div class="popup-content">
+        <p class="text-center">
+            You’ve added {{businessesCount$ | async}} new businesses and achieved <br> the highest rank as a
+            Kidazzler Producer.
+        </p>
+        <p class="text-center">
+            We’re creating new categories just for you. <br>
+            Meanwhile, your friends know businesses too!<br>
+            Invite them and Earn Together <br>
+            (up to $4,500/month).
+        </p>
+    </div>
+</p-dialog>

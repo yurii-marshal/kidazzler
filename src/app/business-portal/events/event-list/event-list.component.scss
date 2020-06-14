@@ -1,0 +1,25 @@
+kz-event-list-on-portal {
+  display: block;
+  width: 100%;
+  background: #F4F8F9;
+  min-height: 100vh;
+
+  kz-title-header {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+  }
+}
+
+.kz {
+  margin: 0;
+}
+
+.events-list {
+  position: relative;
+  padding-top: 60px;
+  background: #F4F8F9;
+  min-height: 100vh;
+}
+
+

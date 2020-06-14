@@ -1,0 +1,34 @@
+<div class="header" [class.logged-in]="(type === 'withMenu' || type === 'login')">
+  <div class="container">
+    <div class="header-content">
+
+      <a class="logo" [routerLink]="['/']">
+        <img class="logo-kidazzler" src="/assets/images/logo-kidazzler-light.svg" alt="kidazzler logo"/>
+        <img class="trademark-icon" src="/assets/images/icons/trademark-icon.svg" alt="trademark icon"/>
+      </a>
+
+      <kz-global-search *ngIf="isDesktop && isAuthorized"></kz-global-search>
+
+      <div class="primary-menu" *ngIf="type==='login'">
+        <div class="menu-about desktop-only" *ngIf="!hideAbout">
+          <a [routerLink]="['/about']">About</a>
+        </div>
+        <a class="menu-login" [routerLink]="['/login']">Login</a>
+      </div>
+
+      <div class="primary-menu" *ngIf="type==='empty'"></div>
+
+      <div class="primary-menu" *ngIf="type==='withMenu'">
+
+        <div class="menu-about desktop-only" *ngIf="!hideAbout">
+          <a [routerLink]="['/about']">About</a>
+        </div>
+
+        <kz-header-notifications></kz-header-notifications>
+
+        <kz-header-profile></kz-header-profile>
+
+      </div>
+    </div>
+  </div>
+</div>

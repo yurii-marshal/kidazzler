@@ -1,0 +1,24 @@
+<p-dialog [visible]="visible" [modal]="true" [dismissableMask]="true" [styleClass]="'custom-popup popup-agent-status popup-badges'" [closable]="false" [draggable]="false" [resizable]="false" [showHeader]="false" (onHide)="onHide()">
+    <div class="close" (click)="closeDialog()"></div>
+    <div class="popup-title">
+        <div *ngIf="type==='agent'">Agent Status</div>
+        <div *ngIf="type==='producer'">Producer Status</div>
+    </div>
+
+    <div class="agent-status-title" *ngIf="type==='agent'">
+        Earn $2/month of advertising revenues from each business your friends add
+    </div>
+    <div class="agent-status-title" *ngIf="type==='producer'">
+        Earn $10/month of advertising revenues from each business you add
+    </div>
+    <div class="agent-status-list-wrap">
+        <div class="agent-status-list">
+            <div class="agent-status-item" *ngFor="let item of badges">
+                <div class="agent-status" [class.inactive]="!isActive(item)">
+                    <img [src]="item?.smallImageUrl" [alt]="item?.title" />
+                    <div class="value">{{item?.points}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>

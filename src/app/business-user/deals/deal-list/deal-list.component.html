@@ -1,0 +1,41 @@
+<kz-header type="withMenu"></kz-header>
+
+<kz-title-header
+  [title]="'Your Deals'"
+  [isWhite]="true"
+  [isShownBack]="true"
+  [isStatic]="true"
+></kz-title-header>
+
+<div class="list-header">
+  <div class="list-header__title-box">
+    <h1 class="list-header__title">
+      My Deals
+    </h1>
+
+    <div class="list-header__wrapper">
+      <button class="list-header__title-button" [routerLink]="['/contact-us']">
+        Add New Deal
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="deal-list">
+  <kz-deal-list [role]="roles.business" [deals]="deals?.items" [business]="business"></kz-deal-list>
+</div>
+
+<p-paginator class="paginator"
+             [rows]="deals?.limit"
+             [totalRecords]="deals?.count"
+             [alwaysShow]="false"
+             (onPageChange)="onPagination($event)">
+</p-paginator>
+
+<!-- LOADER -->
+<ngx-ui-loader [overlayColor]="'#fff'"
+               [fgsType]="'chasing-dots'"
+               [fgsColor]="'#823cf1'"
+               [pbColor]="'#823cf1'">
+</ngx-ui-loader>
+<!-- LOADER -->

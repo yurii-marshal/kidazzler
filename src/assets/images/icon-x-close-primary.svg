@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="#b70fd9" fill-rule="evenodd" stroke-linecap="round" opacity="1" stroke-linejoin="round">
+        <g id="Web-GUI" transform="translate(-765.000000, -1890.000000)" stroke="#b70fd9" stroke-width="1.8">
+            <g id="icon-x-close-copy" transform="translate(766.000000, 1891.000000)">
+                <path d="M0.300587959,0.258181117 L10.4427236,10.4003167" id="Line"></path>
+                <path d="M0.300587959,10.2122779 L10.4427236,0.0701422437" id="Line-Copy-2"></path>
+            </g>
+        </g>
+    </g>
+</svg>

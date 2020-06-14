@@ -1,0 +1,528 @@
+@import "../../../styles/variables";
+@import "../../../styles/popup/popup";
+
+.add-margin {
+  margin-bottom: 220px;
+}
+
+.check-in-wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.check-in {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+
+  p, h1 {
+    padding: 0;
+  }
+
+  &__create-check-in {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  &__text-block {
+    text-align: center;
+    margin-bottom: 39px;
+    padding-top: 24px;
+  }
+
+  &__submit {
+    @include kz-button;
+    width: 100%;
+    max-width: 335px;
+    height: 44px;
+  }
+
+  &__heading {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 24px;
+    font-weight: bold;
+    @include limited-text(2);
+  }
+
+  &__description {
+    font-size: 17px;
+    line-height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 335px;
+    margin: 0 auto;
+  }
+
+  &__icon {
+    background: #F4F8F9;
+    line-height: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #242424;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+.check-in-form {
+  width: 100%;
+  max-width: 375px;
+  margin: 0 auto;
+
+  &__item {
+    margin-bottom: 30px;
+    position: relative;
+
+    &:last-of-type {
+      margin-bottom: 24px;
+    }
+
+    &.check-in-form__item_upload {
+      margin-bottom: 24px;
+
+      .check-in-form__input {
+        background-color: transparent;
+        padding: 0;
+        height: 123px;
+        color: transparent;
+        position: relative;
+      }
+
+      .check-in-form__input::-webkit-file-upload-button {
+        visibility: hidden;
+      }
+
+      .check-in-form__input::before {
+        content: 'Add Business Photo';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(75, 3, 189, 0.09);
+        border-radius: 8px;
+        height: 123px;
+        width: 100%;
+
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        cursor: pointer;
+
+        font-size: 13px;
+        line-height: 20px;
+        letter-spacing: -0.173333px;
+        color: #4B03BD;
+        padding-top: 60px;
+      }
+
+      .check-in-form__input::after {
+        content: '';
+        display: block;
+        background: url("../../../assets/images/checkin/upload-icon.svg") no-repeat;
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        top: 30px;
+        left: calc(50% - 24px);
+        pointer-events: none;
+      }
+    }
+
+    &.check-in-form__item_checkbox {
+      display: flex;
+      align-items: center;
+      margin-bottom: 29px;
+
+      .check-in-form__text {
+        font-size: 17px;
+        line-height: 30px;
+        max-width: 100%;
+        font-weight: normal;
+      }
+    }
+  }
+
+  &__image-box {
+    width: 100%;
+    position: relative;
+    margin-top: -12px;
+    margin-bottom: 24px;
+
+    img {
+      border-radius: 8px;
+    }
+
+    .check-in-form__delete-box {
+      img {
+        border-radius: 0;
+      }
+    }
+  }
+
+  &__delete-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: calc(100% - 48px);
+    top: 12px;
+    background-color: #ffffff;
+  }
+
+  &__delete-button {
+
+  }
+
+  &__item-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .upload-wrapper {
+    position: relative;
+  }
+
+  &__text {
+    width: 100%;
+    max-width: 180px;
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: bold;
+  }
+
+  &__number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    line-height: 20px;
+    color: #4ABBB5;
+    font-weight: bold;
+
+    span {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 14px;
+    background: #F4F8F9;
+    border-radius: 4px;
+    border: none;
+    box-shadow: none;
+
+    font-size: 17px;
+    line-height: 22px;
+
+    &::placeholder {
+      font-size: 17px;
+      line-height: 22px;
+      color: rgba(36, 36, 36, 0.5);
+    }
+  }
+
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border: 2px solid #B4BCC5;
+    box-shadow: none;
+    border-radius: 4px;
+    margin: 0 12px 0 0;
+    padding-bottom: 2px;
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+
+    &:after {
+      content: none;
+      display: block;
+      height: 6px;
+      width: 9px;
+      border-left: 2px solid #B70FD9;
+      border-bottom: 2px solid #B70FD9;
+
+      transform: rotate(-50deg);
+    }
+
+    &:checked:after {
+      content: '';
+    }
+  }
+}
+
+.checked-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+
+  width: 100%;
+  max-width: 335px;
+  height: calc(100vh - 40px);
+  padding-top: 40px;
+  padding-bottom: 20px;
+
+  &__icon {
+    margin-bottom: 30px;
+  }
+
+  &__text {
+    font-size: 24px;
+    line-height: 30px;
+    margin-bottom: 20px;
+  }
+
+  &__info {
+    font-size: 15px;
+    line-height: 22px;
+    text-align: center;
+    color: #627887;
+    margin-bottom: 16px;
+
+    b {
+      color: #4ABBB5;
+    }
+  }
+
+  &__link {
+    font-size: 17px;
+    line-height: 44px;
+    color: #B70FD9;
+    margin-bottom: 16px;
+  }
+}
+
+.check-in-popup {
+  width: 100%;
+  max-width: 335px;
+  margin: 0 auto;
+  position: relative;
+  background: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 0 26px 90px rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+
+  p {
+    padding: 0;
+  }
+
+  &.check-in-popup_share {
+    max-width: 303px;
+    min-width: 303px;
+    padding: 16px 24px 24px 24px;
+  }
+
+  &.check-in-popup_info {
+    max-width: 335px;
+    min-width: 335px;
+    padding: 56px 20px 20px 20px;
+  }
+
+  &__close-box {
+    width: 30px;
+    height: 30px;
+    background: rgba(98, 120, 135, .12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+  }
+
+  &__close {
+    width: 100%;
+    position: absolute;
+    top: 16px;
+    left: 0;
+    padding-right: 16px;
+
+    display: flex;
+    justify-content: flex-end;
+
+    i {
+      cursor: pointer;
+      background: rgba(98, 120, 135, 0.2);
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+
+      svg {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__tips {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 12px;
+  }
+
+  &__tips-item {
+    width: 100%;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(36, 36, 36, .12);
+  }
+
+  &__tips-text {
+    line-height: 22px;
+    margin-bottom: 4px;
+  }
+
+  &__tips-number {
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 20px;
+    color: #4ABBB5;
+  }
+
+  &__banner {
+    padding: 17px 14px;
+    background: #ECF8F7;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    color: #4ABBB5;
+
+    i {
+      margin-right: 12px;
+    }
+  }
+
+  &__banner-text {
+    line-height: 20px;
+  }
+
+  &__header {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 26px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 44px;
+  }
+
+  &__list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__list-icon {
+    margin-right: 16px;
+  }
+
+  &__list-text {
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  .code-block {
+    &__heading {
+      line-height: 22px;
+      margin-bottom: 8px;
+    }
+
+    &__input {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      padding: 0 0 0 14px;
+      background: #F4F8F9;
+      border-radius: 4px;
+      border: none;
+      box-shadow: none;
+      font-size: 17px;
+      line-height: 22px;
+    }
+  }
+}
+
+.reward-modal {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+
+@media (min-width: 320px) and (max-width: 440px) {
+  .check-in {
+    margin: 0 auto;
+    max-width: 320px;
+    height: 100vh;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 374px) {
+  .check-in-popup {
+    &.check-in-popup_share {
+      padding: 16px 24px 24px 24px;
+    }
+
+    &.check-in-popup_info {
+      padding: 56px 15px 20px 15px;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 340px) {
+  .check-in {
+    margin: 0 auto;
+    max-width: 300px;
+  }
+
+  .check-in-popup {
+    &.check-in-popup_info,
+    &.check-in-popup_share {
+      max-width: 300px;
+      min-width: 300px;
+    }
+
+    &__banner-text br {
+      display: none;
+    }
+  }
+}

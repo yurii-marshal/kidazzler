@@ -1,0 +1,40 @@
+.settings-menu {
+  background-color: #fff;
+  padding: 20px 40px;
+  border-radius: 16px;
+  width: 280px;
+
+  a {
+    font-size: 17px;
+    line-height: 22px;
+    text-align: left;
+    color: $dark-color;
+    display: block;
+    padding:25px 0;
+    position: relative;
+    text-decoration: none;
+    transition: $base-animation;
+
+    &.active, &:hover {
+      font-weight: 600;
+      color: $link-color;
+    }
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      content: " ";
+      height: 1px;
+      opacity: 0.1;
+      background-color: #26314f;
+    }
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}

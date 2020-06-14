@@ -1,0 +1,101 @@
+<kz-business-header></kz-business-header>
+
+<ngx-ui-loader [fgsColor]="'#823cf1'"
+               [loaderId]="'claim-business'"
+               [fgsType]="'wandering-cubes'"
+               [hasProgressBar]="false"
+               [fgsPosition]="'center-center'"
+></ngx-ui-loader>
+
+<div class="verify-claim-oval">
+  <div class="claim-center-block">
+    <div class="title">
+      Manage Your Listing <br>
+      For Free
+    </div>
+    <div class="sub-title">
+      Just one more step... <br>
+      Verify you are the owner of this business <br>
+      or have permission to claim this business.
+    </div>
+  </div>
+</div>
+
+<div class="shadowed-block">
+  <div class="claim-info">
+    <img [src]="business?.primaryPhoto?.url || DEFAULT_BUSINESS_PHOTO" class="claim-info__image">
+
+    <div class="claim-info__box">
+      <p class="claim-info__name">
+        {{business?.name}}
+      </p>
+      <div class="claim-info__address" *ngIf="isPhysical">
+        <ng-container>{{business?.address}}, {{business?.city}}, {{business?.state}}</ng-container>
+        <ng-container *ngIf="business?.zip">, {{business?.zip}}</ng-container>
+      </div>
+      <p class="claim-info__address" *ngIf="!isPhysical">
+        {{business?.city}}, {{business?.state}}
+      </p>
+      <p class="categories">
+        <span class="item">
+          <i class="pi pi-tag"></i>
+          <ng-container *ngFor="let category of business?.businessTypes; let last = last" class="category">
+            {{category.code}}
+            <i *ngIf="!last">{{','}}</i>
+          </ng-container>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="details">
+    <div class="details__item">
+      <img src="../../../assets/images/icons/phone-icon_gray.svg" alt="">
+      <span class="details__text"
+            *ngIf="business?.phone">{{ business?.phone | phoneNumber: phoneInfo }}</span>
+      <span class="error-message" *ngIf="!(business?.phone)">Missing</span>
+    </div>
+    <div class="details__item">
+      <img src="../../../assets/images/icons/mail-icon.svg" alt="">
+      <a class="details__link" href="mailto:{{business?.email}}">{{business?.email}}</a>
+      <span class="error-message" *ngIf="!business?.email">Missing</span>
+    </div>
+    <div class="details__item">
+      <img src="../../../assets/images/icons/external-icon.svg" alt="">
+      <a class="details__link" target="_blank" href="{{business?.website}}">{{business?.website}}</a>
+      <span class="error-message" *ngIf="!business?.website">Missing</span>
+    </div>
+  </div>
+</div>
+
+<div class="actions">
+  <div class="actions__wrapper">
+    <div class="action-block" (click)="verifyClaimBusiness('voice')">
+      <img src="../../../assets/images/icons/phone-icon_green.svg" alt="" class="action-block__image">
+      <div class="action-block__box">
+        <p class="action-block__text">
+          Call me at {{ business?.phone | phoneNumber: phoneInfo }}
+        </p>
+        <p class="action-block__link">
+          Kidazzler will call you with a 4-digit code.
+        </p>
+      </div>
+    </div>
+    <div class="action-block" (click)="verifyClaimBusiness('sms')">
+      <img src="../../../assets/images/icons/mail-icon_green.svg" alt="" class="action-block__image">
+      <div class="action-block__box">
+        <p class="action-block__text">
+          Text me at {{ business?.phone | phoneNumber: phoneInfo }}
+        </p>
+        <p class="action-block__link">
+          Kidazzler will send you a 4-digit code.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <p class="actions__link">
+    If this phone number is incorrect, <i routerLink="/contact-us">contact us</i>
+  </p>
+</div>
+
+<kz-footer></kz-footer>

@@ -1,0 +1,15 @@
+<div class="title">Email</div>
+<div [ngBusy]="isLoading"></div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <label>Your email</label>
+        <input type="email" class="form-component" placeholder="Your email" id="email" formControlName="email" />
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('email')">
+            {{ formErrors.getValidationMessage('email') }}
+        </div>
+    </div>
+</form>
+<div class="row-buttons">
+    <button class="btn btn-primary" (click)="onSubmit()">Save Changes</button>
+    <button class="btn btn-secondary" [routerLink]="['/']">Cancel</button>
+</div>

@@ -1,0 +1,85 @@
+<kz-header></kz-header>
+
+<div class="login-container">
+    <h3 class="text-center text-success">Your access code was accepted</h3>
+
+    <div style="padding:56.25% 0 0 0;position:relative;">
+        <iframe src="https://player.vimeo.com/video/276816430?title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h1>Sign Up for an Account</h1>
+
+    <div class="small-container notes">
+        By signing up, you agree to Kidazzler’s <br>
+        <a [routerLink]="['/terms']">Terms of Use</a> and <a [routerLink]="['/privacy']">Privacy Policy</a>.
+    </div>
+
+    <kz-facebook-auth type="signup">Sign Up with Facebook</kz-facebook-auth>
+
+    <div class="notes">
+        Don’t worry, we never post without your permission.
+    </div>
+
+    <div class="text-divider">
+        <span>or</span>
+    </div>
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" kzForm [scrollOnError]="true">
+        <div class="bordered-block">
+            <div class="row">
+                <kz-form-field class="col">
+                    <input type="text" class="form-component" nameTransformation="true" placeholder="First Name*" pInputText formControlName="firstName">
+                </kz-form-field>
+                <kz-form-field class="col">
+                    <input type="text" class="form-component" nameTransformation="true" placeholder="Last Name*" pInputText formControlName="lastName">
+                </kz-form-field>
+            </div>
+
+            <kz-form-field>
+                <input type="text" class="form-component" placeholder="Email*" id="email" formControlName="email" pInputText>
+            </kz-form-field>
+
+            <kz-form-group formGroupName="passwords">
+                <kz-form-field errorDisplay="dirty">
+                    <input type="password" class="form-component" placeholder="Password*" formControlName="password" pInputText maxlength="128">
+                </kz-form-field>
+
+                <kz-form-field>
+                    <input type="password" class="form-component" placeholder="Confirm password*" maxlength="128" formControlName="confirmationPassword" pInputText>
+                </kz-form-field>
+            </kz-form-group>
+        </div>
+
+        <div class="bordered-block">
+            <kz-form-field>
+                <label>Your Country</label>
+                <kz-select formControlName="country" [options]="countries | async" (search)="searchCountries($event)" displayWith="description" valueAs="code" placeholder="Your Country"></kz-select>
+            </kz-form-field>
+        </div>
+
+        <div class="bordered-block">
+            <div class="row">
+                <div class="col">
+                    <div class="flex-between">
+                        <label>Are you creating an account on behalf of an organization?</label>
+                        <kz-input-switcher (onSwitch)="toggleOrganization($event)"></kz-input-switcher>
+                    </div>
+                    <div class="large-notes">If no, press Sign Up</div>
+                </div>
+            </div>
+
+            <kz-form-field *ngIf="isOrganization">
+                <input type="text" class="form-component" placeholder="Organization Name*" pInputText formControlName="representedOrganization">
+            </kz-form-field>
+        </div>
+
+        <div class="row">
+            <button class="btn btn-primary btn-fullwidth">Sign Up</button>
+        </div>
+    </form>
+
+    <div class="notes">
+        Already on Kidazzler? <a [routerLink]="['/login']">Login</a>
+    </div>
+</div>
+<kz-footer></kz-footer>

@@ -1,0 +1,32 @@
+.related-businesses{
+  background: #F4F8F9;
+  .businesses-list {
+    .businesses {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+      padding: 20px 0 20px 4px;
+    }
+
+    .title {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 22px;
+      font-weight: 600;
+      color: #2d2f39;
+      padding: 20px 0;
+      &__link {
+        font-size: 17px;
+        line-height: 21px;
+        text-align: right;
+        letter-spacing: -0.309091px;
+        color: #4B03BD;
+        font-weight: 400;
+      }
+    }
+  }
+
+}
+

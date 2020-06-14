@@ -1,0 +1,66 @@
+<div class="subscription-section" *ngIf="info">
+    <div class="container">
+        <div class="subscription-list">
+            <div class="subscription-item">
+                <div class="subscription-status">
+                    <a [routerLink]="['', {outlets: {popup: ['badges', 'agent']}}]">
+                        <img alt="Agent Badge" [src]="info.agentBadge.largeImageUrl" />
+                    </a>
+                </div>
+                <div class="relative-container">
+                    <div class="subscription-label">
+                        <div [routerLink]="['', {outlets: {popup: ['badges', 'agent']}}]">
+                            <span class="count">{{info.agentLeftPoints}}</span>
+                            <span class="text-underline">Friends to next rank</span>
+                        </div>
+                    </div>
+                    <div>
+                        <b>
+                            “Lock” more businesses with friends <br>
+                            Earn Together
+                        </b>
+                    </div>
+                    <div class="note">
+                        Earn $2/month of advertising revenues from each business your friends add
+                    </div>
+                </div>
+                <div class="bottom-button">
+                    <a class="btn btn-icon-primary" [routerLink]="['', {outlets: {popup: ['invite']}}]">
+                        <svg-icon src="/assets/images/friends.svg"></svg-icon>
+                        Invite Friends
+                    </a>
+                </div>
+            </div>
+            <div class="subscription-item">
+                <div class="subscription-status">
+                    <a [routerLink]="['', {outlets: {popup: ['badges', 'producer']}}]">
+                        <img alt="Producer Badge" [src]="info.producerBadge.largeImageUrl" />
+                    </a>
+                </div>
+                <div class="relative-container">
+                    <div class="subscription-label">
+                        <div [routerLink]="['', {outlets: {popup: ['badges', 'producer']}}]">
+                            <span class="count">{{info.producerLeftPoints}}</span>
+                            <span class="text-underline">Businesses to next rank</span>
+                        </div>
+                    </div>
+                    <div>
+                        <b>
+                            Add a new business to Kidazzler to <br>
+                            “Lock It” in your name
+                        </b>
+                    </div>
+                    <div class="note">
+                        Earn $10/month of advertising revenues from each business you add
+                    </div>
+                </div>
+                <div class="bottom-button">
+                    <a class="btn btn-icon-primary" routerLink="/add-business">
+                        <svg-icon src="/assets/images/business.svg"></svg-icon>
+                        Add a Business
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

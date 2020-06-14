@@ -1,0 +1,45 @@
+<kz-header type="withMenu"></kz-header>
+
+<kz-title-header
+  [title]="'Your Events'"
+  [isWhite]="true"
+  [isShownBack]="true"
+  [isStatic]="true"
+></kz-title-header>
+
+<div class="list-header">
+  <div class="list-header__title-box">
+    <h1 class="list-header__title">
+      My Events
+    </h1>
+
+    <div class="list-header__wrapper">
+      <button class="list-header__title-button" [routerLink]="['/contact-us']">
+        Add New Event
+      </button>
+
+      <p class="list-header__link">
+        View Event Ideas
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="event-list">
+  <kz-event-list [business]="business" [events]="events?.items" [role]="roles.business"></kz-event-list>
+</div>
+
+<p-paginator class="paginator"
+             [rows]="events?.limit"
+             [totalRecords]="events?.count"
+             [alwaysShow]="false"
+             (onPageChange)="onPagination($event)">
+</p-paginator>
+
+<!-- LOADER -->
+<ngx-ui-loader [overlayColor]="'#fff'"
+               [fgsType]="'chasing-dots'"
+               [fgsColor]="'#823cf1'"
+               [pbColor]="'#823cf1'">
+</ngx-ui-loader>
+<!-- LOADER -->

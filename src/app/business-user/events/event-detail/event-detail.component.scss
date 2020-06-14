@@ -1,0 +1,7 @@
+@import "../../../../styles/variables";
+
+@media (min-width: $breakpoint-md) {
+  kz-title-header {
+    display: none !important;
+  }
+}

@@ -1,0 +1,26 @@
+<section class="main-section">
+  <!-- LOADER -->
+  <ngx-ui-loader [overlayColor]="'#fff'"
+                 [fgsType]="'chasing-dots'"
+                 [fgsColor]="'#823cf1'"
+                 [pbColor]="'#823cf1'">
+  </ngx-ui-loader>
+  <!-- LOADER -->
+
+  <div class="full-grey-screen">
+    <kz-slider [slides]="slides"></kz-slider>
+    <kz-search-box></kz-search-box>
+    <kz-categories [categories]="categories"></kz-categories>
+    <div *ngIf="bestCategories">
+      <div *ngFor="let category of bestCategories" class="category-container">
+        <kz-businesses-list [category]="category" [businesses]="category.businesses"
+                            [title]="getTitle(category.code)"></kz-businesses-list>
+        <a href="" class="view-all" [routerLink]="['search-result']" [queryParams]="{category: category.id}">
+          Show all
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section>
+

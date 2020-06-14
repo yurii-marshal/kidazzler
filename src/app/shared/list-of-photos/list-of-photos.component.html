@@ -1,0 +1,399 @@
+<!-- BEGIN: ONE PHOTO VIEW -->
+<div class="photos-overlay" [ngClass]="{'deal-event-view' : dealId || eventId, 'user-view' : role}"
+     *ngIf="selectedPhoto" (swipeleft)="swipeLeft()"
+     (swiperight)="swipeRight()">
+
+  <span class="photos-overlay__close-button" (click)="closePhoto()">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M2 26L26 2L2 26Z" stroke="#F2F2F2" stroke-width="3"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M26 26L2 2L26 26Z" stroke="#F2F2F2" stroke-width="3"/>
+    </svg>
+  </span>
+  <div class="photos-overlay__wrapper">
+    <!-- BEGIN: DEAL VIEW HEADER -->
+    <div class="photo-header">
+      <span (click)="closePhoto()">
+        <!-- HEADER ICON FOR USER -->
+        <ng-container *ngIf="role && selectedPhoto">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="7.05029" y="5.63599" width="16" height="2" rx="1" transform="rotate(45 7.05029 5.63599)"
+                  fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M6.34311 17.6568C5.95258 17.2663 5.95258 16.6331 6.34311 16.2426L16.2426 6.34309C16.6331 5.95257 17.2663 5.95257 17.6568 6.34309C18.0473 6.73362 18.0473 7.36678 17.6568 7.75731L7.75732 17.6568C7.36679 18.0473 6.73363 18.0473 6.34311 17.6568Z"
+                  fill="white"/>
+          </svg>
+        </ng-container>
+
+        <!-- HEADER ICON FOR BUSINESS OWNER -->
+        <ng-container *ngIf="!role && selectedPhoto">
+          <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 15L1 8L8 1" stroke="#000000" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </ng-container>
+      </span>
+
+      <p class="photo-header__text">
+        Photos
+      </p>
+
+      <span *ngIf="!role"
+            (click)="onDelete()">
+        <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M16.5 3C17.3238 3 18 3.24732 18 4.09028V5.01264L17 5V20C17 21.1046 16.1046 22 15 22H3C1.89543 22 1 21.1046 1 20V5H0V4.09028C0 3.24732 0.675917 3 1.5 3H4V1C4 0.615786 4.62442 0 5 0H12.9836C13.3592 0 14 0.615786 14 1V3H16.5ZM12 2H6V3H12V2ZM15 20H3V5H15V20ZM10 8H12V17H10V8ZM8 8H6V17H8V8Z"
+                fill="#000000"/>
+        </svg>
+      </span>
+    </div>
+    <!-- END: DEAL VIEW HEADER -->
+
+    <!-- START: PHOTO META -->
+    <div class="photo-meta-wrapper">
+      <span class="photo-wrapper__badge" *ngIf="selectedPhoto.primary && !role">
+        primary
+      </span>
+
+      <div class="photo-meta">
+          <span class="name" *ngIf="false">
+            {{ selectedPhoto.anonymous ? 'Anonymous' : (selectedPhoto?.user?.name)}}
+            <span class="member" *ngIf="selectedPhoto?.user?.producerBadgeId">
+             {{producersObj[selectedPhoto?.user?.producerBadgeId]}}
+            </span>
+          </span>
+        <span class="business-name name" *ngIf="false">
+        {{business.name}}
+          <span class="member" [class.primary]="selectedPhoto.primary" *ngIf="business.memberAt">
+          Member
+        </span>
+      </span>
+        <span class="date">
+            {{ selectedPhoto.createdAt | timeAgo }}
+          </span>
+      </div>
+    </div>
+    <!-- END: PHOTO META -->
+
+    <pinch-zoom>
+      <div (pinch)="onPinch($event)">
+        <!-- BUTTONS FOR DESKTOP VIEW -->
+        <button class="desktop-button" (click)="changePhotoStatus(selectedPhoto)"
+                *ngIf="!selectedPhoto.primary && !role">
+          Make Primary
+        </button>
+        <button class="desktop-button" *ngIf="selectedPhoto.primary && !role">
+          Primary
+        </button>
+
+        <span class="photo-arrow prev" (click)="swipeRight()">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M10.4445 14.3367L8.5 16.2812L0.721826 8.50308L1.42893 7.79597L1.25216 7.61919L8.32322 0.548124L10.4445 2.66944L4.61091 8.50308L10.4445 14.3367Z"
+                fill="white"/>
+          <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="17" height="17">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M10.4445 14.3367L8.5 16.2812L0.721826 8.50308L1.42893 7.79597L1.25216 7.61919L8.32322 0.548124L10.4445 2.66944L4.61091 8.50308L10.4445 14.3367Z"
+                  fill="white"/>
+          </mask>
+          <g mask="url(#mask0)"></g>
+        </svg>
+      </span>
+        <span class="photo-arrow next" (click)="swipeLeft()">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M6.55546 14.3328L8.5 16.2773L16.2782 8.49917L14.3336 6.55463L8.5 0.720995L6.55546 2.66554L12.3891 8.49917L6.55546 14.3328Z"
+                fill="white"/>
+          <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="17" height="17">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M6.55546 14.3328L8.5 16.2773L16.2782 8.49917L14.3336 6.55463L8.5 0.720995L6.55546 2.66554L12.3891 8.49917L6.55546 14.3328Z"
+                  fill="white"/>
+          </mask>
+          <g mask="url(#mask0)"></g>
+        </svg>
+      </span>
+
+        <span class="desktop-delete-button" *ngIf="!role" (click)="onDelete()">
+        <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M16.5 3C17.3238 3 18 3.24732 18 4.09028V5.01264L17 5V20C17 21.1046 16.1046 22 15 22H3C1.89543 22 1 21.1046 1 20V5H0V4.09028C0 3.24732 0.675917 3 1.5 3H4V1C4 0.615786 4.62442 0 5 0H12.9836C13.3592 0 14 0.615786 14 1V3H16.5ZM12 2H6V3H12V2ZM15 20H3V5H15V20ZM10 8H12V17H10V8ZM8 8H6V17H8V8Z"
+                fill="#ffffff"/>
+        </svg>
+      </span>
+        <!-- END BUTTONS FOR DESKTOP VIEW -->
+
+        <div class="photo-wrapper">
+          <div class="photo-wrapper__box">
+            <img [src]="selectedPhoto.url" alt=""/>
+          </div>
+        </div>
+
+        <!-- PAGINATION FOR DESKTOP VIEW -->
+        <div class="pagination-desktop">
+          {{getCurrentPhotoIndex(selectedPhoto) + 1}} of {{filteredViewList.length}}
+        </div>
+      </div>
+    </pinch-zoom>
+
+    <!-- BEGIN: DEAL VIEW FOOTER -->
+    <div class="photo-footer">
+      <div class="paginator-img" *ngIf="role">
+        {{getCurrentPhotoIndex(selectedPhoto) + 1}} of {{filteredViewList.length}}
+      </div>
+      <p class="photo-footer__button" (click)="changePhotoStatus(selectedPhoto)"
+         *ngIf="!selectedPhoto.primary && !role">
+        <span>
+          Make Primary
+        </span>
+      </p>
+    </div>
+    <!-- END: DEAL VIEW FOOTER -->
+
+    <!-- BEGIN: DESKTOP VIEW ASIDE -->
+    <aside class="photo-aside photo-meta-wrapper">
+      <div class="photo-meta">
+        <span class="name" *ngIf="selectedPhoto?.uploadedByCustomer">
+          {{ selectedPhoto.anonymous ? 'Anonymous' : (selectedPhoto?.user?.name)}}
+        </span>
+        <span class="name" *ngIf="!selectedPhoto?.uploadedByCustomer">
+          {{ business?.name }}
+        </span>
+        <span class="member" *ngIf="!selectedPhoto?.uploadedByCustomer">
+          Member
+        </span>
+        <span class="member" *ngIf="selectedPhoto?.uploadedByCustomer && selectedPhoto?.user">
+          {{producersObj[selectedPhoto?.user?.producerBadgeId]}}
+        </span>
+        <span class="date">
+          {{ selectedPhoto.createdAt | timeAgo }}
+        </span>
+      </div>
+    </aside>
+    <!-- END:DESKTOP VIEW ASIDE -->
+  </div>
+</div>
+<!-- END: ONE PHOTO VIEW -->
+
+<!-- BEGIN: LIST WITH PHOTOS -->
+<div class="container-photos" [ngClass]="{'deal-event-view' : dealId || eventId, 'user-view' : role, 'owner-view' : !role}">
+
+  <!-- BEGIN: BLOCK FOR BUSINESS USER AND BUSINESS OWNER -->
+  <div *ngIf="!dealId && !eventId" class="desktop-header">
+    <h1 class="desktop-header__title">
+      Photos
+    </h1>
+
+    <div class="photos-categories"
+         [ngClass]="{'white': !role}"
+         *ngIf="!selectedPhoto && showAllTabs">
+      <ul>
+        <li [ngClass]="{ 'active': filterByType === 'all' }" (click)="showPhotos('all')" *ngIf="showAllTab">
+          View All
+        </li>
+        <li [ngClass]="{ 'active': filterByType === 'business' }"
+            (click)="showPhotos('business')"
+            *ngIf="showAddedByBusinessTab">
+          Added By Business
+        </li>
+        <li [ngClass]="{ 'active': filterByType === 'member' }" (click)="showPhotos('member')"
+            *ngIf="showAddedByUsersTab">
+          Added By Users
+        </li>
+      </ul>
+
+      <input
+        #fileInput
+        type="file"
+        accept="image/*"
+        id="cameraInput"
+        name="cameraInput"
+        data-role="none"
+        style="display: none"
+        [multiple]="false"
+        (change)="uploadPhotos($event)">
+
+      <button class="photos-categories__button" (click)="fileInput.click()">
+        <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M7 0C5.89543 0 5 0.895431 5 2H3C1.34315 2 0 3.34315 0 5V15C0 16.6569 1.34315 18 3 18H17C18.6569 18 20 16.6569 20 15V5C20 3.34315 18.6569 2 17 2H15C15 0.895431 14.1046 0 13 0H7ZM3 4C2.44772 4 2 4.44772 2 5V15C2 15.5523 2.44772 16 3 16H17C17.5523 16 18 15.5523 18 15V5C18 4.44772 17.5523 4 17 4H3ZM10 15C12.7614 15 15 12.7614 15 10C15 7.23858 12.7614 5 10 5C7.23858 5 5 7.23858 5 10C5 12.7614 7.23858 15 10 15ZM10 13C8.34315 13 7 11.6569 7 10C7 8.34315 8.34315 7 10 7C11.6569 7 13 8.34315 13 10C13 11.6569 11.6569 13 10 13ZM16 7C16.5523 7 17 6.55228 17 6C17 5.44772 16.5523 5 16 5C15.4477 5 15 5.44772 15 6C15 6.55228 15.4477 7 16 7Z"
+                fill="white"/>
+        </svg>
+        Add Photos
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="dealId || eventId" class="desktop-header">
+    <div class="desktop-header__info special-info">
+      <p class="special-info__title">
+        {{business?.name}}
+      </p>
+
+      <p class="special-info__location">
+        {{business?.city}}, {{business?.state | shortenState}}
+      </p>
+    </div>
+
+    <div class="card-content">
+      <div class="card-content__wrapper">
+        <div class="rating">
+          <i class="pi pi-star"></i>
+          <span class="rate">{{business?.rating ? (business?.rating | number:'1.1-1') : '-'}}</span>
+        </div>
+        <div class="checkins" *ngIf="business?.checkInsCount">
+          <img src="../../../../assets/images/icons/checkin-icon.svg" alt="">
+          <span class="rate">{{business?.checkInsCount}} Check-ins</span>
+        </div>
+      </div>
+
+      <div class="categories">
+        <i class="pi pi-tag"></i>
+        <span *ngFor="let category of business?.businessTypes; let last = last">{{category.code}}<span
+          *ngIf="!last">{{', '}}</span></span>
+      </div>
+    </div>
+
+    <div class="photos-categories"
+         [ngClass]="{'white': !role}"
+         *ngIf="!selectedPhoto && showAllTabs">
+      <ul>
+        <li [ngClass]="{ 'active': filterByType === 'all' }" (click)="showPhotos('all')" *ngIf="showAllTab">
+          View All
+        </li>
+        <li [ngClass]="{ 'active': filterByType === 'business' }"
+            (click)="showPhotos('business')"
+            *ngIf="showAddedByBusinessTab">
+          Added By Business
+        </li>
+        <li [ngClass]="{ 'active': filterByType === 'member' }" (click)="showPhotos('member')"
+            *ngIf="showAddedByUsersTab">
+          Added By Users
+        </li>
+      </ul>
+
+      <input
+        #fileInput
+        type="file"
+        accept="image/*"
+        id="cameraInput"
+        name="cameraInput"
+        data-role="none"
+        style="display: none"
+        [multiple]="false"
+        (change)="uploadPhotos($event)">
+
+      <button class="photos-categories__button" (click)="fileInput.click()">
+        <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M7 0C5.89543 0 5 0.895431 5 2H3C1.34315 2 0 3.34315 0 5V15C0 16.6569 1.34315 18 3 18H17C18.6569 18 20 16.6569 20 15V5C20 3.34315 18.6569 2 17 2H15C15 0.895431 14.1046 0 13 0H7ZM3 4C2.44772 4 2 4.44772 2 5V15C2 15.5523 2.44772 16 3 16H17C17.5523 16 18 15.5523 18 15V5C18 4.44772 17.5523 4 17 4H3ZM10 15C12.7614 15 15 12.7614 15 10C15 7.23858 12.7614 5 10 5C7.23858 5 5 7.23858 5 10C5 12.7614 7.23858 15 10 15ZM10 13C8.34315 13 7 11.6569 7 10C7 8.34315 8.34315 7 10 7C11.6569 7 13 8.34315 13 10C13 11.6569 11.6569 13 10 13ZM16 7C16.5523 7 17 6.55228 17 6C17 5.44772 16.5523 5 16 5C15.4477 5 15 5.44772 15 6C15 6.55228 15.4477 7 16 7Z"
+                fill="white"/>
+        </svg>
+        Add Photos
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!dealId && !eventId" class="photos-header">
+    <kz-title-header [title]="'Photos'"
+                     [isShownBack]="true"
+                     [isBackByLocation]="true"
+                     [isTransparent]="false"
+                     *ngIf="!selectedPhoto && role">
+    </kz-title-header>
+    <kz-title-header [title]="'Business Photos'" [isWhite]="true"
+                     [isShownBack]="true"
+                     [isBackByLocation]="true"
+                     *ngIf="!selectedPhoto && !role">
+    </kz-title-header>
+
+    <div class="page-title black-title" *ngIf="selectedPhoto">
+      <!--todo: replace symbols with svg-icons-->
+      <div *ngIf="!selectedPhoto" class="btn-back">&lsaquo;</div>
+      <div *ngIf="selectedPhoto" class="btn-back" (click)="closePhoto()">&times;</div>
+      <span>Photos</span>
+    </div>
+    <div class="photos-categories"
+         [ngClass]="{'white': !role}"
+         *ngIf="!selectedPhoto && showAllTabs">
+      <ul>
+        <li [ngClass]="{ 'active': filterByType === 'all' }" (click)="showPhotos('all')" *ngIf="showAllTab">
+          View All
+        </li>
+        <li [ngClass]="{ 'active': filterByType === 'business' }"
+            (click)="showPhotos('business')"
+            *ngIf="showAddedByBusinessTab">
+          Added By Business
+        </li>
+        <li [ngClass]="{ 'active': filterByType === 'member' }" (click)="showPhotos('member')"
+            *ngIf="showAddedByUsersTab">
+          Added By Users
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- END: BLOCK FOR BUSINESS USER AND BUSINESS OWNER -->
+
+  <!-- BEGIN: BLOCK FOR DEALS PHOTO VIEW -->
+  <kz-title-header *ngIf="eventId" [title]="'See All'"
+                   [isTransparent]="!role"
+                   [isShownBack]="true">
+  </kz-title-header>
+
+  <div *ngIf="dealId" class="photos-header">
+    <kz-title-header [title]="'See All'"
+                     [isWhite]="!role"
+                     [isShownBack]="true"
+                     *ngIf="!selectedPhoto">
+    </kz-title-header>
+  </div>
+  <!-- END: BLOCK FOR DEALS PHOTO VIEW -->
+
+  <div class="photos-content" *ngIf="!selectedPhoto">
+    <!-- UPLOAD BUTTON FOR BUSINESS OWNER -->
+    <input #uploadInput
+           type="file"
+           accept="image/*"
+           [multiple]="false"
+           (change)="uploadPhotos($event)"
+           style="display: none;">
+    <div class="add-photo photo" *ngIf="showUpload" (click)="uploadInput.click()">
+      <div class="add-photo__image-box">
+        <img class="add-photo__image" src="../../../../assets/images/icons/add-icon.svg" alt="Add Icon">
+      </div>
+      <p class="add-photo__text">Add Photos</p>
+    </div>
+
+    <!-- PHOTO ITEM -->
+    <div class="photo"
+         *ngFor="let photo of filteredViewList"
+         [ngStyle]="{ 'background-image': 'url(' + photo.url + ')' }"
+         (click)="openPhoto(photo)">
+      <span class="photo__badge" *ngIf="photo.primary && !role">Primary</span>
+    </div>
+  </div>
+</div>
+<!-- END: LIST WITH PHOTOS -->
+
+<!-- BEGIN: DELETE PHOTO MODAL -->
+<p-dialog [showHeader]="false"
+          [modal]="true"
+          [styleClass]="'question-dialog__wrapper'"
+          [visible]="showDeletePopup"
+          [style]="{'border':'none'}">
+  <div class="question-dialog">
+    <p class="question-dialog__text">
+      Are you sure you want to delete this photo?
+    </p>
+
+    <div class="question-dialog__button-wrapper">
+      <button class="question-dialog__button question-dialog__button_gray" (click)="showDeletePopup = false">
+        Cancel
+      </button>
+      <button class="question-dialog__button" (click)="deletePhoto(selectedPhoto)">
+        Delete
+      </button>
+    </div>
+  </div>
+</p-dialog>
+<!-- END: DELETE PHOTO MODAL -->
+
+<kz-footer *ngIf="!role"></kz-footer>

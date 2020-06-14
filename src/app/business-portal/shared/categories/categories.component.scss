@@ -1,0 +1,117 @@
+@import '../../../../styles/variables';
+
+.container-categories {
+  background: #ffffff;
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  .categories-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 20px;
+    grid-row-gap: 54px;
+    grid-column-gap: 9px;
+    justify-items: center;
+    max-width: 420px;
+    margin: 0 auto 60px;
+
+    .category {
+      width: 77px;
+      height: 90px;
+      cursor: pointer;
+
+      .category-img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        border-radius: 8px;
+      }
+
+      .category-name {
+        @include limited-text(3);
+        font-size: 13px;
+        line-height: 1.23;
+        text-align: center;
+        color: #242424;
+        max-height: 47px;
+      }
+    }
+  }
+
+  .view-all {
+    height: 35px;
+    border-radius: 8px;
+    background-color: rgba(75, 3, 189, 0.12);
+    font-size: 17px;
+    line-height: 2;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    margin: 0 20px;
+
+    span {
+      color: #4b03bd;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .container-categories {
+    .categories-box {
+      max-width: 375px;
+    }
+  }
+}
+
+@media (max-width: 374px) {
+  .container-categories {
+    .categories-box {
+      padding: 0;
+      grid-column-gap: 5px;
+      justify-items: center;
+      max-width: 310px;
+
+      .category {
+        width: 74px;
+        height: 80px;
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-sm) {
+  .container-categories {
+    background-color: $base-bg-grey-color;
+    padding-bottom: 0;
+
+    .categories-box {
+      padding: 0;
+      position: relative;
+      grid-template-columns: repeat(8, 1fr);
+
+      .category {
+        width: 120px;
+        height: 120px;
+        padding-right: 16px;
+
+        &:last-child {
+          padding-right: 0;
+        }
+
+        .category-name {
+          position: absolute;
+          bottom: 16px;
+          left: 16px;
+          font-size: 15px;
+          color: $white;
+          max-width: 90px;
+          text-align: left;
+        }
+      }
+    }
+
+    .view-all {
+      display: none;
+    }
+  }
+}

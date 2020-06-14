@@ -1,0 +1,27 @@
+@import "../../styles/variables.scss";
+
+.kz {
+  margin-top: $header-height;
+}
+
+kz-header + kz-title-header {
+   margin-top: $header-height;
+   display: block;
+ }
+
+kz-header + kz-list-of-photos {
+  margin-top: $header-height;
+  display: block;
+}
+
+kz-header + kz-list-of-photos {
+  margin-top: $header-height;
+  display: block;
+}
+
+kz-header + div {
+  margin-top: $header-height;
+}
+
+
+

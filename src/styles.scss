@@ -1,0 +1,48 @@
+
+.ui-calendar {
+  .ui-datepicker {
+    min-width: auto;
+  }
+}
+
+@import '~primeng/resources/themes/omega/theme.css';
+@import '~ngx-toastr/toastr.css';
+
+@import './styles/mixin';
+@import './styles/variables';
+@import './styles/reset';
+
+@import './styles/core';
+@import './styles/ngbusy';
+@import './styles/forms/form-components';
+@import './styles/forms/switcher';
+@import './styles/forms/page-form';
+@import './styles/parts/header';
+@import './styles/parts/header-profile';
+@import './styles/parts/footer';
+@import './styles/parts/status-label';
+@import './styles/parts/agent-status';
+@import './styles/parts/loader';
+
+@import './styles/dashboard/intro';
+@import './styles/dashboard/subscription';
+
+@import './styles/business/verify';
+@import './styles/settings/settings';
+@import './styles/settings/menu';
+
+@import './styles/profile/login';
+@import './styles/invite/invite';
+
+@import './styles/popup/popup';
+@import './styles/info-pages/about-us';
+
+@import './styles/external-styles/style';
+
+
+// vendor
+@import '~ng-busy/src/style/busy.css';
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~mapbox-gl/dist/mapbox-gl.css';

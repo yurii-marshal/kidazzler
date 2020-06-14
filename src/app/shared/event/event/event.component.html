@@ -1,0 +1,568 @@
+<div class="deal-wrapper" *ngIf="form">
+  <div class="deal-edit">
+    <!-- MAIN TITLE -->
+    <p class="deal-edit__heading">
+      Event Information
+    </p>
+
+    <form class="edit-form" [formGroup]="form" (ngSubmit)="submit()">
+      <!-- TITLE EDIT -->
+      <div class="edit-form__item">
+        <label for="title" class="edit-form__label">
+          Title
+        </label>
+
+        <input placeholder="Enter Title"
+               class="edit-form__input"
+               type="text"
+               id="title"
+               maxlength="80" formControlName="title">
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('title')">
+          {{ formErrors.getValidationMessage('title') }}
+        </div>
+      </div>
+      <!-- DETAILS EDIT -->
+      <div class="edit-form__item">
+        <label for="description" class="edit-form__label">
+          Event Details
+        </label>
+
+        <textarea placeholder="Enter Event Detail"
+                  class="edit-form__input"
+                  id="description"
+                  maxlength="4000" formControlName="description">
+        </textarea>
+        <div class="edit-form__text-counter">{{form.get('description')?.value?.length}}/4000</div>
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('description')">
+          {{ formErrors.getValidationMessage('description') }}
+        </div>
+      </div>
+      <!-- LOCATION EDIT -->
+      <div class="location-block">
+        <p class="deal-edit__heading">
+          Event Location
+        </p>
+
+        <div class="ui-fluid select-group">
+          <p-selectButton [styleClass]="'edit-form__option'"
+                          (onChange)="onLocationTypeChange(form.get('locationType')?.value)"
+                          [options]="locationOptions"
+                          formControlName="locationType">
+          </p-selectButton>
+        </div>
+
+        <!-- ADDRESS EDIT -->
+        <div class="edit-form__item" *ngIf="form.get('locationType')?.value === 'Physical'">
+          <label for="address" class="edit-form__label">
+            Address
+          </label>
+
+          <kz-location-picker id="address" class="edit-form__input"
+                              [pickAddress]="true"
+                              [placeholder]="'Enter Address'" formControlName="address">
+          </kz-location-picker>
+          <div class="error-message" *ngIf="formErrors.checkControlValidation('address')">
+            {{ formErrors.getValidationMessage('address') }}
+          </div>
+        </div>
+
+        <!-- TOWN/CITY EDIT -->
+        <div class="edit-form__item">
+          <label for="city" class="edit-form__label">
+            City/Town
+          </label>
+
+          <kz-location-picker id="city" class="edit-form__input"
+                              [pickCity]="true"
+                              [placeholder]="'Enter City'" formControlName="city">
+          </kz-location-picker>
+
+          <div class="error-message" *ngIf="formErrors.checkControlValidation('city')">
+            {{ formErrors.getValidationMessage('city') }}
+          </div>
+        </div>
+
+        <div class="location-block__box">
+          <!-- STATE/PROVINCE EDIT -->
+          <div class="edit-form__item">
+            <label for="state" class="edit-form__label">
+              State/Province
+            </label>
+
+            <kz-location-picker id="state"
+                                class="edit-form__input"
+                                [pickState]="true" formControlName="state"
+                                [placeholder]="'Enter State/Province'">
+            </kz-location-picker>
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('state')">
+              {{ formErrors.getValidationMessage('state') }}
+            </div>
+          </div>
+
+          <!-- ZIP/POSTAL CODE EDIT -->
+          <div class="edit-form__item" *ngIf="form.get('locationType')?.value === 'Physical'">
+            <label for="code" class="edit-form__label">
+              ZIP/Postal Code
+            </label>
+
+            <input placeholder="Enter ZIP/Postal Code"
+                   class="edit-form__input"
+                   type="text"
+                   id="code"
+                   maxlength="80" formControlName="zip">
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('title')">
+              {{ formErrors.getValidationMessage('zip') }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- CATEGORIES EDIT -->
+      <div class="edit-form__item edit-form__item_categories">
+        <p class="edit-form__label edit-form__label_bold">Event Categories</p>
+        <div class="edit-form__item-box">
+          <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+          <div class="ui-fluid" (click)="showCategoriesPopup = true">
+            <div class="edit-form__input" id="categories">
+              <p class="edit-form__placeholder" *ngIf="selectedCategories.length < 1">
+                Select Categories
+              </p>
+
+              <p class="edit-form__category-list">
+                <span *ngFor="let category of selectedCategories; let last = last">
+                  {{category.name}} {{last ? '' : ',' }}
+                </span>
+              </p>
+            </div>
+            <div class="error-message"
+                 *ngIf="formErrors.checkControlValidation('eventCategories') && !selectedCategories?.length">
+              {{ formErrors.getValidationMessage('eventCategories') }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PRICE EDIT -->
+      <div class="edit-form__item radio-select">
+        <p class="edit-form__label edit-form__label_bold">
+          Event Price
+        </p>
+        <div class="radio-select__item">
+          <p-radioButton name="paymentType" value="free"
+                         [(ngModel)]="paymentType" (onClick)="onPriceTypeChange()"
+                         [ngModelOptions]="{standalone: true}">
+          </p-radioButton>
+
+          <p class="radio-select__text">
+            Free
+          </p>
+        </div>
+
+        <div class="radio-select__item radio-select__item_column">
+          <div class="flex-box">
+            <p-radioButton name="paymentType"
+                           value="fixed"
+                           [(ngModel)]="paymentType" (onClick)="onPriceTypeChange()"
+                           [ngModelOptions]="{standalone: true}">
+            </p-radioButton>
+
+            <p class="radio-select__text">
+              Fixed Price and Discounted Price
+            </p>
+          </div>
+
+          <div class="radio-select__box" *ngIf="paymentType === 'fixed'">
+            <input placeholder="Price" class="edit-form__input radio-select__input"
+                   type="number" id="price"
+                   formControlName="price">
+
+            <p-dropdown [options]="currency" [styleClass]="'currency-select'"
+                        class="edit-form__input radio-select__input"
+                        id="currency"
+                        formControlName="currency">
+            </p-dropdown>
+
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('price')">
+              {{ formErrors.getValidationMessage('price') }}
+            </div>
+            <div class="error-message" *ngIf="formErrors.checkControlValidation('currency')">
+              {{ formErrors.getValidationMessage('currency') }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- DISCOUNTED PRICE EDIT -->
+      <div class="edit-form__item" *ngIf="paymentType === 'fixed'">
+        <label for="discountPrice" class="edit-form__label">
+          Discounted Price
+        </label>
+
+        <input placeholder="Discounted Price" class="edit-form__input radio-select__input"
+               type="number"
+               id="discountPrice" formControlName="discountedPrice">
+      </div>
+      <!-- PRICE DETAILS EDIT -->
+      <div class="edit-form__item">
+        <label for="priceDescription" class="edit-form__label">
+          Price Details
+        </label>
+
+        <textarea placeholder="Enter Price Detail"
+                  class="edit-form__input"
+                  id="priceDescription"
+                  maxlength="4000" formControlName="priceDetails">
+        </textarea>
+
+        <div class="edit-form__text-counter">{{form.get('priceDetails')?.value?.length}}/4000</div>
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('description')">
+          {{ formErrors.getValidationMessage('priceDetails') }}
+        </div>
+      </div>
+      <!-- WEBSITE ADDRESS EDIT -->
+      <div class="edit-form__item">
+        <label for="title" class="edit-form__label">
+          Website
+          <span>(Optional)</span>
+        </label>
+        <input placeholder="Enter Website Address"
+               class="edit-form__input"
+               type="text"
+               id="website"
+               maxlength="80" formControlName="website">
+        <div class="error-message" *ngIf="formErrors.checkControlValidation('website')">
+          {{ formErrors.getValidationMessage('website') }}
+        </div>
+      </div>
+      <!-- DATE EDIT -->
+      <div class="date-block">
+        <div class="edit-form__item">
+          <p class="edit-form__label edit-form__label_bold">Event Details</p>
+          <!-- DATE TYPE SELECT - ONE TIME OR RECURRING -->
+          <div class="ui-fluid">
+            <p-selectButton [styleClass]="'edit-form__option'"
+                            [options]="eventOptions"
+                            formControlName="timeType">
+            </p-selectButton>
+          </div>
+
+          <!-- BEGIN: INPUTS FOR ONE TIME DATE TYPE -->
+          <div *ngIf="form.get('timeType')?.value === 'Onetime'">
+            <div class="edit-form__item edit-form__item_inner">
+              <p class="edit-form__label edit-form__label_bold">
+                Start Date
+              </p>
+
+              <div class="date-select">
+                <div class="edit-form__item-box">
+                  <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+                  <p-calendar placeholder="Select Date"
+                              formControlName="start">
+                  </p-calendar>
+                  <div class="error-message" *ngIf="formErrors.checkControlValidation('start')">
+                    {{ formErrors.getValidationMessage('start') }}
+                  </div>
+                </div>
+                <div class="edit-form__item-box">
+                  <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+                  <p-calendar placeholder="Set Time" [disabled]="this.form.get('allDay').value"
+                              timeOnly="true" [(ngModel)]="timeStart" [ngModelOptions]="{standalone: true}"
+                              hourFormat="12" [stepHour]="1" (onSelect)="onChangeTime($event, 'start')">
+                  </p-calendar>
+                  <div class="error-message" *ngIf="formErrors.checkControlValidation('start')">
+                    {{ formErrors.getValidationMessage('start') }}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="edit-form__item edit-form__item_inner">
+              <p class="edit-form__label edit-form__label_bold">
+                End Date
+              </p>
+
+              <div class="date-select">
+                <div class="edit-form__item-box">
+                  <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+                  <p-calendar placeholder="Select Date"
+                              formControlName="end">
+                  </p-calendar>
+                  <div class="error-message" *ngIf="formErrors.checkControlValidation('end')">
+                    {{ formErrors.getValidationMessage('end') }}
+                  </div>
+                </div>
+                <div class="edit-form__item-box">
+                  <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+                  <p-calendar placeholder="Set Time" [disabled]="this.form.get('allDay').value"
+                              timeOnly="true" [(ngModel)]="timeEnd" [ngModelOptions]="{standalone: true}"
+                              hourFormat="12" [stepHour]="1" (onSelect)="onChangeTime($event, 'end')">
+                  </p-calendar>
+                  <div class="error-message" *ngIf="formErrors.checkControlValidation('end')">
+                    {{ formErrors.getValidationMessage('end') }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- ALL DAY SELECT -->
+              <div class="form-block form-block_reversed">
+                <div class="custom-checkbox">
+                  <p class="custom-checkbox__option-text">
+                    All Day
+                  </p>
+                  <input type="checkbox" formControlName="allDay">
+                  <label></label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END: INPUTS FOR ONE TIME DATE TYPE -->
+
+          <!-- BEGIN: INPUTS FOR RECURRING DATE TYPE -->
+          <div *ngIf="form.get('timeType')?.value === 'Recurring'" class="recurring-block">
+            <!-- DAILY OPTION -->
+            <div class="edit-form__item radio-select">
+              <div class="recurring-block__box">
+                <div class="radio-select__item">
+                  <div class="radio-select__block">
+                    <p-radioButton name="recurringType" value="Daily"
+                                   [(ngModel)]="recurringType"
+                                   [ngModelOptions]="{standalone: true}">
+                    </p-radioButton>
+
+                    <p class="radio-select__text">
+                      Daily
+                    </p>
+                  </div>
+
+                  <div class="recurring-option" *ngIf="recurringType === 'Daily'">
+                    <div class="recurring-select-box">
+                      <div class="edit-form__item-box">
+                        <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg"
+                             alt="">
+                        <p-calendar placeholder="Start Time" [disabled]="this.form.get('allDay').value"
+                                    timeOnly="true" [(ngModel)]="timeStart" [ngModelOptions]="{standalone: true}"
+                                    hourFormat="12" [stepHour]="1" (onSelect)="onChangeTime($event, 'start')"
+                                    [defaultDate]="startDate">
+                        </p-calendar>
+                      </div>
+                      <div class="edit-form__item-box">
+                        <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg"
+                             alt="">
+                        <p-calendar placeholder="End Time" [disabled]="this.form.get('allDay').value"
+                                    [(ngModel)]="timeEnd" [ngModelOptions]="{standalone: true}"
+                                    timeOnly="true" (onSelect)="onChangeTime($event, 'end')"
+                                    hourFormat="12" [stepHour]="1">
+                        </p-calendar>
+                      </div>
+                    </div>
+
+                    <!-- ALL DAY SELECT -->
+                    <div class="form-block form-block_reversed">
+                      <div class="custom-checkbox">
+                        <p class="custom-checkbox__option-text">
+                          All Day
+                        </p>
+                        <input type="checkbox" formControlName="allDay">
+                        <label></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- WEEKLY OPTION -->
+            <div class="edit-form__item radio-select">
+              <div class="recurring-block__box">
+                <div class="radio-select__item">
+                  <div class="radio-select__block">
+                    <p-radioButton name="recurringType"
+                                   value="Weekly"
+                                   [(ngModel)]="recurringType"
+                                   [ngModelOptions]="{standalone: true}">
+                    </p-radioButton>
+                    <p class="radio-select__text">
+                      Weekly
+                    </p>
+                  </div>
+
+                  <div class="recurring-option" *ngIf="recurringType === 'Weekly'">
+                    <div>
+                      <div class="form-block form-block_reversed">
+
+                        <div class="recurring-select-box">
+                          <div class="only-date">
+                            <img class="only-date__input-icon"
+                                 src="../../../../assets/images/icons/icon-shevron-down.svg" alt="">
+                            <p-calendar placeholder="Select Date"
+                                        formControlName="start">
+
+                            </p-calendar>
+                            <div class="error-message" *ngIf="formErrors.checkControlValidation('start')">
+                              {{ formErrors.getValidationMessage('start') }}
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- WEEK DAY SELECT -->
+                        <div class="filter-content">
+                          <div class="filter-content__box filter-content__box_ages">
+                            <div class="filter-content__option-list">
+                              <div class="filter-content__option" *ngFor="let day of days"
+                                   [class.selected-option]="checkDay.checked">
+                                <p-checkbox #checkDay [inputId]="day.value" name="groupname"
+                                            value="{{day.value}}"
+                                            [formControl]="form.controls['weekdays']">
+                                </p-checkbox>
+                                <label for="{{day.value}}">
+                                  <span class="filter-content__age-option">
+                                    <i>{{day.label}}</i>
+                                  </span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- ALL DAY SELECT -->
+                        <div class="form-block form-block_reversed">
+                          <div class="custom-checkbox">
+                            <p class="custom-checkbox__option-text">
+                              All Day
+                            </p>
+                            <p-radioButton name="allDay" [value]="true"
+                                           formControlName="allDay">
+                            </p-radioButton>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- BY TIME SELECT -->
+                    <div>
+                      <!-- ALL DAY SELECT -->
+                      <div class="form-block form-block_reversed">
+                        <div class="custom-checkbox">
+                          <p class="custom-checkbox__option-text">
+                            By Time
+                          </p>
+                          <p-radioButton name="allDay" [value]="false"
+                                         formControlName="allDay">
+                          </p-radioButton>
+                        </div>
+                      </div>
+                      <div class="recurring-select-box" *ngIf="!form.get('allDay')?.value">
+                        <div class="edit-form__item-box">
+                          <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg"
+                               alt="">
+                          <p-calendar placeholder="Start Time"
+                                      timeOnly="true" (onSelect)="onChangeTime($event, 'start')" [(ngModel)]="timeStart"
+                                      [ngModelOptions]="{standalone: true}"
+                                      hourFormat="12" [stepHour]="1">
+                          </p-calendar>
+                        </div>
+                        <div class="edit-form__item-box">
+                          <img class="edit-form__input-icon" src="../../../../assets/images/icons/icon-shevron-down.svg"
+                               alt="">
+                          <p-calendar placeholder="End Time"
+                                      timeOnly="true" (onSelect)="onChangeTime($event, 'end')" [(ngModel)]="timeEnd"
+                                      [ngModelOptions]="{standalone: true}"
+                                      hourFormat="12" [stepHour]="1">
+                          </p-calendar>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END: INPUTS FOR RECURRING DATE TYPE -->
+        </div>
+      </div>
+
+      <!-- SUBMIT AND CANCEL BUTTONS -->
+      <div class="edit-form__submit-wrapper">
+        <button class="edit-form__submit" type="submit">
+          {{event.id ? 'Edit' : 'Create'}} Event
+        </button>
+
+        <button class="edit-form__submit edit-form__submit_gray" (click)="deleteEvent()" *ngIf="event.id">
+          Delete Event
+        </button>
+        <button class="edit-form__submit edit-form__submit_gray" (click)="cancel()" *ngIf="!event.id">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- BEGIN: MODAL WITH CATEGORIES SELECT -->
+<p-dialog [showHeader]="false"
+          [style]="{'border':'none', 'box-shadow':'none', 'margin-top':'35px', 'overflow':'hidden', 'height':'calc(100vh - 70px)', 'width':'100%'}"
+          [visible]="showCategoriesPopup">
+  <div class="categories-popup">
+    <span class="categories-popup__close">
+      <span class="categories-popup__close-box" (click)="showCategoriesPopup = false">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M6 4.57384L10.2785 0.295367C10.6723 -0.0984557 11.3108 -0.0984557 11.7046 0.295367C12.0985 0.68919 12.0985 1.3277 11.7046 1.72153L7.42616 6L11.7046 10.2785C12.0985 10.6723 12.0985 11.3108 11.7046 11.7046C11.3108 12.0985 10.6723 12.0985 10.2785 11.7046L6 7.42616L1.72153 11.7046C1.3277 12.0985 0.68919 12.0985 0.295367 11.7046C-0.0984557 11.3108 -0.0984557 10.6723 0.295367 10.2785L4.57384 6L0.295367 1.72153C-0.0984557 1.3277 -0.0984557 0.68919 0.295367 0.295367C0.68919 -0.0984557 1.3277 -0.0984557 1.72153 0.295367L6 4.57384Z"
+                fill="#26314F"/>
+        </svg>
+      </span>
+    </span>
+    <div>
+      <p class="categories-popup__title">
+        Select Categories
+      </p>
+      <form class="form-block">
+        <p class="form-block__title">
+          Categories List
+        </p>
+
+        <div class="form-block__option" (click)="updateSelectedCategories(category)"
+             *ngFor="let category of categories">
+          <p class="form-block__option-text">
+            {{category.name}}
+          </p>
+          <input id="{{category.id}}" type="checkbox" [checked]="isSelectedCategory(category.id)">
+          <label for="{{category.id}}"></label>
+        </div>
+      </form>
+    </div>
+
+    <p class="categories-popup__button" (click)="onCategoriesSubmit()">
+      Save
+    </p>
+  </div>
+</p-dialog>
+<!-- END: MODAL WITH CATEGORIES SELECT -->
+
+
+<!-- BEGIN: DELETE EVENT MODAL -->
+<p-dialog [showHeader]="false"
+          [modal]="true"
+          [styleClass]="'question-dialog__wrapper'"
+          [visible]="showDeletePopup"
+          [style]="{'border':'none'}">
+  <div class="question-dialog">
+    <p class="question-dialog__text">
+      Are you sure you want to delete this event?
+    </p>
+
+    <div class="question-dialog__button-wrapper">
+      <button class="question-dialog__button" (click)="onDelete()">Yes</button>
+      <button class="question-dialog__button question-dialog__button_gray" (click)="showDeletePopup = false">No</button>
+    </div>
+  </div>
+</p-dialog>
+<!-- END: DELETE EVENT MODAL -->
+
+
+<ngx-ui-loader [overlayColor]="'#fff'"
+               [fgsType]="'chasing-dots'"
+               [fgsColor]="'#823cf1'"
+               [pbColor]="'#823cf1'">
+</ngx-ui-loader>
+
+
+

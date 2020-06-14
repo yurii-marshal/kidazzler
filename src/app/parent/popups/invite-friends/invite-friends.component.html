@@ -1,0 +1,55 @@
+<p-dialog [visible]="true" [modal]="true" [dismissableMask]="true" [styleClass]="'custom-popup'" [closable]="false" [draggable]="false" [resizable]="false" [showHeader]="false" (onHide)="onHide()" width="564">
+    <div class="close" (click)="closeDialog()"></div>
+    <div class="popup-window">
+        <div class="popup-title">
+            <div>Invite Friends</div>
+        </div>
+
+        <div class="invite-popup-content">
+            <span class="success-message">{{inviteSentMessage}}</span>
+
+            <div class="row">
+                <div class="col">
+                    <a (click)="onFacebookInvite()" class="btn btn-facebook">
+                        <svg-icon src="/assets/images/social/icon-social-fb.svg"></svg-icon>
+                        <span>Invite on Facebook</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a (click)="onTwitterInvite()" class="btn btn-twitter ">
+                        <svg-icon src="/assets/images/social/icon-social-twitter.svg "></svg-icon>
+                        <span>Invite on Twitter</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="copy-invite ">
+                    <input class="form-component" readonly [value]="referralSignupUrl" #inviteLink />
+                    <a class="copy-link" (click)="copyToBuffer(inviteLink)">Copy</a>
+                </div>
+            </div>
+
+            <div class="text-divider ">
+                <span>or</span>
+            </div>
+
+            <h4>Invite by Email</h4>
+            <div class="row">
+                <div class="col">
+                    <label>To</label>
+                    <kz-list-input placeholder="Email addresses" [formControl]="inviteesInput"></kz-list-input>
+                    <div class="error-message" *ngIf="errorMessage">
+                        {{errorMessage}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-button ">
+                <button class="btn btn-primary" (click)="sendInvite()" [disabled]="isLoading">
+                    Send Invite
+                </button>
+            </div>
+        </div>
+    </div>
+</p-dialog>

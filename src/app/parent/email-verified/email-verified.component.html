@@ -1,0 +1,16 @@
+<kz-header></kz-header>
+
+<div class="login-container small-container">
+    <ng-container *ngIf="isVerified">
+        <div class="icon-screen">
+            <img src="/assets/images/icon-success.svg" alt="Success" />
+        </div>
+
+        <h1>Account Confirmed!</h1>
+
+        <div class="row">
+            <a class="btn btn-primary btn-fullwidth" [attr.href]="redirectUrl">Ok</a>
+        </div>
+    </ng-container>
+</div>
+<kz-footer></kz-footer>
